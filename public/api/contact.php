@@ -21,7 +21,7 @@ $NOM_EXPEDITEUR = "Formulaire du site";
 $PAGE_MERCI     = '/contact/merci/';
 $PAGE_ERREUR    = '/contact/erreur/';
 $DELAI_MINIMUM  = 3;    // secondes entre l'ouverture du formulaire et l'envoi
-$ENVOIS_MAX     = 5;    // par adresse IP
+$ENVOIS_MAX     = 8;    // par adresse IP
 $FENETRE        = 3600; // secondes
 // ────────────────────────────────────────────────────────────────────────────
 
@@ -31,6 +31,11 @@ function repondre(bool $ok, int $code, string $message, string $redirection): ne
 {
     global $veutDuJson;
     http_response_code($code);
+
+    // Le .htaccess rend tout le site cacheable une heure. Appliqué à cette réponse,
+    // un intermédiaire pourrait resservir un « message envoyé » à quelqu'un dont le
+    // message n'est jamais parti.
+    header('Cache-Control: no-store');
 
     if ($veutDuJson) {
         header('Content-Type: application/json; charset=utf-8');
@@ -100,7 +105,33 @@ if (!$consent) {
 }
 
 // ── 5. Limitation par adresse IP ────────────────────────────────────────────
-$empreinte = hash('sha256', ($_SERVER['REMOTE_ADDR'] ?? 'inconnue') . date('YmdH'));
+/**
+ * L'hébergeur place un CDN devant le serveur : REMOTE_ADDR est alors l'adresse de
+ * ce CDN, la même pour tout le monde. S'en contenter plafonnerait le formulaire à
+ * quelques messages par heure pour l'ensemble des visiteurs, et non par personne —
+ * autrement dit, un envoi légitime pourrait être refusé à cause d'un autre.
+ *
+ * Ces en-têtes sont falsifiables par qui joint le serveur sans passer par le CDN.
+ * Le seul gain pour un attaquant serait de contourner sa propre limite, ce qui est
+ * bien moins grave que de bloquer les visiteurs de bonne foi.
+ */
+function adresseClient(): string
+{
+    foreach (['HTTP_CF_CONNECTING_IP', 'HTTP_X_REAL_IP', 'HTTP_X_FORWARDED_FOR'] as $entete) {
+        $brut = $_SERVER[$entete] ?? '';
+        if (!is_string($brut) || $brut === '') {
+            continue;
+        }
+        $premiere = trim(explode(',', $brut)[0]);
+        if (filter_var($premiere, FILTER_VALIDATE_IP)) {
+            return $premiere;
+        }
+    }
+
+    return $_SERVER['REMOTE_ADDR'] ?? 'inconnue';
+}
+
+$empreinte = hash('sha256', adresseClient() . date('YmdH'));
 $journal   = sys_get_temp_dir() . '/lsde-' . $empreinte . '.txt';
 $envois    = is_readable($journal) ? (int) file_get_contents($journal) : 0;
 

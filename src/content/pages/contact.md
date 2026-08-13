@@ -30,7 +30,7 @@ donnees:
 
   reponses:
     succes: Merci — votre message est parti. Je vous réponds personnellement.
-    erreur: L'envoi n'a pas abouti. Écrivez-moi directement à contact@lasaucedexister.fr.
+    erreur: L'envoi n'a pas abouti. Écrivez-moi directement à contact@saucedexister.fr.
 
   autrement:
     titre: Autrement

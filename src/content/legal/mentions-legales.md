@@ -3,7 +3,7 @@ titre: Mentions légales
 misAJour: ''
 seo:
   titre: Mentions légales — La Sauce d'Exister
-  description: Mentions légales du site lasaucedexister.fr.
+  description: Mentions légales du site saucedexister.fr.
 ---
 
 **Page à compléter.** L'immatriculation est en cours ; les informations légales seront renseignées ici
@@ -14,7 +14,7 @@ dès qu'elles seront disponibles.
 Alice Berthoz — La Sauce d'Exister
 Interlocutrice pour dialogues philosophants
 Annecy, Haute-Savoie
-contact@lasaucedexister.fr
+contact@saucedexister.fr
 
 - **Statut juridique** : *à compléter*
 - **SIRET** : *à compléter*

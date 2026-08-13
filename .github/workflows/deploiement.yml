@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   construire-et-publier:
-    name: Construire et publier sur Infomaniak
+    name: Construire et publier chez l'hébergeur
     runs-on: ubuntu-latest
 
     steps:
@@ -40,9 +40,9 @@ jobs:
           server: ${{ secrets.FTP_SERVEUR }}
           username: ${{ secrets.FTP_UTILISATEUR }}
           password: ${{ secrets.FTP_MOT_DE_PASSE }}
-          # L'offre Starter n'accepte que du FTP nu sur le port 21 : ni FTPS ni SFTP.
-          # Poser la variable FTP_PROTOCOLE à « ftp » le temps du Starter, puis la
-          # supprimer au passage sur l'offre payante pour retrouver du chiffré.
+          # Certaines offres d'entrée de gamme n'acceptent que du FTP nu sur le port 21,
+          # ni FTPS ni SFTP. Poser alors la variable FTP_PROTOCOLE à « ftp », et la
+          # supprimer dès que l'hébergeur accepte le chiffré.
           protocol: ${{ vars.FTP_PROTOCOLE || 'ftps' }}
           local-dir: ./dist/
           server-dir: ${{ secrets.FTP_DOSSIER }}

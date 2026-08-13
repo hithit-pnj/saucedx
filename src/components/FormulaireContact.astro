@@ -156,7 +156,10 @@ const reglages = (await getEntry('reglages', 'site'))!.data;
           body: new FormData(formulaire),
           headers: { Accept: 'application/json' },
         });
-        const resultat = (await requete.json().catch(() => ({}))) as { ok?: boolean };
+        const resultat = (await requete.json().catch(() => ({}))) as {
+          ok?: boolean;
+          message?: string;
+        };
 
         if (requete.ok && resultat.ok) {
           reponse.dataset.ton = 'succes';
@@ -164,9 +167,15 @@ const reglages = (await getEntry('reglages', 'site'))!.data;
           formulaire.reset();
           bouton.remove();
         } else {
-          throw new Error('envoi refusé');
+          // Le serveur dit pourquoi il refuse, et ses messages sont écrits pour être
+          // lus par un visiteur. Le taire derrière une formule générique laisse la
+          // personne relancer indéfiniment la même erreur sans jamais savoir laquelle.
+          reponse.dataset.ton = 'erreur';
+          reponse.textContent =
+            resultat.message ?? formulaire.dataset.erreur ?? "L'envoi n'a pas abouti.";
         }
       } catch {
+        // Ici la requête elle-même n'a pas abouti : il n'y a aucun message à relayer.
         reponse.dataset.ton = 'erreur';
         reponse.textContent = formulaire.dataset.erreur ?? "L'envoi n'a pas abouti.";
       } finally {

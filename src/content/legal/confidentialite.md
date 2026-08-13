@@ -34,9 +34,9 @@ suppression.
 
 ## Sous-traitants
 
-L'hébergement du site et la messagerie sont assurés par **Infomaniak Network SA** (Suisse), qui garantit
-un niveau de protection reconnu adéquat par la Commission européenne. Aucune donnée n'est transférée hors
-de l'Union européenne et de la Suisse.
+L'hébergement du site et la messagerie sont assurés par **Hostinger International Ltd** (Lituanie),
+société établie dans l'Union européenne et donc soumise au RGPD. Aucune donnée n'est transférée hors
+de l'Union européenne.
 
 ## Vos droits
 

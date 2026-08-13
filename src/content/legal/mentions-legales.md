@@ -24,9 +24,9 @@ contact@saucedexister.fr
 
 ## Hébergement
 
-Infomaniak Network SA
-Rue Eugène-Marziano 25, 1227 Les Acacias (Genève), Suisse
-[infomaniak.com](https://www.infomaniak.com)
+Hostinger International Ltd
+Jonavos g. 60C, 44192 Kaunas, Lituanie
+[hostinger.fr](https://www.hostinger.fr)
 
 ## Propriété intellectuelle
 

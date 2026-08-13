@@ -1,4 +1,4 @@
-# La Sauce d'Exister — configuration Apache (Infomaniak)
+# La Sauce d'Exister — configuration Apache / LiteSpeed (hébergement mutualisé)
 
 # --- Page 404 dans le ton du site ------------------------------------------
 ErrorDocument 404 /404.html

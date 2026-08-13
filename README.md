@@ -17,7 +17,7 @@ Identité graphique **Le Fil Pensant**, contenus rédigés par Alice.
 | **Astro 5**, sortie statique | Le site produit du HTML pur. Aucune base de données, aucun serveur à maintenir, chargement quasi instantané, et une durée de vie qui se compte en années plutôt qu'en versions majeures. |
 | **Contenus en Markdown / YAML** dans `src/content` | Les textes sont séparés du code. Alice peut les modifier sans toucher à une ligne de gabarit, et chaque modification est versionnée dans Git — donc annulable. |
 | **Pages CMS** (`.pages.yml`) | Interface d'édition en français, gratuite, hébergée. Elle écrit directement dans le dépôt Git ; la mise en ligne se déclenche toute seule. Aucun abonnement, aucun serveur CMS à surveiller. |
-| **Formulaire → endpoint PHP** (`public/api/contact.php`) | L'hébergement Infomaniak exécute PHP nativement : le formulaire envoie un mail sans service tiers, sans abonnement, sans données qui transitent par un prestataire américain. |
+| **Formulaire → endpoint PHP** (`public/api/contact.php`) | L'hébergement mutualisé exécute PHP nativement : le formulaire envoie un mail sans service tiers, sans abonnement, sans données qui transitent par un prestataire américain. |
 | **Polices auto-hébergées** (`@fontsource`) | Cormorant Garamond et EB Garamond servies depuis le domaine : pas d'appel à Google Fonts, donc pas de bandeau cookies à prévoir et un affichage plus rapide. |
 | **Aucun outil de mesure d'audience** | Rien à déclarer, rien à consentir. |
 
@@ -46,35 +46,33 @@ n'exécute pas PHP. Utilisez `npm run preview:php`, ou testez directement en lig
 
 ---
 
-## Premier paramétrage
+## Le domaine, et où il se règle
 
-Quatre endroits à renseigner, et rien d'autre. Tant qu'ils portent `exemple.fr`, le site
-fonctionne et s'affiche correctement — seuls le sitemap, les URL canoniques et le formulaire
-pointent au mauvais endroit.
+Le site tourne sur **saucedexister.fr**, hébergé chez Hostinger. Le domaine n'est écrit en dur
+nulle part dans le code : il vient d'une variable, lue au moment de la construction.
 
 | Où | Quoi | Quand |
 | --- | --- | --- |
-| `.env` (copié depuis `.env.example`) | `SITE_URL=https://votredomaine.fr` | en local |
+| `.env` (copié depuis `.env.example`) | `SITE_URL=https://saucedexister.fr` | en local, à créer après un clone |
 | Variable de dépôt `SITE_URL` | la même valeur | sur GitHub, pour la construction automatique |
-| `src/content/reglages.json` | `email`, `nom`, `instagram`… | ou depuis le CMS, sans toucher au code |
-| `public/api/contact.php` | `$DESTINATAIRE` et `$EXPEDITEUR`, en tête de fichier | à la mise en ligne |
 
 Sur GitHub, la variable se pose dans **Settings → Secrets and variables → Actions**, onglet
-**Variables** — pas *Secrets*, ce n'est pas une donnée sensible.
+**Variables** — pas *Secrets*, ce n'est pas une donnée sensible. Sans elle, le site se construit
+avec un domaine d'exemple : l'apparence est intacte, mais le plan du site, les adresses
+canoniques et les vignettes de partage pointent dans le vide.
 
 Le reste suit tout seul : `robots.txt` est généré à partir de `SITE_URL`, la redirection `www`
 du `.htaccess` ne nomme aucun domaine, et les pages de confirmation du formulaire lisent
 l'adresse mail dans les réglages. Si vous exploitez un second domaine à rediriger vers le
 principal, deux lignes sont à décommenter dans `public/.htaccess`.
 
-### Contenus à remplacer
+Trois endroits nomment le domaine en toutes lettres, parce qu'ils relèvent du contenu et non de
+la configuration : `src/content/reglages.json`, les deux pages de `src/content/legal/` et le
+message d'erreur de `src/content/pages/contact.md`. Ils s'éditent depuis le CMS. Un quatrième,
+`public/api/contact.php`, porte l'adresse de destination en tête de fichier.
 
-Trois fichiers contiennent encore le nom de domaine d'origine dans du texte rédigé, parce qu'ils
-relèvent du contenu et non de la configuration. Ils s'éditent aussi bien depuis le CMS :
-
-- `src/content/legal/mentions-legales.md` ;
-- `src/content/legal/confidentialite.md` ;
-- `src/content/pages/contact.md`, dans le message d'erreur du formulaire.
+Changer de domaine, ce serait donc : la variable `SITE_URL`, ces quatre fichiers, et le nom de
+l'hébergeur dans les mentions légales.
 
 ---
 
@@ -94,7 +92,7 @@ src/
 public/
   api/contact.php          Réception du formulaire et envoi du mail
   .htaccess                HTTPS, domaine canonique, page 404, cache, sécurité
-  favicon.svg  robots.txt
+  favicon.svg
 .pages.yml                 Configuration de l'interface d'édition
 ```
 

@@ -36,7 +36,7 @@ fichiers HTML**. Concrètement :
             │
             │  puis l'envoie par FTP
             ▼
-   Infomaniak  →  votredomaine.fr
+   Hostinger  →  saucedexister.fr
 ```
 
 Quatre conséquences utiles :
@@ -47,7 +47,8 @@ Quatre conséquences utiles :
   faille à corriger, pas d'extension à surveiller.
 - **Alice ne voit jamais Git.** Elle voit des formulaires en français. Git travaille dessous.
 - **Rien de tout ça ne coûte d'argent.** GitHub et Pages CMS sont gratuits à cette échelle ;
-  seul l'hébergement Infomaniak est payant, et il l'était déjà.
+  seul l'hébergement Hostinger est payant, une trentaine d'euros la première année, domaine
+  compris.
 
 ### Le vocabulaire, en une ligne chacun
 
@@ -163,8 +164,8 @@ Si vous voyez ce commit, **le circuit Alice → GitHub fonctionne**. C'est le po
 
 ### 4.3 Vérifier le résultat en local
 
-Le site en ligne n'existe pas encore (l'hébergement Infomaniak reste à configurer). En
-attendant, on récupère la modification sur votre machine :
+Tant que l'étape 5 n'est pas faite, le site en ligne n'existe pas encore. En attendant, on
+récupère la modification sur votre machine :
 
 ```bash
 git pull        # récupérer les modifications faites depuis le CMS
@@ -186,135 +187,164 @@ Retournez dans Pages CMS, retirez « , test CMS », enregistrez. Puis `git pull`
 
 ## 5. Brancher la mise en ligne automatique
 
-Cette étape suppose que l'hébergement Infomaniak est prêt. Le fichier de configuration
-existe déjà : `.github/workflows/deploiement.yml`.
+Le montage retenu : domaine `saucedexister.fr` et hébergement **Hostinger Single**, tous deux
+pris chez le même fournisseur. C'est le cas le plus simple : les serveurs de noms sont déjà
+ceux de Hostinger, il n'y a aucun réglage DNS à faire à la main.
 
-### 5.1 Souscrire la bonne offre, et ne pas se tromper de « Starter »
+Le fichier qui pilote la mise en ligne existe déjà dans le dépôt :
+`.github/workflows/deploiement.yml`. Il ne demande aucune modification — seulement quatre
+identifiants et une variable, à déposer sur GitHub.
 
-Attention à un piège de nom chez Infomaniak. Deux produits portent des noms voisins :
+Les neuf étapes qui suivent sont dans l'ordre, et l'ordre compte : le certificat avant le
+premier envoi, le dossier vidé avant le premier envoi lui aussi.
 
-| Produit | Prix | PHP | Convient ? |
-| --- | --- | --- | --- |
-| **Hébergement Web Starter** | offert avec le domaine | **non** | non — le formulaire ne marcherait pas |
-| **Hébergement Web** | à partir de ~5,75 € HT/mois | oui | **c'est celui-là** |
+### 5.1 Vérifier que le domaine porte bien un site
 
-Le Starter ne sert que du HTML et du CSS. Notre site tient dans ses 10 Mo (il pèse 0,56 Mo),
-mais `contact.php` ne s'exécuterait pas : le formulaire renverrait une erreur à chaque envoi.
+Dans le hPanel, **Sites web**. `saucedexister.fr` doit y apparaître comme un site, pas
+seulement comme un nom de domaine acheté.
 
-Il y a 30 jours d'essai gratuit sur l'offre payante, de quoi tout valider avant de s'engager.
+S'il n'y a pas encore de site, créez-en un et choisissez **site vide** — surtout pas WordPress
+ni le constructeur de sites. Ces deux-là déposent leurs propres fichiers dans le dossier du
+site, et ce sont eux qui s'afficheraient à la place du nôtre.
 
-### 5.2 Créer l'adresse mail et signer le domaine
+### 5.2 Activer le certificat SSL, avant tout le reste
 
-Une adresse mail à votre domaine est **offerte** avec le nom de domaine enregistré chez
-Infomaniak, avec stockage illimité. Créez `contact@votredomaine.fr` : c'est la seule
-nécessaire. Elle reçoit les messages du formulaire *et* les expédie ; l'adresse du visiteur est
-placée en `Reply-To`, donc un simple « Répondre » écrit bien à la personne.
+Le `.htaccess` du site force le HTTPS. Sans certificat valide, les visiteurs tomberaient sur
+un avertissement de sécurité en travers de la page.
 
-Puis, dans le Manager : **Domaine → SPF/DKIM**, et activez les deux. Cette étape n'est pas
-optionnelle : sans elle, les mails du formulaire partent en indésirable, et les messages des
-prescripteurs se perdent silencieusement — c'est le pire scénario possible pour ce site.
+Dans le tableau de bord du site : **Sécurité → SSL**. Il s'installe en général tout seul dans
+les minutes qui suivent le rattachement du domaine ; sinon, bouton d'installation. Attendez
+l'état **actif**.
 
-### 5.3 Récupérer les accès FTP chez Infomaniak
+Vérification : `https://saucedexister.fr` doit répondre sans avertissement, même si ce n'est
+encore qu'une page vide.
 
-Le nom du serveur n'est **pas** `ftp.votredomaine.fr` — c'est une adresse technique propre à
-votre hébergement, et Infomaniak ne l'affiche qu'à un seul endroit :
+### 5.3 Vider le dossier du site
 
-1. Ouvrez le *Manager* Infomaniak.
-2. **Cliquez sur le nom de l'hébergement** (pas sur le domaine — c'est l'erreur classique, et
-   la page du domaine ne contient aucune information FTP).
-3. Dans le menu **latéral gauche**, cliquez sur **FTP** — libellé **FTP / SSH** sur les offres
-   payantes, simplement **FTP** sur le Starter, qui n'a pas de SSH.
-4. Le **nom d'hôte est affiché en haut de la page**, avec une icône pour le copier. Il ressemble
-   à `xyzb.ftp.infomaniak.com`.
+**Fichiers → Gestionnaire de fichiers**, ouvrez `public_html`, et supprimez tout ce qui s'y
+trouve.
 
-Sur cette même page, bouton **Ajouter** pour créer un compte FTP si aucun n'existe. Notez alors :
+Cette étape n'est pas cosmétique. Le déploiement *ajoute* des fichiers, il ne supprime pas
+ceux qu'il ne connaît pas. Or Hostinger dépose une page de courtoisie, souvent un
+`index.php` — et un `index.php` passe avant notre `index.html`. Le site serait en ligne sans
+que personne ne le voie.
 
-- le **serveur** : `xyzb.ftp.infomaniak.com` ;
-- l'**identifiant** : de la forme `xyzb_abcdefg` ;
-- le **mot de passe** : vous le choisissez, et il n'est **plus jamais réaffiché** ensuite — en cas
-  d'oubli il faut en poser un nouveau ;
-- le **dossier** du site. Attention, c'est le réglage qui se rate le plus souvent : sur beaucoup
-  d'hébergements Infomaniak le compte FTP arrive **déjà** dans la racine du site, et il faut alors
-  mettre `/` et non `/web/`. Mettre `/web/` crée dans ce cas un sous-dossier `web` et le site
-  répond sur `votredomaine.fr/web/` au lieu de `votredomaine.fr`, avec une simple liste de
-  fichiers à l'accueil.
+### 5.4 Créer l'adresse `contact@saucedexister.fr`
 
-Pour trancher sans deviner : ouvrez le **Web FTP** depuis cette même page et regardez où vous
-atterrissez. Si vous voyez déjà un dossier `web/`, alors le bon réglage est `/web/`. Si vous voyez
-directement des fichiers de site, c'est `/`. Après le premier déploiement, vérifiez que la racine
-du site affiche bien la page d'accueil et non un « Index of / ».
+**Emails**, puis créez la boîte `contact@saucedexister.fr`. Une seule suffit : elle reçoit les
+messages du formulaire *et* les expédie, l'adresse du visiteur étant placée en `Reply-To`.
+Un simple « Répondre » écrit donc bien à la personne, pas à soi-même.
 
-Si le nom d'hôte ne répond pas — typiquement parce que le domaine ne pointe pas encore sur
-l'hébergement — utilisez à la place l'**adresse IP** indiquée sur la même page.
+C'est exactement cette adresse qui est déjà inscrite dans `public/api/contact.php` et dans
+`src/content/reglages.json`. En changer voudrait dire modifier ces deux fichiers.
 
-Pour vérifier vos identifiants sans installer de logiciel, le bouton **Web FTP** de cette page
-ouvre un explorateur de fichiers dans le navigateur.
+Puis, dans **Domaines → Zone DNS**, vérifiez que la création de la boîte a bien posé :
 
-### 5.4 Les confier à GitHub, sans les écrire dans le code
+- les enregistrements **MX** vers Hostinger ;
+- un **TXT** de type `v=spf1 include:_spf.mail.hostinger.com ~all` ;
+- un **DKIM**.
 
-Un mot de passe ne se met **jamais** dans un fichier du dépôt : tout le dépôt est lisible
-par qui y a accès, et l'historique garde tout, même après suppression. GitHub propose un
-coffre pour ça.
+Ce n'est pas optionnel. Sans SPF ni DKIM, les messages du formulaire partent en indésirable
+chez le destinataire, silencieusement — c'est le pire scénario possible pour un site dont la
+seule fonction est d'être contacté.
+
+### 5.5 Relever les accès FTP
+
+Dans le tableau de bord du site : **Fichiers → Comptes FTP**. Le compte principal existe déjà,
+créé en même temps que le site. La page affiche tout ce qu'il faut :
+
+| Ce qu'affiche Hostinger | Ce que c'est |
+| --- | --- |
+| **FTP IP** | l'adresse du serveur, une IP du genre `82.197.x.x` |
+| **Nom d'utilisateur FTP** | de la forme `u123456789` pour le domaine principal |
+| **Port** | `21`, toujours |
+| **Dossier** | `public_html` — c'est là que va le site |
+
+Le mot de passe, lui, n'est pas réaffiché : s'il vous est inconnu, posez-en un nouveau depuis
+cette même page.
+
+Deux précisions utiles. Prenez bien le mot de passe **FTP**, pas celui du compte Hostinger ni
+celui de SSH : c'est la cause n°1 des erreurs `530 login incorrect`. Et si l'IP refuse la
+connexion, remplacez-la par le **nom du serveur**, visible dans les détails de l'offre.
+
+### 5.6 Confier ces accès à GitHub
+
+Un mot de passe ne se met **jamais** dans un fichier du dépôt : tout le dépôt est lisible par
+qui y a accès, et l'historique garde tout, même après suppression. GitHub propose un coffre
+pour ça.
 
 1. Sur GitHub, ouvrez le dépôt → **Settings** (onglet en haut à droite).
-2. Dans la colonne de gauche : **Secrets and variables → Actions**.
-3. Cliquez sur **New repository secret**, puis créez ces quatre secrets, un par un :
+2. Colonne de gauche : **Secrets and variables → Actions**, onglet **Secrets**.
+3. **New repository secret**, et créez ces quatre secrets, un par un :
 
 | Nom exact du secret | Valeur |
 | --- | --- |
-| `FTP_SERVEUR` | le nom d'hôte, `xyzb.ftp.infomaniak.com` |
-| `FTP_UTILISATEUR` | l'identifiant FTP, `xyzb_abcdefg` |
+| `FTP_SERVEUR` | l'IP ou le nom de serveur relevé en 5.5 |
+| `FTP_UTILISATEUR` | `u123456789` |
 | `FTP_MOT_DE_PASSE` | le mot de passe FTP |
-| `FTP_DOSSIER` | le dossier, par exemple `/web/` |
+| `FTP_DOSSIER` | `/public_html/` |
 
 Les noms doivent être **exactement** ceux-là : le fichier de déploiement les appelle par ce
 nom. Une fois enregistré, un secret n'est plus jamais affiché, même à vous.
 
-### 5.5 Sur le Starter : basculer le protocole en FTP nu
+Le `/public_html/` est le réglage qui se rate le plus souvent. Le compte FTP arrive un cran
+au-dessus du site : s'y tromper produit soit un site répondant sur
+`saucedexister.fr/public_html/`, soit une simple liste de fichiers à l'accueil.
 
-À ne pas sauter si vous êtes sur le Starter, sans quoi le déploiement échouera : **cette offre
-n'accepte que du FTP nu sur le port 21**. Ni FTPS, ni SFTP — le port 2121 est fermé. Or le
-déploiement demande du `ftps` par défaut, et se soldera par une erreur de chiffrement.
+### 5.7 Poser le domaine pour la construction du site
 
-Au même endroit que les secrets — **Settings → Secrets and variables → Actions** — mais dans
-l'onglet **Variables** et non *Secrets*, cliquez sur **New repository variable** :
+Au même endroit, mais dans l'onglet **Variables** et non *Secrets* :
+**New repository variable**.
 
 | Nom | Valeur |
 | --- | --- |
-| `FTP_PROTOCOLE` | `ftp` |
+| `SITE_URL` | `https://saucedexister.fr` |
 
-**À supprimer au passage sur l'offre payante** : sans cette variable, le déploiement repasse
-tout seul en `ftps` chiffré.
+Elle sert au plan du site, aux adresses canoniques et aux vignettes de partage sur les réseaux.
+Sans elle, le site se construirait avec le domaine d'exemple, et les moteurs de recherche
+indexeraient des adresses qui n'existent pas.
 
-Conséquence à assumer le temps du Starter : le mot de passe FTP circule **en clair** sur le
-réseau. Créez donc un compte FTP dédié au déploiement, restreint au dossier du site, et changez
-son mot de passe le jour du passage à l'offre payante.
-
-### 5.6 Lancer le premier déploiement
+### 5.8 Lancer le premier déploiement
 
 1. Sur GitHub, onglet **Actions**.
-2. Dans la colonne de gauche, cliquez sur **Mise en ligne**.
-3. Bouton **Run workflow** → **Run workflow**.
-4. Le déploiement s'affiche et se déroule en deux à trois minutes. Une coche verte signifie
-   que c'est en ligne ; une croix rouge s'ouvre sur le journal, qui indique l'étape fautive.
+2. Colonne de gauche : **Mise en ligne**.
+3. **Run workflow** → **Run workflow**.
+4. Comptez deux à trois minutes. Une coche verte signifie que c'est en ligne ; une croix rouge
+   s'ouvre sur le journal, qui pointe l'étape fautive.
 
-Ensuite, plus rien à faire : chaque enregistrement dans le CMS déclenche ce déploiement.
+Le déploiement part par défaut en **FTPS**, c'est-à-dire chiffré. Si le journal se termine sur
+une erreur mentionnant `TLS`, `AUTH TLS` ou un code `534`, c'est que le serveur ne l'accepte
+pas : ajoutez alors la variable `FTP_PROTOCOLE` avec la valeur `ftp`, et relancez. Ne le faites
+qu'en cas d'échec — le mot de passe circulerait en clair sur le réseau.
 
-### 5.7 Ce qui ne marchera pas sur le Starter
+Ensuite, plus rien à faire : chaque enregistrement dans le CMS déclenche ce déploiement tout
+seul.
 
-Le Starter est conçu pour une page de courtoisie, pas pour ce site. Il permet de tout valider —
-le CMS, le dépôt, le déploiement, l'apparence, la navigation — mais trois choses resteront
-cassées, et il vaut mieux le savoir avant de s'inquiéter :
+### 5.9 Les quatre vérifications qui closent la mise en ligne
 
-- **Le formulaire de contact.** Le Starter n'exécute pas PHP : `contact.php` ne tournera pas et
-  l'envoi échouera. Ne le faites pas essayer à Alice tant que l'hébergement n'a pas changé, elle
-  croirait à un défaut du site.
-- **Le `.htaccess`**, donc peut-être la page 404 sur mesure, la redirection du `.com` vers le
-  `.fr` et les en-têtes de sécurité. À vérifier au cas par cas.
-- **Le trafic**, plafonné à 1 Go par mois : confortable pour des essais, juste pour une mise en
-  ligne réelle.
+1. `https://saucedexister.fr` affiche la page d'accueil — ni « Index of / », ni la page de
+   courtoisie de Hostinger.
+2. Le cadenas est là, sans avertissement, et `http://` bascule bien vers `https://`.
+3. `https://saucedexister.fr/robots.txt` se termine par
+   `Sitemap: https://saucedexister.fr/sitemap-index.xml`. Si vous y lisez `exemple.fr`, c'est
+   que la variable `SITE_URL` de l'étape 5.7 manque.
+4. Envoyez un vrai message par le formulaire. Vérifiez qu'il arrive dans `contact@`, puis
+   **répondez-y** : la réponse doit partir vers votre adresse de test, pas vers `contact@`.
 
-L'espace disque, lui, ne pose aucun problème : le site pèse 0,56 Mo pour 10 Mo offerts.
+### 5.10 Les limites de l'offre Single, à connaître d'avance
+
+Rien de bloquant pour ce site, mais autant les savoir maintenant :
+
+- **Un seul site.** Pas de préproduction sur le même compte. Pour prévisualiser une refonte,
+  ce sera en local avec `npm run dev`.
+- **Pas d'accès SSH.** Seul le FTP est disponible, ce qui suffit ici puisque le déploiement ne
+  fait que déposer des fichiers.
+- **La boîte mail est souvent offerte la première année seulement.** À surveiller au
+  renouvellement : sans elle, le formulaire n'a plus de destinataire.
+- **Le tarif remonte au renouvellement.** C'est le seul vrai point de vigilance de cette offre,
+  et il est commercial, pas technique.
+
+L'espace disque, lui, est hors sujet : le site pèse 0,56 Mo.
 
 ---
 
@@ -399,13 +429,18 @@ le mot de passe du compte — voir « Problèmes courants » plus bas.
 
 Un point à ne pas oublier, parce qu'il ne provoque aucune erreur visible : les **secrets de
 déploiement** ne sont pas dans le dépôt, par construction. Si vous repartez sur un autre dépôt ou
-un autre compte, il faut recréer à la main les quatre secrets FTP et, le cas échéant, la variable
-`FTP_PROTOCOLE` (étapes 5.4 et 5.5). Les accès Infomaniak et le compte Pages CMS se reconfigurent
-également côté services, pas côté code.
+un autre compte, il faut recréer à la main les quatre secrets FTP, la variable `SITE_URL` et, le
+cas échéant, `FTP_PROTOCOLE` (étapes 5.6 à 5.8). Les accès Hostinger et le compte Pages CMS se
+reconfigurent également côté services, pas côté code. Le fichier `.env`, lui, n'est pas dans le
+dépôt non plus : recopiez `.env.example` et remettez-y le domaine.
 
 ---
 
 ## Annexe — Brancher le domaine, et les pièges d'un domaine déjà utilisé
+
+**Cette annexe ne concerne pas la mise en place actuelle.** `saucedexister.fr` est un domaine
+neuf, acheté chez l'hébergeur lui-même : sa zone DNS est propre et déjà correcte. Gardez ces
+pages sous le coude pour le jour où le site changerait de domaine ou d'hébergeur.
 
 Si le domaine a déjà servi ailleurs — Squarespace, Wix, un ancien hébergeur — la zone DNS garde
 presque toujours des traces. Ces restes produisent des symptômes déroutants, où le site semble
@@ -467,7 +502,7 @@ curl -s -o /dev/null -w "%{http_code} %{redirect_url}\n" -H "Host: votredomaine.
 
 Un `301` vers `https://votredomaine.fr/` est le bon signe : il prouve que les fichiers sont en
 place et que le `.htaccess` est actif. Un `200` accompagné d'une page « Index of / » signale au
-contraire que les fichiers ont été déposés dans un sous-dossier — voir l'étape 5.3 sur le réglage
+contraire que les fichiers ont été déposés dans un sous-dossier — voir l'étape 5.6 sur le réglage
 `FTP_DOSSIER`.
 
 ---
@@ -519,9 +554,8 @@ openssl s_client -connect votredomaine.fr:443 -servername votredomaine.fr < NUL 
 ```
 
 Un sujet `CN=localhost` signifie qu'aucun certificat n'a été émis pour le domaine : c'est le
-certificat par défaut d'Apache. Activez Let's Encrypt dans le Manager Infomaniak, sur la page de
-l'hébergement, rubrique **SSL**. Vérifiez au préalable qu'aucun enregistrement `AAAA` ne traîne
-dans la zone DNS, car l'offre Starter n'a pas d'IPv6 et un `AAAA` résiduel fait échouer l'émission.
+certificat par défaut du serveur. Émettez-le depuis le hPanel, tableau de bord du site,
+rubrique **Sécurité → SSL** — c'est l'étape 5.2.
 
 En dépannage, si le certificat ne peut pas être émis tout de suite, commentez les quatre lignes
 « Forcer HTTPS » du `.htaccess` et redéployez : le site répondra en HTTP le temps de régler le
@@ -532,5 +566,16 @@ C'est normal : `npm run dev` n'exécute pas PHP. Utilisez `npm run preview:php` 
 installé, ou testez en ligne.
 
 **Les mails du formulaire arrivent en indésirable.**
-SPF et DKIM ne sont pas activés sur le domaine chez Infomaniak. C'est à faire avant
+SPF et DKIM manquent dans la zone DNS du domaine — voir l'étape 5.4. C'est à régler avant
 d'annoncer le site : sans cela, les messages des prescripteurs se perdent.
+
+**L'accueil affiche une liste de fichiers, ou la page de courtoisie de l'hébergeur.**
+Une liste de fichiers signifie que le secret `FTP_DOSSIER` désigne le mauvais dossier : chez
+Hostinger c'est `/public_html/`. La page de courtoisie signifie qu'un `index.php` de
+l'hébergeur est resté dans `public_html` et passe avant notre `index.html` : supprimez-le avec
+le gestionnaire de fichiers, comme à l'étape 5.3.
+
+**Le site en ligne annonce le mauvais domaine dans `robots.txt` ou le plan du site.**
+La variable `SITE_URL` manque sur GitHub, ou n'a pas été posée dans l'onglet *Variables* mais
+dans *Secrets*. Reprenez l'étape 5.7, puis relancez un déploiement : la valeur n'est lue qu'au
+moment de la construction.

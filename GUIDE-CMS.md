@@ -426,9 +426,28 @@ déploiement ne supprime que ce qu'il connaît. Sans cette précaution, une simp
 texte rouvrirait le site au public sans que personne ne l'ait décidé.
 
 Ce n'est pas une protection. Le site n'est pas *inaccessible* : les fichiers restent sur le
-serveur, et qui connaît l'adresse exacte d'une image l'obtiendra toujours. Pour empêcher
-réellement l'accès — pendant une phase de relecture avec un client, par exemple — il faut un
-mot de passe, via **Sécurité → Protection par mot de passe** dans le hPanel.
+serveur, et qui connaît l'adresse exacte d'une image l'obtiendra toujours.
+
+### Et le bouton natif de Hostinger ?
+
+Il n'y en a pas pour ce site. Le commutateur « Mode de maintenance » visible dans le hPanel ne
+concerne que les sites WordPress, où il passe par leur extension maison : il ne peut rien pour
+du HTML statique. La documentation de Hostinger prescrit d'ailleurs, pour les sites
+non-WordPress, exactement la méthode décrite ci-dessus.
+
+Le seul levier réellement natif est ailleurs : **Avancé → Répertoires protégés par mot de
+passe**. On y choisit le dossier du site, on définit un identifiant et un mot de passe, et le
+navigateur les réclame avant d'afficher quoi que ce soit ; une icône de corbeille retire la
+protection.
+
+Les deux outils ne servent pas la même chose :
+
+| | Fichier `.maintenance` | Mot de passe sur le répertoire |
+| --- | --- | --- |
+| Ce que voit le visiteur | une page aux couleurs du site | une fenêtre de connexion grise |
+| Les fichiers restent atteignables | oui, par leur adresse directe | non, rien ne passe |
+| Ce que reçoivent les moteurs | `503`, « repassez plus tard » | `401`, sans intérêt sur la durée |
+| Bon pour | signaler une interruption au public | un site qui ne doit pas encore exister |
 
 ### Continuer à voir le site pendant la fermeture
 

@@ -7,6 +7,12 @@
  *
  * Répond en JSON aux requêtes fetch, et par une redirection sinon
  * (le formulaire fonctionne donc sans JavaScript).
+ *
+ * L'envoi passe par SMTP authentifié dès qu'un fichier de configuration existe
+ * hors de la racine web — voir plus bas. À défaut, il retombe sur mail(), ce qui
+ * dépanne en local mais ne suffit pas en ligne : les hébergeurs mutualisés
+ * acheminent mal le courrier non authentifié, et mail() renvoie « vrai » même
+ * quand le message est jeté en silence.
  */
 
 declare(strict_types=1);
@@ -50,6 +56,89 @@ function echouer(string $message, int $code = 400): never
 {
     global $PAGE_ERREUR;
     repondre(false, $code, $message, $PAGE_ERREUR);
+}
+
+/**
+ * Réglages SMTP, lus dans un fichier situé **hors de la racine web**, un cran
+ * au-dessus de public_html. Deux raisons à cet emplacement : le mot de passe de la
+ * boîte n'a rien à faire dans le dépôt Git, et le déploiement ne peut ni l'écraser
+ * ni le supprimer puisqu'il ne le connaît pas.
+ *
+ * Le fichier renvoie un tableau — voir smtp.exemple.php à la racine du projet.
+ */
+function reglagesSmtp(): ?array
+{
+    $chemin = dirname(__DIR__, 2) . '/smtp.php';
+    if (!is_readable($chemin)) {
+        return null;
+    }
+
+    $lu = require $chemin;
+
+    return is_array($lu) && ($lu['mot_de_passe'] ?? '') !== '' ? $lu : null;
+}
+
+/**
+ * Envoi authentifié. Contrairement à mail(), le serveur de courrier signe le
+ * message : il passe alors les contrôles SPF et DKIM, sans quoi il finit en
+ * indésirable ou disparaît sans trace.
+ */
+function envoyerParSmtp(
+    array $config,
+    string $destinataire,
+    string $expediteur,
+    string $nomExpediteur,
+    string $adresseReponse,
+    string $nomReponse,
+    string $objet,
+    string $corps,
+): bool {
+    // Un require sur un fichier absent est une erreur fatale que try/catch ne
+    // rattrape pas : le formulaire répondrait alors par une page blanche. Mieux vaut
+    // vérifier d'abord et échouer proprement.
+    foreach (['Exception', 'PHPMailer', 'SMTP'] as $classe) {
+        $fichier = __DIR__ . '/phpmailer/' . $classe . '.php';
+        if (!is_readable($fichier)) {
+            error_log('Formulaire de contact — bibliothèque d’envoi introuvable : ' . $fichier);
+
+            return false;
+        }
+        require_once $fichier;
+    }
+
+    try {
+        $courrier = new \PHPMailer\PHPMailer\PHPMailer(true);
+
+        $port = (int) ($config['port'] ?? 465);
+
+        $courrier->isSMTP();
+        $courrier->Host       = (string) $config['hote'];
+        $courrier->Port       = $port;
+        $courrier->SMTPAuth   = true;
+        $courrier->Username   = (string) $config['utilisateur'];
+        $courrier->Password   = (string) $config['mot_de_passe'];
+        $courrier->SMTPSecure = $port === 587
+            ? \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS
+            : \PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_SMTPS;
+        $courrier->Timeout    = 15;
+        $courrier->CharSet    = 'UTF-8';
+
+        $courrier->setFrom($expediteur, $nomExpediteur);
+        $courrier->addAddress($destinataire);
+        $courrier->addReplyTo($adresseReponse, $nomReponse);
+
+        // Sujet et corps en clair : PHPMailer se charge lui-même de l'encodage.
+        $courrier->isHTML(false);
+        $courrier->Subject = $objet;
+        $courrier->Body    = $corps;
+
+        return $courrier->send();
+    } catch (\Throwable $souci) {
+        // Visible dans le journal d'erreurs du hPanel. Le mot de passe n'y figure pas.
+        error_log('Formulaire de contact — envoi SMTP impossible : ' . $souci->getMessage());
+
+        return false;
+    }
 }
 
 /** Empêche l'injection d'en-têtes via un champ contenant un retour à la ligne. */
@@ -180,15 +269,30 @@ $entetes = [
     'X-Mailer: ' . $DOMAINE,
 ];
 
-$objetEncode = '=?UTF-8?B?' . base64_encode($objet) . '?=';
+$smtp = reglagesSmtp();
 
-$envoye = @mail(
-    $DESTINATAIRE,
-    $objetEncode,
-    $corps,
-    implode("\r\n", $entetes),
-    '-f' . $EXPEDITEUR
-);
+if ($smtp !== null) {
+    $envoye = envoyerParSmtp(
+        $smtp,
+        $DESTINATAIRE,
+        $EXPEDITEUR,
+        $NOM_EXPEDITEUR,
+        $emailSur,
+        $nomSur,
+        $objet,
+        $corps,
+    );
+} else {
+    $objetEncode = '=?UTF-8?B?' . base64_encode($objet) . '?=';
+
+    $envoye = @mail(
+        $DESTINATAIRE,
+        $objetEncode,
+        $corps,
+        implode("\r\n", $entetes),
+        '-f' . $EXPEDITEUR
+    );
+}
 
 if (!$envoye) {
     echouer('L’envoi a échoué côté serveur.', 502);

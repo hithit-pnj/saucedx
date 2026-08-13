@@ -248,6 +248,45 @@ Ce n'est pas optionnel. Sans SPF ni DKIM, les messages du formulaire partent en 
 chez le destinataire, silencieusement — c'est le pire scénario possible pour un site dont la
 seule fonction est d'être contacté.
 
+### 5.4 bis Donner au formulaire de quoi expédier
+
+Étape indispensable, et celle qu'on découvre le plus tard, parce que son absence ne produit
+aucun message d'erreur : le formulaire annonce « message envoyé » et rien n'arrive.
+
+En cause, la fonction `mail()` de PHP, qui expédie sans s'authentifier. Hostinger l'accepte mais
+l'achemine mal, et sa documentation le dit clairement : le courrier non authentifié n'est ni
+signé, ni couvert par SPF et DKIM, donc filtré ou jeté. Pire, `mail()` renvoie « vrai » même
+lorsque le message est abandonné — d'où le silence.
+
+Le site sait donc expédier autrement, par SMTP authentifié, dès qu'il trouve les identifiants de
+la boîte. Ces identifiants se déposent **une seule fois**, à la main.
+
+Dans **Fichiers → Gestionnaire de fichiers**, placez-vous dans `domains/saucedexister.fr` —
+c'est-à-dire **à côté** de `public_html`, et surtout pas dedans — et créez un fichier nommé
+`smtp.php` contenant :
+
+```php
+<?php
+
+return [
+    'hote'         => 'smtp.hostinger.com',
+    'port'         => 465,
+    'utilisateur'  => 'contact@saucedexister.fr',
+    'mot_de_passe' => 'le mot de passe de la boîte contact@',
+];
+```
+
+Le mot de passe est celui qui ouvre le webmail ; il n'y a pas de mot de passe d'application à
+créer. Le modèle commenté se trouve dans le dépôt, sous `smtp.exemple.php`.
+
+L'emplacement n'est pas négociable. Hors de la racine web, ce fichier est invisible depuis
+Internet même si le serveur cessait d'interpréter le PHP. Il échappe aussi au dépôt Git, dont
+l'historique conserve tout, même après suppression. Et le déploiement ne peut ni l'écraser ni
+l'effacer, puisqu'il ne le connaît pas : posé une fois, il survit à toutes les mises en ligne.
+
+Tant que ce fichier n'existe pas, le site retombe sur `mail()`. C'est utile en local, où l'on
+veut juste vérifier que le formulaire réagit ; en ligne, cela revient à ne rien envoyer.
+
 ### 5.5 Relever les accès FTP
 
 Dans le tableau de bord du site : **Fichiers → Comptes FTP**. Le compte principal existe déjà,
@@ -717,6 +756,27 @@ certificat, ce qui vaut mieux qu'une page d'erreur.
 **Le formulaire de contact ne fonctionne pas en local.**
 C'est normal : `npm run dev` n'exécute pas PHP. Utilisez `npm run preview:php` si PHP est
 installé, ou testez en ligne.
+
+**Le formulaire annonce « message envoyé », mais rien n'arrive.**
+Le fichier `smtp.php` de l'étape 5.4 bis manque, ou son mot de passe est faux. Sans lui, le site
+expédie par `mail()`, que l'hébergeur achemine mal — et cette fonction répond « vrai » même
+quand le message est jeté, d'où l'absence totale de signal.
+
+Vérifiez d'abord que le fichier est bien **à côté** de `public_html` et non dedans. En cas de
+doute sur le mot de passe, le journal d'erreurs du hPanel contient la raison exacte du refus,
+enregistrée par le site : cherchez « Formulaire de contact ».
+
+**Le formulaire affiche « L'envoi n'a pas abouti ».**
+Là, le serveur a bien refusé quelque chose. Trois causes, dans l'ordre : le fichier `smtp.php`
+est absent ou incorrect ; la limite anti-spam est atteinte, huit messages par heure et par
+visiteur ; ou la connexion a échoué en cours de route. Pour trancher, interrogez l'adresse
+directement — une réponse en JSON donne le motif exact :
+
+```bash
+curl -s -H "Accept: application/json" -d "nom=Test" -d "email=test@example.org" \
+  -d "message=Message de verification suffisamment long." -d "consentement=oui" \
+  https://saucedexister.fr/api/contact.php
+```
 
 **Les mails du formulaire arrivent en indésirable.**
 SPF et DKIM manquent dans la zone DNS du domaine — voir l'étape 5.4. C'est à régler avant

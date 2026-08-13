@@ -68,6 +68,10 @@ ErrorDocument 503 /maintenance.html
 <IfModule mod_rewrite.c>
   RewriteCond %{REQUEST_URI} !^/\.well-known/
   RewriteRule (^|/)\. - [F]
+
+  # La bibliothèque d'envoi ne s'appelle que depuis contact.php. Rien n'y répond
+  # d'utile, mais autant ne pas exposer une surface qui n'a pas à l'être.
+  RewriteRule ^api/phpmailer/ - [F]
 </IfModule>
 
 # --- En-têtes de sécurité ---------------------------------------------------

@@ -1,0 +1,398 @@
+# Configuration de Pages CMS — https://pagescms.org
+#
+# Alice édite les textes sur app.pagescms.org. Chaque enregistrement écrit un
+# commit dans ce dépôt, ce qui déclenche la reconstruction et la mise en ligne.
+#
+# Garde-fous posés volontairement :
+#   - offres  : renommage et suppression bloqués (le nom du fichier fait l'URL) ;
+#   - légales : création, renommage et suppression bloqués (deux pages, pas plus) ;
+#   - réglages : suppression bloquée.
+
+media:
+  input: public/media
+  output: /media
+  extensions: [png, jpg, jpeg, webp, svg]
+
+content:
+  # ─── Les cinq pages d'offres ──────────────────────────────────────────────
+  - name: offres
+    label: Les offres
+    type: collection
+    path: src/content/offres
+    format: yaml-frontmatter
+    filename: '{fields.menu}.md'
+    operations:
+      rename: false
+      delete: false
+    view:
+      fields: [menu, statut, ordre]
+      primary: menu
+      sort: [ordre, menu]
+      search: [menu]
+      default:
+        sort: ordre
+        order: asc
+    fields:
+      - name: menu
+        label: Nom dans le menu
+        type: string
+        required: true
+        description: Sert aussi de nom de fichier et donc d'adresse de la page.
+
+      - name: ordre
+        label: Ordre d'affichage
+        type: number
+        description: Détermine la place dans le menu et sur l'accueil.
+        options: { min: 1, max: 20, step: 1 }
+
+      - name: publie
+        label: Page en ligne
+        type: boolean
+        default: true
+        description: Décochez pour retirer la page du site sans la supprimer.
+
+      - name: statut
+        label: État du texte
+        type: select
+        default: wip
+        options:
+          values:
+            - { name: final, label: Final — publiable }
+            - { name: wip, label: En relecture }
+            - { name: a-ecrire, label: À écrire }
+
+      - name: climat
+        label: Climat (couleur d'accent)
+        type: select
+        options:
+          values:
+            - { name: garance, label: Garance (rouge profond) }
+            - { name: ambre, label: Ambre profond }
+            - { name: prune, label: Prune }
+            - { name: vert, label: Vert profond }
+            - { name: nuit, label: Bleu nuit }
+            - { name: ardoise, label: Ardoise }
+
+      - name: glyphe
+        label: Geste graphique
+        type: select
+        options:
+          values:
+            - { name: rayonnement, label: Rayonnement }
+            - { name: suspension, label: Suspension }
+            - { name: virage, label: Le virage }
+            - { name: strates, label: Les strates }
+            - { name: cercles, label: Cercles concentriques }
+            - { name: bifurcation, label: Bifurcation }
+
+      - name: porte
+        label: La porte sur l'accueil
+        type: object
+        fields:
+          - { name: intitule, label: Intitulé, type: string }
+          - name: precision
+            label: Précision (en petites capitales)
+            type: string
+            description: Courte — elle tient sur une ligne.
+
+      - name: hero
+        label: Ouverture de la page
+        type: object
+        fields:
+          - name: lignes
+            label: Titre — une ligne par entrée
+            type: string
+            list: { min: 1, max: 3 }
+          - { name: surtitre, label: Sur-titre, type: string }
+          - name: verbes
+            label: Les verbes à l'infinitif
+            type: string
+            list: { max: 6 }
+            description: Laissez vide si les verbes sont portés par les formats ci-dessous.
+          - { name: citation, label: Citation, type: text }
+          - { name: mention, label: Mention de bas de page, type: string }
+
+      - name: sections
+        label: Les formats
+        type: object
+        description: Un seul format en général ; deux pour la page À La Cordée.
+        list:
+          min: 1
+          max: 3
+          collapsible:
+            collapsed: false
+            summary: '{titre} — format {index}'
+        fields:
+          - name: titre
+            label: Titre du format
+            type: string
+            description: Affiché seulement s'il y a plusieurs formats.
+          - { name: sousTitre, label: Sous-titre, type: string }
+          - name: glyphe
+            label: Geste graphique du format
+            type: select
+            options:
+              values:
+                - { name: rayonnement, label: Rayonnement }
+                - { name: suspension, label: Suspension }
+                - { name: virage, label: Le virage }
+                - { name: strates, label: Les strates }
+                - { name: cercles, label: Cercles concentriques }
+                - { name: bifurcation, label: Bifurcation }
+          - name: verbes
+            label: Verbes propres à ce format
+            type: string
+            list: { max: 6 }
+          - { name: texte, label: Texte principal, type: text }
+          - name: blocs
+            label: Blocs pratiques
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: '{titre}'
+            fields:
+              - { name: titre, label: Intitulé, type: string }
+              - { name: texte, label: Texte, type: text }
+
+      - name: cta
+        label: L'appel au contact
+        type: object
+        fields:
+          - { name: titre, label: Titre, type: string }
+          - { name: texte, label: Texte, type: text }
+          - { name: label, label: Libellé du bouton, type: string }
+          - name: sujet
+            label: Sujet pré-rempli dans le formulaire
+            type: string
+            description: Apparaît dans l'objet du mail que vous recevrez.
+
+      - name: seo
+        label: Référencement
+        type: object
+        fields:
+          - { name: titre, label: Titre affiché dans l'onglet et sur Google, type: string }
+          - name: description
+            label: Description
+            type: text
+            description: Entre 150 et 160 signes, c'est l'idéal.
+
+  # ─── L'accueil ────────────────────────────────────────────────────────────
+  - name: accueil
+    label: Accueil
+    type: file
+    path: src/content/pages/accueil.md
+    format: yaml-frontmatter
+    operations:
+      delete: false
+    fields:
+      - name: seo
+        label: Référencement
+        type: object
+        fields:
+          - { name: titre, label: Titre, type: string }
+          - { name: description, label: Description, type: text }
+      - name: donnees
+        label: Contenu de la page
+        type: object
+        fields:
+          - name: hero
+            label: L'enseigne
+            type: object
+            fields:
+              - name: lignes
+                label: Enseigne — une ligne par entrée
+                type: string
+                list: { min: 1, max: 3 }
+              - { name: surtitre, label: Sur-titre, type: string }
+              - { name: lieu, label: Lieu, type: string }
+          - name: manifeste
+            label: Le manifeste
+            type: object
+            fields:
+              - { name: probleme, label: Le problème nommé, type: text }
+              - { name: geste, label: Le geste en réponse, type: text }
+              - { name: sceau, label: Phrase au-dessus des portes, type: string }
+          - name: portrait
+            label: Vous, brièvement
+            type: object
+            fields:
+              - { name: surtitre, label: Sur-titre, type: string }
+              - { name: titre, label: Nom, type: string }
+              - { name: texte, label: Texte, type: text }
+              - { name: photo, label: Photo, type: image }
+              - { name: photoAlt, label: Description de la photo, type: string }
+              - { name: lien, label: Libellé du lien, type: string }
+          - name: appel
+            label: L'appel au contact
+            type: object
+            fields:
+              - { name: titre, label: Titre, type: string }
+              - { name: texte, label: Texte, type: text }
+              - { name: label, label: Libellé du bouton, type: string }
+
+  # ─── Qui suis-je ──────────────────────────────────────────────────────────
+  - name: qui-suis-je
+    label: Qui suis-je
+    type: file
+    path: src/content/pages/qui-suis-je.md
+    format: yaml-frontmatter
+    operations:
+      delete: false
+    fields:
+      - name: seo
+        label: Référencement
+        type: object
+        fields:
+          - { name: titre, label: Titre, type: string }
+          - { name: description, label: Description, type: text }
+      - name: donnees
+        label: Contenu de la page
+        type: object
+        fields:
+          - name: hero
+            label: Ouverture
+            type: object
+            fields:
+              - name: lignes
+                label: Titre — une ligne par entrée
+                type: string
+                list: { min: 1, max: 3 }
+              - { name: surtitre, label: Sur-titre, type: string }
+              - { name: citation, label: Citation, type: text }
+          - { name: photo, label: Portrait, type: image }
+          - { name: photoAlt, label: Description de la photo, type: string }
+          - { name: photoLegende, label: Légende sous la photo, type: string }
+          - name: texte
+            label: Le récit — un paragraphe par entrée
+            type: text
+            list: true
+          - name: reperes
+            label: Repères
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: '{titre}'
+            fields:
+              - { name: titre, label: Intitulé, type: string }
+              - { name: texte, label: Texte, type: text }
+          - name: appel
+            label: L'appel au contact
+            type: object
+            fields:
+              - { name: titre, label: Titre, type: string }
+              - { name: texte, label: Texte, type: text }
+              - { name: label, label: Libellé du bouton, type: string }
+
+  # ─── Contact ──────────────────────────────────────────────────────────────
+  - name: contact
+    label: Contact
+    type: file
+    path: src/content/pages/contact.md
+    format: yaml-frontmatter
+    operations:
+      delete: false
+    fields:
+      - name: seo
+        label: Référencement
+        type: object
+        fields:
+          - { name: titre, label: Titre, type: string }
+          - { name: description, label: Description, type: text }
+      - name: donnees
+        label: Contenu de la page
+        type: object
+        fields:
+          - name: hero
+            label: Ouverture
+            type: object
+            fields:
+              - name: lignes
+                label: Titre — une ligne par entrée
+                type: string
+                list: { min: 1, max: 3 }
+              - { name: surtitre, label: Sur-titre, type: string }
+              - { name: citation, label: Citation, type: text }
+          - { name: intro, label: Texte d'introduction, type: text }
+          - name: champs
+            label: Libellés du formulaire
+            type: object
+            fields:
+              - { name: nom, label: Champ « nom », type: string }
+              - { name: email, label: Champ « mail », type: string }
+              - { name: message, label: Champ « message », type: string }
+              - { name: consentement, label: Case de consentement RGPD, type: text }
+              - { name: envoyer, label: Bouton d'envoi, type: string }
+              - { name: envoiEnCours, label: Bouton pendant l'envoi, type: string }
+          - name: reponses
+            label: Messages affichés après envoi
+            type: object
+            fields:
+              - { name: succes, label: Envoi réussi, type: text }
+              - { name: erreur, label: Envoi échoué, type: text }
+          - name: autrement
+            label: Autres moyens de contact
+            type: object
+            fields:
+              - { name: titre, label: Titre, type: string }
+              - { name: texte, label: Texte, type: text }
+
+  # ─── Pages légales ────────────────────────────────────────────────────────
+  - name: legal
+    label: Pages légales
+    type: collection
+    path: src/content/legal
+    format: yaml-frontmatter
+    operations:
+      create: false
+      rename: false
+      delete: false
+    view:
+      fields: [titre, misAJour]
+      primary: titre
+    fields:
+      - { name: titre, label: Titre de la page, type: string }
+      - name: misAJour
+        label: Date de mise à jour
+        type: string
+        description: 'Par exemple : décembre 2026.'
+      - name: seo
+        label: Référencement
+        type: object
+        fields:
+          - { name: titre, label: Titre, type: string }
+          - { name: description, label: Description, type: text }
+      - { name: body, label: Contenu de la page, type: rich-text }
+
+  # ─── Réglages ─────────────────────────────────────────────────────────────
+  - name: reglages
+    label: Réglages du site
+    type: file
+    path: src/content/reglages.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - { name: nom, label: Nom de la marque, type: string }
+      - { name: signature, label: Signature, type: string }
+      - { name: personne, label: Nom de la personne, type: string }
+      - name: email
+        label: Adresse de contact
+        type: string
+        pattern:
+          regex: '^[^@\s]+@[^@\s]+\.[^@\s]+$'
+          message: Cette adresse mail ne semble pas valide.
+      - { name: instagram, label: Compte Instagram, type: string }
+      - name: instagramUrl
+        label: Lien complet vers Instagram
+        type: string
+        pattern:
+          regex: '^https://.+'
+          message: Le lien doit commencer par https://
+      - { name: ville, label: Ville, type: string }
+      - { name: region, label: Région, type: string }
+      - name: baseline
+        label: Phrase de présentation
+        type: text
+        description: Utilisée pour le référencement et les lecteurs d'écran.

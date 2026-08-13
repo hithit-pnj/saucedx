@@ -1,0 +1,40 @@
+---
+import Fil from './Fil.astro';
+import Prose from './Prose.astro';
+
+/** L'unique mécanisme de conversion du site : que le visiteur écrive. */
+interface Props {
+  titre: string;
+  texte: string;
+  label: string;
+  sujet?: string;
+}
+const { titre, texte, label, sujet } = Astro.props;
+const href = sujet ? `/contact/?sujet=${encodeURIComponent(sujet)}` : '/contact/';
+---
+
+<section class="appel-section mesure">
+  <div class="colonne pile pile--centre pile--s paraitre">
+    <Fil variante="court" />
+    <h2 class="display display--section">{titre}</h2>
+    <Prose texte={texte} class="appel-section__texte" />
+    <a class="appel" href={href}>{label}</a>
+  </div>
+</section>
+
+<style>
+  .appel-section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .appel-section__texte {
+    max-width: 30rem;
+    color: var(--encre-2);
+    font-size: 0.9375em;
+  }
+
+  .appel-section .appel {
+    margin-top: 1.25rem;
+  }
+</style>

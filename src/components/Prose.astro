@@ -1,0 +1,32 @@
+---
+/** Rend un texte brut en paragraphes, en respectant les lignes vides. */
+interface Props {
+  texte: string | string[];
+  class?: string;
+  justifie?: boolean;
+}
+
+const { texte, class: classe, justifie = false } = Astro.props;
+
+const paragraphes = (Array.isArray(texte) ? texte : texte.split(/\n\s*\n/))
+  .map((p) => p.trim())
+  .filter(Boolean);
+---
+
+{
+  paragraphes.map((p) => (
+    <p class:list={['prose', justifie && 'prose--justifie', classe]} set:text={p} />
+  ))
+}
+
+<style>
+  .prose--justifie {
+    text-align: justify;
+    text-align-last: start;
+  }
+  @media (max-width: 34rem) {
+    .prose--justifie {
+      text-align: start;
+    }
+  }
+</style>

@@ -1,0 +1,37 @@
+---
+import Glyphe from './Glyphe.astro';
+
+/** Le geste en très grand, très pâle : il habite le fond sans jamais s'expliquer. */
+interface Props {
+  nom: 'rayonnement' | 'suspension' | 'virage' | 'strates' | 'cercles' | 'bifurcation';
+  position?: 'haut' | 'bas';
+}
+const { nom, position = 'haut' } = Astro.props;
+---
+
+<div class:list={['filigrane-cadre', `filigrane-cadre--${position}`]} aria-hidden="true">
+  <Glyphe nom={nom} class="filigrane" epaisseur={0.9} />
+</div>
+
+<style>
+  .filigrane-cadre {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 0;
+    line-height: 0;
+  }
+
+  .filigrane-cadre--haut {
+    top: clamp(1rem, 5vw, 4rem);
+  }
+
+  .filigrane-cadre--bas {
+    bottom: calc(var(--souffle-l) * -0.5);
+  }
+
+  .filigrane-cadre :global(.filigrane) {
+    position: static;
+  }
+</style>

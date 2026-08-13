@@ -1,0 +1,171 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Fil from '../components/Fil.astro';
+import Glyphe from '../components/Glyphe.astro';
+import Prose from '../components/Prose.astro';
+import Portes from '../components/Portes.astro';
+import Appel from '../components/Appel.astro';
+
+const page = (await getEntry('pages', 'accueil'))!;
+const reglages = (await getEntry('reglages', 'site'))!.data;
+const d = page.data.donnees as {
+  hero: { lignes: string[]; surtitre: string; lieu: string };
+  manifeste: { probleme: string; geste: string; sceau: string };
+  portes: { titre: string };
+  portrait: { titre: string; surtitre: string; texte: string; photo: string; photoAlt: string; lien: string };
+  appel: { titre: string; texte: string; label: string };
+};
+---
+
+<Base titre={page.data.seo.titre} description={page.data.seo.description} climat={page.data.climat}>
+  {/* 1. L'enseigne et le fil, seuls, avec de l'air. */}
+  <section class="enseigne">
+    <div class="colonne pile pile--centre enseigne__pile">
+      <p class="micro enseigne__lieu">{d.hero.lieu}</p>
+
+      <Fil variante="long" />
+
+      <h1 class="display display--enseigne">
+        {d.hero.lignes.map((ligne, i) => (<>{i > 0 && <br />}{ligne}</>))}
+      </h1>
+
+      <Glyphe nom="marque" class="enseigne__marque" epaisseur={7.5} />
+
+      <p class="micro micro--accent">{d.hero.surtitre}</p>
+    </div>
+  </section>
+
+  {/* 2. Le manifeste court : le problème nommé, puis le geste en réponse. */}
+  <section class="manifeste mesure">
+    <div class="colonne pile pile--centre pile--m">
+      <div class="paraitre manifeste__volet">
+        <Prose texte={d.manifeste.probleme} class="manifeste__probleme" />
+      </div>
+
+      <Fil />
+
+      <div class="paraitre manifeste__volet">
+        <Prose texte={d.manifeste.geste} class="manifeste__geste" />
+      </div>
+    </div>
+  </section>
+
+  {/* 3. Les cinq portes. */}
+  <section class="portes-section">
+    <div class="colonne--large pile pile--m">
+      <div class="pile pile--centre pile--xs paraitre">
+        <Fil variante="court" />
+        <p class="micro micro--accent">{d.manifeste.sceau}</p>
+      </div>
+      <div class="paraitre">
+        <Portes />
+      </div>
+    </div>
+  </section>
+
+  {/* 4. Moi, brièvement. */}
+  <section class="portrait mesure">
+    <div class="colonne pile pile--centre pile--s paraitre">
+      <Fil variante="court" />
+      <p class="micro">{d.portrait.surtitre}</p>
+
+      {
+        d.portrait.photo && (
+          <img class="portrait__photo" src={d.portrait.photo} alt={d.portrait.photoAlt} width="320" height="400" loading="lazy" decoding="async" />
+        )
+      }
+
+      <h2 class="display display--section portrait__nom">{d.portrait.titre}</h2>
+      <Prose texte={d.portrait.texte} class="portrait__texte" />
+      <a class="portrait__lien" href="/qui-suis-je/">{d.portrait.lien}</a>
+    </div>
+  </section>
+
+  {/* 5. L'appel au contact. */}
+  <Appel titre={d.appel.titre} texte={d.appel.texte} label={d.appel.label} />
+
+  <p class="pour-lecteurs-decran">{reglages.baseline}</p>
+</Base>
+
+<style>
+  .enseigne {
+    padding-block: clamp(3rem, 12vw, 8rem) var(--souffle-m);
+  }
+
+  .enseigne__pile {
+    position: relative;
+    z-index: 1;
+    gap: clamp(1.5rem, 4vw, 2.25rem);
+  }
+
+  .enseigne__lieu {
+    font-size: 0.5625rem;
+    color: var(--encre-4);
+  }
+
+  .enseigne__marque {
+    width: 3.25rem;
+    height: 3.25rem;
+    color: var(--accent);
+    margin-block: 0.75rem;
+  }
+
+  .manifeste__volet {
+    max-width: 31rem;
+    text-align: center;
+  }
+
+  .manifeste__probleme {
+    color: var(--encre-2);
+  }
+
+  .manifeste__geste {
+    font-family: var(--display);
+    font-size: clamp(1.25rem, 2.9vw, 1.625rem);
+    line-height: 1.5;
+    color: var(--encre);
+    text-wrap: pretty;
+  }
+
+  .portes-section {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--souffle-m) var(--souffle-l);
+  }
+
+  .portrait__photo {
+    width: clamp(9rem, 26vw, 12rem);
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.04);
+    margin-block: 0.75rem;
+  }
+
+  .portrait__nom {
+    font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  }
+
+  .portrait__texte {
+    max-width: 29rem;
+    font-size: 0.9375em;
+    color: var(--encre-2);
+  }
+
+  .portrait__lien {
+    margin-top: 0.5rem;
+    font-size: 0.625rem;
+    letter-spacing: 0.28em;
+    text-indent: 0.28em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent-pale);
+    padding-bottom: 0.3rem;
+    transition: border-color 0.25s;
+  }
+
+  .portrait__lien:hover {
+    border-bottom-color: var(--accent);
+  }
+</style>

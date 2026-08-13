@@ -1,0 +1,117 @@
+---
+import { getEntry } from 'astro:content';
+import Glyphe from './Glyphe.astro';
+
+const reglages = (await getEntry('reglages', 'site'))!.data;
+---
+
+<footer class="pied">
+  <div class="pied__corps">
+    <Glyphe nom="marque" class="pied__marque" epaisseur={5} />
+
+    <p class="micro micro--large pied__nom">{reglages.personne}</p>
+    <p class="micro micro--serre pied__signature">{reglages.signature}</p>
+
+    <ul class="pied__liens">
+      <li><a href={`mailto:${reglages.email}`}>{reglages.email}</a></li>
+      <li>
+        <a href={reglages.instagramUrl} rel="me noopener" target="_blank">{reglages.instagram}</a>
+      </li>
+    </ul>
+
+    <ul class="pied__legal">
+      <li><a href="/mentions-legales/">Mentions légales</a></li>
+      <li><a href="/confidentialite/">Politique de confidentialité</a></li>
+    </ul>
+
+    <p class="pied__lieu micro micro--serre">
+      {reglages.ville} — {reglages.region}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .pied {
+    position: relative;
+    z-index: 1;
+    margin-top: var(--souffle-xl);
+    padding-block: var(--souffle-m) clamp(2.5rem, 6vw, 4rem);
+    border-top: 1px solid var(--filet);
+    background: var(--papier);
+  }
+
+  .pied__corps {
+    width: min(100% - var(--marge) * 2, 40rem);
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    text-align: center;
+  }
+
+  .pied__marque {
+    width: 1.4rem;
+    height: 1.4rem;
+    color: var(--accent);
+    opacity: 0.75;
+    margin-bottom: 0.6rem;
+  }
+
+  .pied__nom {
+    color: var(--encre);
+    font-size: 0.625rem;
+  }
+
+  .pied__signature {
+    font-size: 0.625rem;
+    color: var(--encre-3);
+  }
+
+  .pied__liens,
+  .pied__legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem 1.5rem;
+  }
+
+  .pied__liens {
+    margin-top: 0.6rem;
+    font-size: 0.9375rem;
+  }
+
+  .pied__liens a {
+    color: var(--encre-2);
+    border-bottom: 1px solid var(--filet);
+    transition: color 0.25s, border-color 0.25s;
+  }
+
+  .pied__liens a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .pied__legal {
+    margin-top: 0.4rem;
+  }
+
+  .pied__legal a {
+    font-size: 0.625rem;
+    letter-spacing: 0.22em;
+    text-indent: 0.22em;
+    text-transform: uppercase;
+    color: var(--encre-3);
+    transition: color 0.25s;
+  }
+
+  .pied__legal a:hover {
+    color: var(--encre);
+  }
+
+  .pied__lieu {
+    margin-top: 0.6rem;
+    font-size: 0.5625rem;
+    color: var(--encre-4);
+  }
+</style>

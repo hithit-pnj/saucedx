@@ -1,0 +1,20 @@
+---
+import Placard from '../layouts/Placard.astro';
+---
+
+<Placard
+  titre="Page introuvable — La Sauce d'Exister"
+  description="Cette page n'existe pas ou n'existe plus."
+  surtitre="Erreur 404"
+  lignes={['Cette page', 'reste à penser.']}
+  citation={"La question est bonne,\nl'adresse ne l'est pas."}
+  glyphe="virage"
+  climat="prune"
+  noindex
+>
+  <p>
+    Le lien que vous avez suivi ne mène nulle part. L'accueil, lui, mène aux cinq façons d'entrer en
+    conversation.
+  </p>
+  <a class="appel" href="/">Retour à l'accueil</a>
+</Placard>

@@ -1,0 +1,126 @@
+---
+import { getEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Fil from '../../components/Fil.astro';
+import Glyphe from '../../components/Glyphe.astro';
+import Filigrane from '../../components/Filigrane.astro';
+import Citation from '../../components/Citation.astro';
+import Prose from '../../components/Prose.astro';
+import FormulaireContact from '../../components/FormulaireContact.astro';
+
+const page = (await getEntry('pages', 'contact'))!;
+const reglages = (await getEntry('reglages', 'site'))!.data;
+const d = page.data.donnees as {
+  hero: { lignes: string[]; surtitre: string; citation: string };
+  intro: string;
+  champs: {
+    nom: string;
+    email: string;
+    message: string;
+    consentement: string;
+    envoyer: string;
+    envoiEnCours: string;
+  };
+  reponses: { succes: string; erreur: string };
+  autrement: { titre: string; texte: string };
+};
+---
+
+<Base titre={page.data.seo.titre} description={page.data.seo.description} climat={page.data.climat}>
+  <article>
+    <header class="ouverture">
+      <Filigrane nom="bifurcation" />
+
+      <div class="colonne pile pile--centre ouverture__pile">
+        <Fil variante="long" />
+
+        <h1 class="display display--titre">
+          {d.hero.lignes.map((ligne, i) => (<>{i > 0 && <br />}{ligne}</>))}
+        </h1>
+
+        <p class="micro micro--accent">{d.hero.surtitre}</p>
+
+        <Fil />
+
+        {d.hero.citation && <Citation texte={d.hero.citation} />}
+
+        <Glyphe nom="bifurcation" class="sceau" />
+      </div>
+    </header>
+
+    <div class="colonne pile pile--m formulaire-zone">
+      <Prose texte={d.intro} class="intro" />
+      <FormulaireContact champs={d.champs} reponses={d.reponses} />
+    </div>
+
+    <div class="colonne pile pile--centre pile--s autrement">
+      <Fil variante="court" />
+      <p class="micro micro--accent">{d.autrement.titre}</p>
+      <Prose texte={d.autrement.texte} class="autrement__texte" />
+      <ul class="autrement__liens">
+        <li><a href={`mailto:${reglages.email}`}>{reglages.email}</a></li>
+        <li>
+          <a href={reglages.instagramUrl} rel="me noopener" target="_blank">{reglages.instagram}</a>
+        </li>
+      </ul>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .ouverture {
+    position: relative;
+    padding-block: clamp(2rem, 6vw, 4rem) var(--souffle-m);
+    overflow: hidden;
+  }
+
+  .ouverture__pile {
+    position: relative;
+    z-index: 1;
+    gap: clamp(1.25rem, 3vw, 1.75rem);
+  }
+
+  .formulaire-zone {
+    position: relative;
+    z-index: 1;
+  }
+
+  .intro {
+    color: var(--encre-2);
+    font-size: 0.9375em;
+    text-wrap: pretty;
+  }
+
+  .autrement {
+    position: relative;
+    z-index: 1;
+    margin-top: var(--souffle-l);
+    text-align: center;
+  }
+
+  .autrement__texte {
+    max-width: 26rem;
+    font-size: 0.875em;
+    color: var(--encre-3);
+  }
+
+  .autrement__liens {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem 1.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .autrement__liens a {
+    color: var(--encre-2);
+    border-bottom: 1px solid var(--filet);
+    transition: color 0.25s, border-color 0.25s;
+  }
+
+  .autrement__liens a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+</style>

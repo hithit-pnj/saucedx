@@ -1,0 +1,85 @@
+---
+import Base from './Base.astro';
+import Fil from '../components/Fil.astro';
+import Glyphe from '../components/Glyphe.astro';
+import Filigrane from '../components/Filigrane.astro';
+import Citation from '../components/Citation.astro';
+
+/** Une page brève : un mot, un geste, une porte de sortie. */
+interface Props {
+  titre: string;
+  description: string;
+  climat?: 'garance' | 'ambre' | 'prune' | 'vert' | 'nuit' | 'ardoise';
+  glyphe?: 'rayonnement' | 'suspension' | 'virage' | 'strates' | 'cercles' | 'bifurcation';
+  surtitre: string;
+  lignes: string[];
+  citation?: string;
+  noindex?: boolean;
+}
+
+const {
+  titre,
+  description,
+  climat = 'garance',
+  glyphe = 'cercles',
+  surtitre,
+  lignes,
+  citation,
+  noindex = false,
+} = Astro.props;
+---
+
+<Base titre={titre} description={description} climat={climat} noindex={noindex}>
+  <section class="placard">
+    <Filigrane nom={glyphe} />
+
+    <div class="colonne pile pile--centre placard__pile">
+      <Fil variante="long" />
+
+      <p class="micro micro--accent">{surtitre}</p>
+
+      <h1 class="display display--titre">
+        {lignes.map((ligne, i) => (<>{i > 0 && <br />}{ligne}</>))}
+      </h1>
+
+      {citation && <Citation texte={citation} />}
+
+      <Glyphe nom={glyphe} class="sceau" />
+
+      <div class="placard__suite">
+        <slot />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .placard {
+    position: relative;
+    padding-block: clamp(3rem, 10vw, 6rem) var(--souffle-l);
+    overflow: hidden;
+  }
+
+  .placard__pile {
+    position: relative;
+    z-index: 1;
+    gap: clamp(1.25rem, 3vw, 1.75rem);
+  }
+
+  .placard__suite {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .placard__suite :global(p) {
+    max-width: 28rem;
+    text-align: center;
+    color: var(--encre-2);
+    font-size: 0.9375em;
+    line-height: 1.7;
+    text-wrap: pretty;
+  }
+</style>

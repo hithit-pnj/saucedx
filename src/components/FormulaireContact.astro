@@ -1,0 +1,180 @@
+---
+import { getEntry } from 'astro:content';
+
+interface Props {
+  champs: {
+    nom: string;
+    email: string;
+    message: string;
+    consentement: string;
+    envoyer: string;
+    envoiEnCours: string;
+  };
+  reponses: { succes: string; erreur: string };
+}
+
+const { champs, reponses } = Astro.props;
+const reglages = (await getEntry('reglages', 'site'))!.data;
+---
+
+<form
+  class="formulaire"
+  id="formulaire"
+  action="/api/contact.php"
+  method="post"
+  novalidate
+  data-succes={reponses.succes}
+  data-erreur={reponses.erreur}
+>
+  <div class="champ">
+    <label for="nom">{champs.nom}</label>
+    <input type="text" id="nom" name="nom" autocomplete="name" maxlength="120" required />
+  </div>
+
+  <div class="champ">
+    <label for="email">{champs.email}</label>
+    <input type="email" id="email" name="email" autocomplete="email" maxlength="200" required />
+  </div>
+
+  <div class="champ">
+    <label for="message">{champs.message}</label>
+    <textarea id="message" name="message" rows="8" maxlength="6000" required></textarea>
+  </div>
+
+  <label class="consentement">
+    <input type="checkbox" name="consentement" value="oui" required />
+    <span>
+      {champs.consentement} <a href="/confidentialite/">En savoir plus</a>.
+    </span>
+  </label>
+
+  {/* Anti-spam discret : un champ que seuls les robots remplissent, et l'heure d'ouverture. */}
+  <div class="miel" aria-hidden="true">
+    <label for="site">Ne pas remplir</label>
+    <input type="text" id="site" name="site" tabindex="-1" autocomplete="off" />
+  </div>
+  <input type="hidden" name="ouvert_a" value="" />
+  <input type="hidden" name="sujet" value="" />
+
+  <div class="formulaire__pied">
+    <button class="appel" type="submit">{champs.envoyer}</button>
+    <p class="reponse" role="status" aria-live="polite"></p>
+  </div>
+
+  <noscript>
+    <p class="micro micro--serre formulaire__noscript">
+      Sans JavaScript, l'envoi fonctionne aussi : vous serez redirigé vers une page de confirmation. Ou
+      écrivez directement à {reglages.email}.
+    </p>
+  </noscript>
+</form>
+
+<style>
+  .formulaire {
+    display: flex;
+    flex-direction: column;
+    gap: var(--souffle-s);
+    width: 100%;
+  }
+
+  .formulaire__pied {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .formulaire .reponse:empty {
+    display: none;
+  }
+
+  .formulaire__noscript {
+    font-size: 0.5625rem;
+    color: var(--encre-3);
+    text-transform: none;
+    letter-spacing: 0.08em;
+    text-indent: 0;
+    line-height: 1.7;
+  }
+
+  .champ :global(input[aria-invalid='true']),
+  .champ :global(textarea[aria-invalid='true']) {
+    border-bottom-color: oklch(0.55 0.16 28);
+  }
+</style>
+
+<script>
+  const formulaire = document.getElementById('formulaire') as HTMLFormElement | null;
+  if (formulaire) {
+    const reponse = formulaire.querySelector<HTMLParagraphElement>('.reponse')!;
+    const bouton = formulaire.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const libelleInitial = bouton.textContent ?? 'Envoyer';
+
+    // Horodatage d'ouverture : un envoi en moins de trois secondes vient d'un robot.
+    const ouvertA = formulaire.querySelector<HTMLInputElement>('input[name="ouvert_a"]')!;
+    ouvertA.value = String(Math.floor(Date.now() / 1000));
+
+    // Un lien « Écrire à Alice » peut préciser le sujet du message.
+    const sujet = new URLSearchParams(location.search).get('sujet');
+    if (sujet) {
+      formulaire.querySelector<HTMLInputElement>('input[name="sujet"]')!.value = sujet.slice(0, 120);
+      const message = formulaire.querySelector<HTMLTextAreaElement>('#message')!;
+      message.placeholder = `À propos de : ${sujet}`;
+    }
+
+    const marquer = (champ: HTMLInputElement | HTMLTextAreaElement, valide: boolean) => {
+      champ.setAttribute('aria-invalid', String(!valide));
+    };
+
+    formulaire.addEventListener('submit', async (evenement) => {
+      evenement.preventDefault();
+
+      const champs = [...formulaire.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]')];
+      let valide = true;
+      for (const champ of champs) {
+        const ok = champ.checkValidity();
+        if (champ.type !== 'checkbox') marquer(champ, ok);
+        if (!ok && valide) {
+          champ.focus();
+          valide = false;
+        }
+      }
+      if (!valide) {
+        reponse.dataset.ton = 'erreur';
+        reponse.textContent = 'Merci de compléter les champs manquants.';
+        return;
+      }
+
+      bouton.disabled = true;
+      bouton.textContent = bouton.dataset.enCours ?? 'Envoi…';
+      reponse.textContent = '';
+
+      try {
+        const requete = await fetch(formulaire.action, {
+          method: 'POST',
+          body: new FormData(formulaire),
+          headers: { Accept: 'application/json' },
+        });
+        const resultat = (await requete.json().catch(() => ({}))) as { ok?: boolean };
+
+        if (requete.ok && resultat.ok) {
+          reponse.dataset.ton = 'succes';
+          reponse.textContent = formulaire.dataset.succes ?? 'Message envoyé.';
+          formulaire.reset();
+          bouton.remove();
+        } else {
+          throw new Error('envoi refusé');
+        }
+      } catch {
+        reponse.dataset.ton = 'erreur';
+        reponse.textContent = formulaire.dataset.erreur ?? "L'envoi n'a pas abouti.";
+      } finally {
+        if (bouton.isConnected) {
+          bouton.disabled = false;
+          bouton.textContent = libelleInitial;
+        }
+      }
+    });
+  }
+</script>

@@ -1,0 +1,23 @@
+---
+import { getEntry } from 'astro:content';
+import Placard from '../../layouts/Placard.astro';
+
+const { email } = (await getEntry('reglages', 'site'))!.data;
+---
+
+<Placard
+  titre="L'envoi n'a pas abouti — La Sauce d'Exister"
+  description="Le message n'a pas pu être envoyé."
+  surtitre="Envoi interrompu"
+  lignes={['Le message', "n'est pas parti."]}
+  citation={"Rien n'est perdu :\nécrivez-moi directement."}
+  glyphe="bifurcation"
+  noindex
+>
+  <p>
+    Un champ manquait, ou le serveur de mail n'a pas répondu. Le plus simple est de m'écrire directement à
+    <a href={`mailto:${email}`}>{email}</a> — ou de retenter en
+    revenant au formulaire.
+  </p>
+  <a class="appel" href="/contact/">Revenir au formulaire</a>
+</Placard>

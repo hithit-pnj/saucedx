@@ -1,0 +1,117 @@
+---
+import Enseigne from './Enseigne.astro';
+import { menuPrincipal, memeChemin } from '../lib/navigation';
+
+const liens = await menuPrincipal();
+const ici = Astro.url.pathname;
+---
+
+<header class="entete">
+  <div class="entete__rang">
+    <Enseigne />
+    <nav aria-label="Navigation principale">
+      <button class="bascule" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="bascule__mot" data-ouvrir>Menu</span>
+        <span class="bascule__mot" data-fermer>Fermer</span>
+      </button>
+      <ul class="nav-liens" id="menu">
+        {
+          liens.map((lien) => (
+            <li>
+              <a href={lien.href} aria-current={memeChemin(ici, lien.href) ? 'page' : undefined}>
+                {lien.libelle}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .entete {
+    position: relative;
+    z-index: 3;
+    padding-block: clamp(1.25rem, 3vw, 2rem);
+    background: var(--papier);
+  }
+
+  .entete__rang {
+    width: min(100% - var(--marge) * 2, 74rem);
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--souffle-s);
+    flex-wrap: wrap;
+  }
+
+  .bascule {
+    display: none;
+    padding: 0.4rem 0;
+    border: none;
+    background: none;
+    font-family: var(--serif);
+    font-size: 0.625rem;
+    letter-spacing: 0.3em;
+    text-indent: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    cursor: pointer;
+  }
+
+  .bascule__mot[data-fermer] {
+    display: none;
+  }
+  .bascule[aria-expanded='true'] .bascule__mot[data-ouvrir] {
+    display: none;
+  }
+  .bascule[aria-expanded='true'] .bascule__mot[data-fermer] {
+    display: inline;
+  }
+
+  @media (max-width: 62rem) {
+    .entete__rang {
+      align-items: flex-start;
+    }
+    .bascule {
+      display: block;
+    }
+    .nav-liens {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--filet);
+    }
+    .nav-liens[data-ouvert] {
+      display: flex;
+    }
+    .nav-liens li + li {
+      border-top: 1px solid var(--filet-pale);
+    }
+    .nav-liens a {
+      display: block;
+      padding-block: 0.85rem;
+    }
+    nav {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  }
+</style>
+
+<script>
+  const bascule = document.querySelector<HTMLButtonElement>('.bascule');
+  const menu = document.getElementById('menu');
+  bascule?.addEventListener('click', () => {
+    const ouvert = bascule.getAttribute('aria-expanded') === 'true';
+    bascule.setAttribute('aria-expanded', String(!ouvert));
+    menu?.toggleAttribute('data-ouvert', !ouvert);
+  });
+</script>

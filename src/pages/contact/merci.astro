@@ -1,0 +1,22 @@
+---
+import { getEntry } from 'astro:content';
+import Placard from '../../layouts/Placard.astro';
+
+const { email } = (await getEntry('reglages', 'site'))!.data;
+---
+
+<Placard
+  titre="Merci — La Sauce d'Exister"
+  description="Votre message est bien parti."
+  surtitre="Message envoyé"
+  lignes={['Merci.']}
+  citation={'Je vous réponds\npersonnellement.'}
+  glyphe="bifurcation"
+  noindex
+>
+  <p>
+    Votre message est parti. Je réponds en général sous deux ou trois jours ; si rien ne vous parvient,
+    écrivez-moi directement à <a href={`mailto:${email}`}>{email}</a>.
+  </p>
+  <a class="appel" href="/">Retour à l'accueil</a>
+</Placard>

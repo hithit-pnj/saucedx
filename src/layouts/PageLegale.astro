@@ -1,0 +1,112 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from './Base.astro';
+import Fil from '../components/Fil.astro';
+import Glyphe from '../components/Glyphe.astro';
+
+interface Props {
+  /** Identifiant du fichier dans src/content/legal, sans extension. */
+  entree: string;
+}
+
+const { entree } = Astro.props;
+const page = (await getEntry('legal', entree))!;
+const { Content } = await render(page);
+---
+
+<Base
+  titre={page.data.seo.titre}
+  description={page.data.seo.description}
+  climat="ardoise"
+>
+  <article class="legal">
+    <header class="colonne pile pile--centre pile--s legal__entete">
+      <Fil variante="long" />
+      <h1 class="display display--section">{page.data.titre}</h1>
+      <Glyphe nom="suspension" class="sceau" />
+      {page.data.misAJour && <p class="micro legal__date">Mise à jour : {page.data.misAJour}</p>}
+    </header>
+
+    <div class="colonne legal__corps">
+      <Content />
+    </div>
+  </article>
+</Base>
+
+<style>
+  .legal {
+    padding-block: clamp(2rem, 6vw, 4rem) 0;
+  }
+
+  .legal__entete {
+    gap: 1.25rem;
+    margin-bottom: var(--souffle-m);
+  }
+
+  .legal__date {
+    font-size: 0.5625rem;
+    color: var(--encre-4);
+  }
+
+  .legal__corps {
+    font-size: 0.9375em;
+    line-height: 1.72;
+    color: var(--encre-2);
+  }
+
+  .legal__corps :global(h2) {
+    margin-top: var(--souffle-m);
+    margin-bottom: 0.75rem;
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.34em;
+    text-indent: 0.34em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .legal__corps :global(p) {
+    margin-block: 0 1em;
+    text-wrap: pretty;
+  }
+
+  .legal__corps :global(ul) {
+    margin-block: 0 1em;
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .legal__corps :global(li) {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .legal__corps :global(li)::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    opacity: 0.6;
+  }
+
+  .legal__corps :global(strong) {
+    font-weight: 500;
+    color: var(--encre);
+  }
+
+  .legal__corps :global(em) {
+    font-style: italic;
+    color: var(--encre-3);
+  }
+
+  .legal__corps :global(a) {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent-pale);
+    transition: border-color 0.25s;
+  }
+
+  .legal__corps :global(a:hover) {
+    border-bottom-color: var(--accent);
+  }
+</style>

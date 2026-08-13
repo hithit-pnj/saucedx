@@ -1,0 +1,20 @@
+---
+/** Les informations pratiques : registre bas pour les intitulés, prose pour le reste. */
+interface Props {
+  blocs: { titre: string; texte: string }[];
+}
+const { blocs } = Astro.props;
+---
+
+{
+  blocs.length > 0 && (
+    <dl class="pratique">
+      {blocs.map((bloc) => (
+        <div>
+          <dt>{bloc.titre}</dt>
+          <dd>{bloc.texte}</dd>
+        </div>
+      ))}
+    </dl>
+  )
+}

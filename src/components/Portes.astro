@@ -1,0 +1,39 @@
+---
+import Glyphe from './Glyphe.astro';
+import { offresPubliees } from '../lib/navigation';
+
+/** Les portes de l'accueil : la page ne vend rien, elle oriente. */
+interface Props {
+  exclure?: string;
+}
+const { exclure } = Astro.props;
+
+const offres = (await offresPubliees()).filter((o) => o.id !== exclure);
+---
+
+<ul class="portes">
+  {
+    offres.map((offre) => (
+      <li data-climat={offre.data.climat}>
+        <a class="porte" href={`/${offre.id}/`}>
+          <Glyphe nom={offre.data.glyphe} class="glyphe-porte" epaisseur={7} />
+          <span>
+            <span class="intitule">{offre.data.porte.intitule}</span>
+            <span class="precision">{offre.data.porte.precision}</span>
+          </span>
+          <span class="fleche" aria-hidden="true">⟶</span>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .portes {
+    position: relative;
+    z-index: 1;
+  }
+  li {
+    display: contents;
+  }
+</style>

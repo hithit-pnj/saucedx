@@ -1,0 +1,120 @@
+---
+/**
+ * Le geste graphique unique de chaque offre.
+ * Il apparaît deux fois : en filigrane (immense, très pâle) et en sceau (petit, net).
+ * Il ne s'explique jamais.
+ */
+type Nom = 'rayonnement' | 'suspension' | 'virage' | 'strates' | 'cercles' | 'bifurcation' | 'marque';
+
+interface Props {
+  nom: Nom;
+  class?: string;
+  epaisseur?: number;
+  'aria-hidden'?: boolean;
+}
+
+const { nom, class: classe, epaisseur = 6, ...reste } = Astro.props;
+
+const rayons = [
+  [148, 100, 192, 100],
+  [141.6, 124, 179.7, 146],
+  [124, 141.6, 146, 179.7],
+  [100, 148, 100, 192],
+  [76, 141.6, 54, 179.7],
+  [58.4, 124, 20.3, 146],
+  [52, 100, 8, 100],
+  [58.4, 76, 20.3, 54],
+  [76, 58.4, 54, 20.3],
+  [100, 52, 100, 8],
+  [124, 58.4, 146, 20.3],
+  [141.6, 76, 179.7, 54],
+];
+---
+
+<svg
+  viewBox="0 0 200 200"
+  class={classe}
+  fill="none"
+  stroke="currentColor"
+  stroke-width={epaisseur}
+  aria-hidden="true"
+  focusable="false"
+  {...reste}
+>
+  {
+    nom === 'rayonnement' && (
+      <>
+        {rayons.map(([x1, y1, x2, y2]) => <line x1={x1} y1={y1} x2={x2} y2={y2} />)}
+        <circle cx="100" cy="100" r={epaisseur * 0.7} fill="currentColor" stroke="none" />
+      </>
+    )
+  }
+
+  {
+    nom === 'suspension' && (
+      <>
+        <line x1="100" y1="14" x2="100" y2="78" />
+        <circle cx="100" cy="100" r="13" />
+        <line x1="100" y1="122" x2="100" y2="186" />
+      </>
+    )
+  }
+
+  {
+    nom === 'virage' && (
+      <>
+        <path d="M70,14 L70,84 C70,126 130,118 130,160 L130,186" />
+        <circle cx="70" cy="14" r={epaisseur * 0.55} fill="currentColor" stroke="none" />
+        <circle cx="130" cy="186" r={epaisseur * 0.55} fill="currentColor" stroke="none" />
+      </>
+    )
+  }
+
+  {
+    nom === 'strates' && (
+      <>
+        <line x1="30" y1="40" x2="170" y2="40" />
+        <line x1="30" y1="70" x2="170" y2="70" />
+        <line x1="30" y1="100" x2="88" y2="100" />
+        <circle cx="100" cy="100" r="9" />
+        <line x1="112" y1="100" x2="170" y2="100" />
+        <line x1="30" y1="130" x2="170" y2="130" />
+        <line x1="30" y1="160" x2="170" y2="160" />
+      </>
+    )
+  }
+
+  {
+    nom === 'cercles' && (
+      <>
+        <circle cx="100" cy="100" r="22" />
+        <circle cx="100" cy="100" r="52" opacity="0.62" />
+        <circle cx="100" cy="100" r="82" opacity="0.34" />
+      </>
+    )
+  }
+
+  {
+    nom === 'bifurcation' && (
+      <>
+        <path d="M100,190 L100,110" />
+        <path d="M100,110 L58,20" />
+        <path d="M100,110 L142,20" />
+        <circle cx="100" cy="110" r={epaisseur * 0.7} fill="currentColor" stroke="none" />
+      </>
+    )
+  }
+
+  {/* Le Φ de la marque : le fil traversant l'ovale, et les bulles-puits */}
+  {
+    nom === 'marque' && (
+      <>
+        <ellipse cx="100" cy="106" rx="54" ry="41" stroke-width={epaisseur} />
+        <line x1="100" y1="40" x2="100" y2="180" stroke-width={epaisseur * 1.16} stroke-linecap="round" />
+        <circle cx="132" cy="34" r="10" stroke-width={epaisseur * 0.42} />
+        <circle cx="153" cy="17" r="6.5" stroke-width={epaisseur * 0.34} opacity="0.7" />
+        <circle cx="120" cy="13" r="4" stroke-width={epaisseur * 0.26} opacity="0.5" />
+      </>
+    )
+  }
+</svg>

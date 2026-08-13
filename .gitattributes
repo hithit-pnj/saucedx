@@ -1,0 +1,10 @@
+# Le CMS écrit en LF, Windows en CRLF : on normalise pour éviter les faux diffs.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.pdf binary
+*.docx binary
+*.woff2 binary

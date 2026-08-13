@@ -1,0 +1,19 @@
+---
+interface Props {
+  variante?: 'normal' | 'long' | 'court';
+  encre?: boolean;
+  class?: string;
+}
+const { variante = 'normal', encre = false, class: classe } = Astro.props;
+const classes = [
+  'fil',
+  variante === 'long' && 'fil--long',
+  variante === 'court' && 'fil--court',
+  encre && 'fil--encre',
+  classe,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<div class={classes} aria-hidden="true"></div>

@@ -1,0 +1,133 @@
+---
+import '@fontsource/cormorant-garamond/latin-400.css';
+import '@fontsource/cormorant-garamond/latin-400-italic.css';
+import '@fontsource/cormorant-garamond/latin-500-italic.css';
+import '@fontsource/eb-garamond/latin-400.css';
+import '@fontsource/eb-garamond/latin-400-italic.css';
+import '@fontsource/eb-garamond/latin-500.css';
+import '../styles/global.css';
+
+import { getEntry } from 'astro:content';
+import Entete from '../components/Entete.astro';
+import PiedDePage from '../components/PiedDePage.astro';
+
+interface Props {
+  titre: string;
+  description: string;
+  climat?: 'garance' | 'ambre' | 'prune' | 'vert' | 'nuit' | 'ardoise';
+  noindex?: boolean;
+}
+
+const { titre, description, climat = 'garance', noindex = false } = Astro.props;
+const reglages = (await getEntry('reglages', 'site'))!.data;
+
+const canonique = new URL(Astro.url.pathname, Astro.site).href;
+
+const accentsHex: Record<string, string> = {
+  garance: '#973525',
+  ambre: '#7d5a15',
+  prune: '#7d3765',
+  vert: '#1f6355',
+  nuit: '#3b4f96',
+  ardoise: '#40526f',
+};
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: reglages.nom,
+  description: reglages.baseline,
+  url: Astro.site?.href,
+  email: reglages.email,
+  founder: { '@type': 'Person', name: reglages.personne, jobTitle: reglages.signature },
+  areaServed: { '@type': 'City', name: reglages.ville },
+  address: { '@type': 'PostalAddress', addressLocality: reglages.ville, addressRegion: reglages.region, addressCountry: 'FR' },
+  sameAs: [reglages.instagramUrl],
+};
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titre}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonique} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+
+    <meta name="theme-color" content="#f5f0e6" />
+    <meta name="color-scheme" content="light" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content={reglages.nom} />
+    <meta property="og:title" content={titre} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonique} />
+    <meta property="og:image" content={new URL('/og.png', Astro.site).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} is:inline />
+
+    <script is:inline>
+      // Marqué avant le premier rendu : les fils partent à zéro et se tracent ensuite.
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.dataset.fils = 'animes';
+      }
+    </script>
+  </head>
+
+  <body data-climat={climat} style={`--accent-hex:${accentsHex[climat]}`}>
+    <a class="evitement" href="#contenu">Aller au contenu</a>
+
+    <Entete />
+
+    <main id="contenu" class="scene">
+      <slot />
+    </main>
+
+    <PiedDePage />
+
+    <script>
+      // Apparition sobre au scroll, et déroulé du fil : rien d'indispensable,
+      // la typographie porte déjà tout.
+      const blocs = document.querySelectorAll<HTMLElement>('.paraitre');
+      const fils = document.querySelectorAll<HTMLElement>('.fil');
+      const sobre = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!sobre && 'IntersectionObserver' in window) {
+        const guetter = (cibles: NodeListOf<HTMLElement>, classe: string, marge: string) => {
+          const guetteur = new IntersectionObserver(
+            (entrees) => {
+              for (const entree of entrees) {
+                if (!entree.isIntersecting) continue;
+                entree.target.classList.add(classe);
+                guetteur.unobserve(entree.target);
+              }
+            },
+            { rootMargin: marge, threshold: 0.01 },
+          );
+          cibles.forEach((c) => guetteur.observe(c));
+        };
+
+        guetter(blocs, 'paru', '0px 0px -12% 0px');
+        guetter(fils, 'tire', '0px 0px -4% 0px');
+      } else {
+        blocs.forEach((b) => b.classList.add('paru'));
+        fils.forEach((f) => f.classList.add('tire'));
+      }
+    </script>
+
+    <style>
+      .scene {
+        position: relative;
+        isolation: isolate;
+      }
+    </style>
+  </body>
+</html>

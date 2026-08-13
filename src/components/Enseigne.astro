@@ -1,0 +1,18 @@
+---
+import Glyphe from './Glyphe.astro';
+import { getEntry } from 'astro:content';
+
+interface Props {
+  lien?: boolean;
+  class?: string;
+}
+const { lien = true, class: classe } = Astro.props;
+const reglages = (await getEntry('reglages', 'site'))!.data;
+
+const Balise = lien ? 'a' : 'span';
+---
+
+<Balise class:list={['enseigne-nav', classe]} {...lien ? { href: '/' } : {}}>
+  <Glyphe nom="marque" class="marque" epaisseur={9} />
+  <span>{reglages.nom}</span>
+</Balise>

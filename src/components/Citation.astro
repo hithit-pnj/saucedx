@@ -1,0 +1,20 @@
+---
+/** Une citation : les sauts de ligne de l'auteure sont des sauts de ligne à l'écran. */
+interface Props {
+  texte: string;
+  class?: string;
+}
+const { texte, class: classe } = Astro.props;
+const lignes = texte.trim().split('\n');
+---
+
+<p class:list={['citation', classe]}>
+  {
+    lignes.map((ligne, i) => (
+      <>
+        {i > 0 && <br />}
+        {ligne.trim()}
+      </>
+    ))
+  }
+</p>

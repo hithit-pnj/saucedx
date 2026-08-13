@@ -1,0 +1,51 @@
+name: Mise en ligne
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploiement
+  cancel-in-progress: true
+
+jobs:
+  construire-et-publier:
+    name: Construire et publier sur Infomaniak
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Construire le site
+        run: npm run build
+        env:
+          # Variable de dépôt : Settings → Secrets and variables → Actions → Variables.
+          # Sans elle, le sitemap et les URL canoniques pointeraient vers exemple.fr.
+          SITE_URL: ${{ vars.SITE_URL }}
+
+      - name: Envoyer par FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVEUR }}
+          username: ${{ secrets.FTP_UTILISATEUR }}
+          password: ${{ secrets.FTP_MOT_DE_PASSE }}
+          # L'offre Starter n'accepte que du FTP nu sur le port 21 : ni FTPS ni SFTP.
+          # Poser la variable FTP_PROTOCOLE à « ftp » le temps du Starter, puis la
+          # supprimer au passage sur l'offre payante pour retrouver du chiffré.
+          protocol: ${{ vars.FTP_PROTOCOLE || 'ftps' }}
+          local-dir: ./dist/
+          server-dir: ${{ secrets.FTP_DOSSIER }}
+          # Le journal de synchronisation évite de tout réenvoyer à chaque fois.
+          state-name: .ftp-deploy-sync-state.json
+          dangerous-clean-slate: false

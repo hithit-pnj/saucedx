@@ -2,6 +2,7 @@
 import { getEntry } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Fil from '../components/Fil.astro';
+import Filigrane from '../components/Filigrane.astro';
 import Glyphe from '../components/Glyphe.astro';
 import Prose from '../components/Prose.astro';
 import Portes from '../components/Portes.astro';
@@ -19,8 +20,11 @@ const d = page.data.donnees as {
 ---
 
 <Base titre={page.data.seo.titre} description={page.data.seo.description} climat={page.data.climat}>
-  {/* 1. L'enseigne et le fil, seuls, avec de l'air. */}
+  {/* 1. L'enseigne et le fil, seuls, avec de l'air.
+       Le geste paraît deux fois : immense et pâle en fond, puis net en sceau. */}
   <section class="enseigne">
+    <Filigrane nom="marque" />
+
     <div class="colonne pile pile--centre enseigne__pile">
       <p class="micro enseigne__lieu">{d.hero.lieu}</p>
 
@@ -30,9 +34,9 @@ const d = page.data.donnees as {
         {d.hero.lignes.map((ligne, i) => (<>{i > 0 && <br />}{ligne}</>))}
       </h1>
 
-      <Glyphe nom="marque" class="enseigne__marque" epaisseur={7.5} />
-
       <p class="micro micro--accent">{d.hero.surtitre}</p>
+
+      <Glyphe nom="marque" class="enseigne__marque" epaisseur={7.5} />
     </div>
   </section>
 
@@ -90,7 +94,11 @@ const d = page.data.donnees as {
 
 <style>
   .enseigne {
+    position: relative;
     padding-block: clamp(3rem, 12vw, 8rem) var(--souffle-m);
+    /* Le filigrane fait 52rem : sans découpe il déborderait sur le manifeste
+       et provoquerait un défilement horizontal sur petit écran. */
+    overflow: hidden;
   }
 
   .enseigne__pile {

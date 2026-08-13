@@ -94,14 +94,6 @@ const plusieursFormats = sections.length > 1;
 
     <Appel titre={cta.titre} texte={cta.texte} label={cta.label} sujet={cta.sujet} />
   </article>
-
-  {
-    import.meta.env.DEV && offre.data.statut !== 'final' && (
-      <p class="drapeau-wip">
-        Contenu {offre.data.statut === 'a-ecrire' ? 'à écrire' : 'en relecture'} — ne pas publier en l'état.
-      </p>
-    )
-  }
 </Base>
 
 <style>
@@ -170,17 +162,4 @@ const plusieursFormats = sections.length > 1;
     gap: clamp(1.25rem, 3vw, 1.75rem);
   }
 
-  .drapeau-wip {
-    position: fixed;
-    bottom: 0.75rem;
-    left: 0.75rem;
-    z-index: 50;
-    padding: 0.4rem 0.75rem;
-    background: oklch(0.55 0.16 60);
-    color: white;
-    font-family: system-ui, sans-serif;
-    font-size: 0.6875rem;
-    letter-spacing: 0.04em;
-    border-radius: 2px;
-  }
 </style>

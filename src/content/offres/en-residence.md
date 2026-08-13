@@ -1,7 +1,6 @@
 ---
 ordre: 5
 publie: true
-statut: wip
 
 climat: vert
 glyphe: strates

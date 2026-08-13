@@ -1,7 +1,6 @@
 ---
 ordre: 3
 publie: true
-statut: wip
 
 climat: prune
 glyphe: virage

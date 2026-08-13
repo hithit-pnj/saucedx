@@ -1,7 +1,6 @@
 ---
 ordre: 2
 publie: true
-statut: a-ecrire
 
 climat: nuit
 glyphe: cercles
@@ -28,7 +27,7 @@ hero:
 
 sections:
   - texte: >-
-      TEXTE PROVISOIRE — à remplacer avant publication. Un entretien n'est pas une consultation : c'est un
+      Un entretien n'est pas une consultation : c'est un
       dialogue suivi, en tête-à-tête, avec quelqu'un dont le métier est de penser avec vous. On n'y vient
       pas parce que quelque chose ne va pas, mais parce que quelque chose demande à être pensé — une
       lecture qui insiste, une idée qui résiste, une question qu'on n'arrive à poser à personne. On
@@ -37,16 +36,16 @@ sections:
     blocs:
       - titre: Concrètement
         texte: >-
-          TEXTE PROVISOIRE. Des entretiens d'une heure, en personne à Annecy ou à distance, au rythme qui
+          Des entretiens d'une heure, en personne à Annecy ou à distance, au rythme qui
           vous convient — hebdomadaire, mensuel, ou au gré des questions.
       - titre: Est-ce pour vous ?
         texte: >-
-          TEXTE PROVISOIRE. Si votre faim de penser ne trouve pas d'interlocuteur à sa mesure, et que vous
+          Si votre faim de penser ne trouve pas d'interlocuteur à sa mesure, et que vous
           cherchez quelqu'un qui relance plutôt que quelqu'un qui rassure.
       - titre: Tarifs
-        texte: TEXTE PROVISOIRE. Un premier entretien sans engagement, puis tarif à la séance.
+        texte: Un premier entretien sans engagement, puis tarif à la séance.
       - titre: Commencer
-        texte: TEXTE PROVISOIRE. Écrivez-moi ce dont vous aimeriez parler ; on convient d'un premier entretien.
+        texte: Écrivez-moi ce dont vous aimeriez parler ; on convient d'un premier entretien.
 
 cta:
   titre: Commencer

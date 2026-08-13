@@ -1,7 +1,6 @@
 ---
 ordre: 4
 publie: true
-statut: wip
 
 climat: ambre
 glyphe: suspension

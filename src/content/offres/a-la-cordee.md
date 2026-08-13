@@ -1,7 +1,6 @@
 ---
 ordre: 1
 publie: true
-statut: wip
 
 climat: garance
 glyphe: rayonnement

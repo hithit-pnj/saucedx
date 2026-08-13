@@ -20,7 +20,6 @@ const offres = defineCollection({
   schema: z.object({
     ordre: z.number(),
     publie: z.boolean().default(true),
-    statut: z.enum(['final', 'wip', 'a-ecrire']).default('wip'),
 
     climat: z.enum(climats),
     glyphe: z.enum(glyphes),

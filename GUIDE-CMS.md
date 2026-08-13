@@ -255,17 +255,23 @@ créé en même temps que le site. La page affiche tout ce qu'il faut :
 
 | Ce qu'affiche Hostinger | Ce que c'est |
 | --- | --- |
-| **FTP IP** | l'adresse du serveur, une IP du genre `82.197.x.x` |
+| **FTP IP** | l'adresse du serveur, une IP du genre `82.29.x.x` |
 | **Nom d'utilisateur FTP** | de la forme `u123456789` pour le domaine principal |
 | **Port** | `21`, toujours |
 | **Dossier** | `public_html` — c'est là que va le site |
 
 Le mot de passe, lui, n'est pas réaffiché : s'il vous est inconnu, posez-en un nouveau depuis
-cette même page.
+cette même page. Prenez bien le mot de passe **FTP**, ni celui du compte Hostinger ni celui de
+SSH : c'est la cause n°1 des erreurs `530 login incorrect`.
 
-Deux précisions utiles. Prenez bien le mot de passe **FTP**, pas celui du compte Hostinger ni
-celui de SSH : c'est la cause n°1 des erreurs `530 login incorrect`. Et si l'IP refuse la
-connexion, remplacez-la par le **nom du serveur**, visible dans les détails de l'offre.
+Pour le serveur, préférez **`ftp.saucedexister.fr`** à l'IP. Hostinger crée ce sous-domaine
+automatiquement, il pointe sur la bonne machine, et il continuera de fonctionner le jour où
+l'hébergeur change l'adresse du serveur — ce qui arrive lors des migrations internes, sans
+préavis.
+
+Notez la valeur **exactement** telle quelle : `ftp.saucedexister.fr`, sans `ftp://` devant, sans
+`:21` derrière, sans espace au bout. C'est un nom de machine, pas une adresse web, et le
+déploiement le passe tel quel à la résolution DNS.
 
 ### 5.6 Confier ces accès à GitHub
 
@@ -279,7 +285,7 @@ pour ça.
 
 | Nom exact du secret | Valeur |
 | --- | --- |
-| `FTP_SERVEUR` | l'IP ou le nom de serveur relevé en 5.5 |
+| `FTP_SERVEUR` | `ftp.saucedexister.fr` |
 | `FTP_UTILISATEUR` | `u123456789` |
 | `FTP_MOT_DE_PASSE` | le mot de passe FTP |
 | `FTP_DOSSIER` | `/public_html/` |
@@ -312,10 +318,13 @@ indexeraient des adresses qui n'existent pas.
 4. Comptez deux à trois minutes. Une coche verte signifie que c'est en ligne ; une croix rouge
    s'ouvre sur le journal, qui pointe l'étape fautive.
 
-Le déploiement part par défaut en **FTPS**, c'est-à-dire chiffré. Si le journal se termine sur
-une erreur mentionnant `TLS`, `AUTH TLS` ou un code `534`, c'est que le serveur ne l'accepte
-pas : ajoutez alors la variable `FTP_PROTOCOLE` avec la valeur `ftp`, et relancez. Ne le faites
-qu'en cas d'échec — le mot de passe circulerait en clair sur le réseau.
+Le déploiement part par défaut en **FTPS**, c'est-à-dire chiffré, et le serveur de Hostinger
+l'accepte : vérification faite, `ftp.saucedexister.fr` répond `234 AUTH TLS successful`. Il n'y a
+donc rien à changer, et surtout pas de raison de basculer en FTP en clair.
+
+La variable `FTP_PROTOCOLE = ftp` existe comme filet de sécurité si un hébergeur futur refusait
+le chiffrement — le journal mentionnerait alors `AUTH TLS` ou un code `534`. Une erreur FTP qui
+ne parle pas de TLS ne se règle jamais avec cette variable : voir « Problèmes courants ».
 
 Ensuite, plus rien à faire : chaque enregistrement dans le CMS déclenche ce déploiement tout
 seul.
@@ -529,7 +538,29 @@ deux versions, puis `git push` passe.
 
 **Le déploiement échoue sur l'étape FTP.**
 Un secret est mal orthographié, ou le dossier n'est pas le bon. Le journal de l'onglet
-**Actions** donne le message exact.
+**Actions** donne le message exact. Les trois messages ci-dessous couvrent la quasi-totalité
+des cas, et chacun désigne un secret différent.
+
+**`getaddrinfo ENOTFOUND` — « The server doesn't seem to exist. Do you have a typo? »**
+C'est le secret `FTP_SERVEUR`, et lui seul. Le message veut dire que la valeur a été cherchée
+dans l'annuaire DNS et n'y figure pas. Ne vous laissez pas égarer par la phrase qui précède,
+« are you sure your server works via FTP or FTPS ? » : elle est affichée à tort, puisque la
+connexion n'a même pas été tentée — le nom n'a pas pu être traduit en adresse.
+
+Trois causes, par ordre de fréquence : un `ftp://` collé devant, un `:21` collé derrière, ou une
+espace restée au bout lors du copier-coller. Dans les trois cas l'ensemble devient un nom de
+machine qui n'existe pas. La valeur attendue est un nom nu : `ftp.saucedexister.fr`.
+
+Comme un secret n'est jamais réaffiché, on ne peut pas relire ce qu'il contient : supprimez-le
+et recréez-le en tapant la valeur à la main plutôt qu'en la collant.
+
+**`530 login incorrect`**
+Le couple `FTP_UTILISATEUR` / `FTP_MOT_DE_PASSE`. Le plus souvent, c'est le mot de passe du
+compte Hostinger ou celui de SSH qui a été mis à la place du mot de passe FTP. Posez un nouveau
+mot de passe FTP depuis le hPanel et reportez-le.
+
+**Le déploiement réussit, mais le site n'apparaît pas.**
+`FTP_DOSSIER`. Voir les deux entrées plus bas sur la liste de fichiers et la page de courtoisie.
 
 **Le navigateur affiche « too many redirects » (`ERR_TOO_MANY_REDIRECTS`).**
 Le site se redirige vers lui-même en boucle. Deux causes, souvent présentes en même temps.

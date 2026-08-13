@@ -29,6 +29,16 @@ ErrorDocument 404 /404.html
   # RewriteRule ^ https://exemple.fr%{REQUEST_URI} [L,R=301]
 </IfModule>
 
+# --- Fichiers cachés : hors de portée du web --------------------------------
+# Le déploiement dépose son journal de synchronisation, .ftp-deploy-sync-state.json,
+# à la racine du dossier publié : il y serait lisible par n'importe qui et donnerait
+# l'inventaire complet du site. L'exception .well-known reste indispensable, c'est par
+# elle que passe le renouvellement du certificat.
+<IfModule mod_rewrite.c>
+  RewriteCond %{REQUEST_URI} !^/\.well-known/
+  RewriteRule (^|/)\. - [F]
+</IfModule>
+
 # --- En-têtes de sécurité ---------------------------------------------------
 <IfModule mod_headers.c>
   Header always set X-Content-Type-Options "nosniff"

@@ -329,6 +329,10 @@ ne parle pas de TLS ne se règle jamais avec cette variable : voir « Problèmes
 Ensuite, plus rien à faire : chaque enregistrement dans le CMS déclenche ce déploiement tout
 seul.
 
+Une coche verte ne veut pas dire que le site est visible : elle dit seulement que les fichiers
+ont été déposés quelque part. Si le site répond en 404 malgré un déploiement réussi, c'est que
+ce « quelque part » n'est pas le dossier que le domaine publie — voir « Problèmes courants ».
+
 ### 5.9 Les quatre vérifications qui closent la mise en ligne
 
 1. `https://saucedexister.fr` affiche la page d'accueil — ni « Index of / », ni la page de
@@ -559,8 +563,48 @@ Le couple `FTP_UTILISATEUR` / `FTP_MOT_DE_PASSE`. Le plus souvent, c'est le mot 
 compte Hostinger ou celui de SSH qui a été mis à la place du mot de passe FTP. Posez un nouveau
 mot de passe FTP depuis le hPanel et reportez-le.
 
-**Le déploiement réussit, mais le site n'apparaît pas.**
-`FTP_DOSSIER`. Voir les deux entrées plus bas sur la liste de fichiers et la page de courtoisie.
+**Le déploiement réussit, mais le site répond 404.**
+`FTP_DOSSIER`, à coup sûr. Une coche verte prouve que les fichiers ont été déposés, pas qu'ils
+l'ont été au bon endroit : le déploiement crée le dossier qu'on lui indique s'il n'existe pas,
+sans se demander si le domaine le publie. Les fichiers sont donc bien sur le serveur, dans un
+dossier que personne ne sert.
+
+Le piège est que `public_html` désigne deux choses différentes selon d'où l'on regarde. Un
+compte FTP peut arriver dans le dossier personnel — auquel cas `/public_html/` est correct — ou
+directement *dans* `public_html`, auquel cas la même valeur crée un `public_html/public_html/`.
+Et si le domaine est déclaré comme site secondaire, ce que Hostinger fait parfois même pour un
+compte à un seul site, le dossier publié est ailleurs :
+`/domains/saucedexister.fr/public_html/`.
+
+On ne devine pas, on regarde. **Fichiers → Gestionnaire de fichiers**, et cherchez le dossier
+qui contient `index.html` et `_astro`. Le chemin complet s'affiche en haut. Deux cas :
+
+- les fichiers sont dans un `public_html` **imbriqué dans un autre** : mettez `FTP_DOSSIER` à `/` ;
+- les fichiers sont dans `public_html` mais le domaine publie
+  `domains/saucedexister.fr/public_html` — ce dernier est alors vide, c'est le signe qui ne
+  trompe pas : mettez `FTP_DOSSIER` à `/domains/saucedexister.fr/public_html/`.
+
+Un indice permet de confirmer sans rien ouvrir. Si le site renvoie une 404, regardez à quoi
+ressemble la page d'erreur : la nôtre porte l'identité du site. Une page d'erreur générique de
+l'hébergeur signifie que le `.htaccess` du dépôt n'est pas là où le domaine le cherche, donc que
+le dossier publié est vide.
+
+Après correction, relancez le déploiement, puis **videz le cache du CDN** (voir l'entrée
+suivante) : sans quoi la 404 continuera d'être servie un moment.
+
+**Le site est corrigé mais l'ancienne page continue de s'afficher.**
+Hostinger interpose un CDN devant le serveur, actif par défaut. On le reconnaît aux en-têtes de
+la réponse : `Server: hcdn`. Il garde les réponses en mémoire, y compris les erreurs.
+
+Dans le hPanel, rubrique **Performance → CDN**, videz le cache. Pour vérifier sans dépendre de
+votre navigateur, interrogez le serveur directement en court-circuitant le CDN — remplacez l'IP
+par celle de votre hébergement :
+
+```bash
+curl -s -o NUL -w "%{http_code}" --resolve saucedexister.fr:443:82.29.191.19 https://saucedexister.fr/
+```
+
+Un `200` ici et une erreur dans le navigateur, c'est le cache du CDN, rien d'autre.
 
 **Le navigateur affiche « too many redirects » (`ERR_TOO_MANY_REDIRECTS`).**
 Le site se redirige vers lui-même en boucle. Deux causes, souvent présentes en même temps.

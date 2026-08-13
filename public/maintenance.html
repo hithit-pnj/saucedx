@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Le site revient — La Sauce d'Exister</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <!--
+      Page volontairement autonome : aucune police, aucune feuille de style, aucune
+      image extérieure. Elle doit s'afficher même quand le reste du site est
+      inaccessible, et les noms de fichiers du dossier _astro changent à chaque
+      construction — s'y lier ici la casserait au premier déploiement.
+    -->
+    <style>
+      :root {
+        --papier: oklch(0.965 0.012 85);
+        --encre: oklch(0.28 0.02 60);
+        --encre-3: oklch(0.52 0.02 60);
+        --accent: oklch(0.45 0.13 35);
+        --filet: oklch(0.28 0.02 60 / 0.16);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+        background: var(--papier);
+        color: var(--encre);
+        font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      main {
+        max-width: 32rem;
+        text-align: center;
+      }
+
+      .marque {
+        width: 4.5rem;
+        height: 4.5rem;
+        color: var(--accent);
+        opacity: 0.9;
+      }
+
+      .fil {
+        width: 1px;
+        height: clamp(2.5rem, 8vw, 4rem);
+        margin: 1.75rem auto;
+        background: linear-gradient(to bottom, transparent, var(--filet), transparent);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.75rem, 6vw, 2.75rem);
+        font-weight: 400;
+        font-style: italic;
+        line-height: 1.2;
+        letter-spacing: 0.01em;
+      }
+
+      p {
+        margin: 1.5rem 0 0;
+        font-size: 1.0625rem;
+        line-height: 1.7;
+        color: var(--encre-3);
+      }
+
+      .micro {
+        margin-top: 2.5rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--encre-3);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.2em;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <svg class="marque" viewBox="0 0 200 200" fill="none" stroke="currentColor" aria-hidden="true" focusable="false">
+        <ellipse cx="100" cy="106" rx="54" ry="41" stroke-width="7.5" />
+        <line x1="100" y1="40" x2="100" y2="180" stroke-width="8.7" stroke-linecap="round" />
+        <circle cx="132" cy="34" r="10" stroke-width="3.15" />
+        <circle cx="153" cy="17" r="6.5" stroke-width="2.55" opacity="0.7" />
+        <circle cx="120" cy="13" r="4" stroke-width="1.95" opacity="0.5" />
+      </svg>
+
+      <div class="fil"></div>
+
+      <h1>Le site se refait une santé</h1>
+
+      <p>
+        Il sera de retour très vite. En attendant, vous pouvez toujours écrire à
+        <a href="mailto:contact@saucedexister.fr">contact@saucedexister.fr</a>.
+      </p>
+
+      <p class="micro">La Sauce d'Exister — Annecy</p>
+    </main>
+  </body>
+</html>

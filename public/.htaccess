@@ -27,6 +27,37 @@ ErrorDocument 404 /404.html
   # remplacez « exemple.fr » par votre domaine principal.
   # RewriteCond %{HTTP_HOST} !^exemple\.fr$ [NC]
   # RewriteRule ^ https://exemple.fr%{REQUEST_URI} [L,R=301]
+
+  # --- Mise en maintenance ---------------------------------------------------
+  # Interrupteur sans déploiement : déposer un fichier vide nommé « .maintenance »
+  # à la racine du site le ferme, le supprimer le rouvre. Effet immédiat.
+  #
+  # Ce fichier n'est pas dans le dépôt, et le déploiement ne supprime que ce qu'il
+  # connaît : la maintenance survit donc aux mises en ligne, y compris déclenchées
+  # depuis le CMS. C'est voulu — sinon une modification d'Alice rouvrirait le site
+  # sans prévenir.
+  #
+  # Le code renvoyé est 503 et non 404 : il dit aux moteurs de recherche « repassez
+  # plus tard » au lieu de « cette page n'existe plus », ce qui évite un
+  # déréférencement pour quelques heures de fermeture.
+  #
+  # Pour continuer à voir le site pendant la fermeture, décommentez la ligne
+  # suivante en y mettant votre adresse IP publique (moteur de recherche : « mon ip »).
+  # RewriteCond %{REMOTE_ADDR} !=203.0.113.7
+  RewriteCond %{DOCUMENT_ROOT}/.maintenance -f
+  RewriteCond %{REQUEST_URI} !^/maintenance\.html$
+  RewriteCond %{REQUEST_URI} !^/favicon\.svg$
+  RewriteRule ^ - [R=503,L,E=MAINTENANCE:1]
+</IfModule>
+
+ErrorDocument 503 /maintenance.html
+
+<IfModule mod_headers.c>
+  # Deux lignes pour une seule intention : Apache préfixe les variables d'un
+  # « REDIRECT_ » lorsqu'il sert une ErrorDocument, et c'est ce cas-là qui parvient
+  # réellement au visiteur.
+  Header always set Retry-After "7200" env=MAINTENANCE
+  Header always set Retry-After "7200" env=REDIRECT_MAINTENANCE
 </IfModule>
 
 # --- Fichiers cachés : hors de portée du web --------------------------------

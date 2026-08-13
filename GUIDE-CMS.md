@@ -392,6 +392,65 @@ d'être invitée sur le dépôt : **Settings → Collaborators → Add people**,
 
 ---
 
+## Annexe — Fermer temporairement le site
+
+Le site dispose d'un interrupteur de maintenance qui ne demande ni déploiement, ni ligne de
+commande, ni modification du code. Il tient en un fichier.
+
+### Fermer
+
+Dans le hPanel, **Fichiers → Gestionnaire de fichiers**, placez-vous dans le dossier du site —
+`domains/saucedexister.fr/public_html` — et créez un fichier vide nommé exactement :
+
+```
+.maintenance
+```
+
+Le point de tête fait partie du nom. L'effet est immédiat : tout le site renvoie alors la page
+`maintenance.html`, sobre et aux couleurs de l'identité, avec l'adresse de contact.
+
+### Rouvrir
+
+Supprimez ce fichier. C'est tout.
+
+### Ce que la fermeture fait, et ne fait pas
+
+Le serveur répond **503**, et non 404. La nuance compte : 503 signifie « repassez plus tard »
+là où 404 signifie « cette page n'existe plus ». Les moteurs de recherche conservent donc le
+référencement, alors qu'une série de 404 finirait par le faire tomber. Un en-tête `Retry-After`
+les invite à revenir dans deux heures.
+
+La fermeture **survit aux déploiements**, y compris à ceux qu'Alice déclenche en enregistrant
+depuis le CMS. C'est délibéré : le fichier `.maintenance` n'est pas dans le dépôt, et le
+déploiement ne supprime que ce qu'il connaît. Sans cette précaution, une simple correction de
+texte rouvrirait le site au public sans que personne ne l'ait décidé.
+
+Ce n'est pas une protection. Le site n'est pas *inaccessible* : les fichiers restent sur le
+serveur, et qui connaît l'adresse exacte d'une image l'obtiendra toujours. Pour empêcher
+réellement l'accès — pendant une phase de relecture avec un client, par exemple — il faut un
+mot de passe, via **Sécurité → Protection par mot de passe** dans le hPanel.
+
+### Continuer à voir le site pendant la fermeture
+
+Ouvrez `public/.htaccess` dans le dépôt et décommentez la ligne prévue à cet effet, en y
+inscrivant votre adresse IP publique (cherchez « mon ip » dans un moteur de recherche) :
+
+```apache
+RewriteCond %{REMOTE_ADDR} !=203.0.113.7
+```
+
+Cette ligne-là, contrairement au fichier `.maintenance`, vit dans le dépôt : elle demande donc
+un déploiement. Pensez à la recommenter ensuite, sans quoi elle deviendra fausse le jour où
+votre adresse IP changera — ce qui, sur une connexion domestique, arrive tout seul.
+
+### Si la page de maintenance ne s'affiche pas tout de suite
+
+Hostinger interpose un CDN qui garde les réponses en mémoire. Videz son cache depuis
+**Performance → CDN**, ou vérifiez en court-circuitant le CDN, comme expliqué dans
+« Problèmes courants ».
+
+---
+
 ## Annexe — Reprendre le projet sur une autre machine
 
 ### Avant tout : passer le dépôt en privé

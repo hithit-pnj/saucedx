@@ -24,7 +24,7 @@ hero:
 sections:
   - titre: Atelier philo
     sousTitre: En collectif — une soirée par mois
-    glyphe: collectif
+    glyphe: rayonnement
     verbes:
       - s'étonner
       - identifier

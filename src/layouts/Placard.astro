@@ -9,8 +9,16 @@ import Citation from '../components/Citation.astro';
 interface Props {
   titre: string;
   description: string;
-  climat?: 'garance' | 'ambre' | 'prune' | 'vert' | 'nuit' | 'ardoise';
-  glyphe?: 'rayonnement' | 'suspension' | 'virage' | 'strates' | 'cercles' | 'bifurcation';
+  climat?: 'garance' | 'ambre' | 'prune' | 'vert' | 'bronze' | 'nuit' | 'ardoise';
+  glyphe?:
+    | 'rayonnement'
+    | 'visavis'
+    | 'meandre'
+    | 'fleche'
+    | 'collectif'
+    | 'cernes'
+    | 'suspension'
+    | 'bifurcation';
   surtitre: string;
   lignes: string[];
   citation?: string;
@@ -21,7 +29,7 @@ const {
   titre,
   description,
   climat = 'garance',
-  glyphe = 'cercles',
+  glyphe = 'bifurcation',
   surtitre,
   lignes,
   citation,

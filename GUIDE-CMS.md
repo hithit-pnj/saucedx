@@ -127,7 +127,7 @@ Vous revenez sur Pages CMS, avec `VOTRE-DEPOT` dans la liste.
 
 Vous devez voir, dans la colonne de gauche :
 
-- **Les offres** — les cinq pages d'offres
+- **Les offres** — les six pages d'offres
 - **Accueil**
 - **Qui suis-je**
 - **Contact**
@@ -418,7 +418,11 @@ parfois rafraîchir la page du site en ligne pour voir le changement.
   l'accueil sans être supprimée. C'est le bon geste pour une page dont le texte n'est pas
   prêt.
 - **Climat** et **Geste graphique** : la couleur et le symbole de la page. À ne toucher qu'à
-  bon escient : ils forment la cohérence de la collection.
+  bon escient : ils forment la cohérence de la collection — un climat et un geste par offre,
+  jamais deux offres avec le même.
+- **La section « En entreprise »**, dans *Accueil* : les offres citées là se présentent côte à
+  côte sur l'accueil, sous un chapeau commun, au lieu de suivre les autres dans la liste des
+  portes. Retirer une offre de cette section la remet simplement dans la liste.
 
 **Ce qu'elle ne peut pas casser**, volontairement :
 

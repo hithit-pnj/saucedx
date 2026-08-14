@@ -24,10 +24,26 @@ donnees:
       question, on la pose correctement — c'est déjà la moitié du travail — puis on la creuse, avec les
       outils que d'autres ont laissés avant nous. Ce n'est ni un cours, ni une thérapie, ni du coaching.
       C'est un dialogue, et il exige quelque chose de vous.
-    sceau: Cinq façons d'entrer en conversation
+    sceau: Six façons d'entrer en conversation
 
   portes:
     titre: Les portes
+
+  # Les deux offres entreprise se lisent côte à côte, sous un chapeau commun,
+  # au lieu de suivre les autres en enfilade. Retirer une offre d'ici la remet
+  # simplement dans la liste des portes.
+  entreprise:
+    surtitre: En entreprise
+    titre: Deux façons de faire entrer la question au travail.
+    colonnes:
+      - offre: permanence-entreprise
+        texte: >-
+          Une présence régulière dans vos locaux : des entretiens individuels, à qui veut, sur ce qui
+          préoccupe. Le temps s'arrête une demi-journée.
+      - offre: atelier-entreprise
+        texte: >-
+          Une question, un collectif : 90 minutes, 8 à 12 personnes, dans vos locaux. Ouvrir, objecter,
+          distinguer, repartir.
 
   portrait:
     titre: Alice Berthoz

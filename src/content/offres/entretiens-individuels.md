@@ -3,7 +3,7 @@ ordre: 2
 publie: true
 
 climat: nuit
-glyphe: cercles
+glyphe: visavis
 
 menu: Entretiens individuels
 porte:

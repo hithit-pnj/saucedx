@@ -60,6 +60,7 @@ content:
             - { name: ambre, label: Ambre profond }
             - { name: prune, label: Prune }
             - { name: vert, label: Vert profond }
+            - { name: bronze, label: Bronze }
             - { name: nuit, label: Bleu nuit }
             - { name: ardoise, label: Ardoise }
 
@@ -68,12 +69,12 @@ content:
         type: select
         options:
           values:
-            - { name: rayonnement, label: Rayonnement }
-            - { name: suspension, label: Suspension }
-            - { name: virage, label: Le virage }
-            - { name: strates, label: Les strates }
-            - { name: cercles, label: Cercles concentriques }
-            - { name: bifurcation, label: Bifurcation }
+            - { name: rayonnement, label: Le rayonnement }
+            - { name: visavis, label: Le vis-à-vis }
+            - { name: meandre, label: Le méandre }
+            - { name: fleche, label: La flèche du temps }
+            - { name: collectif, label: Le collectif }
+            - { name: cernes, label: Les cernes }
 
       - name: porte
         label: La porte sur l'accueil
@@ -123,12 +124,12 @@ content:
             type: select
             options:
               values:
-                - { name: rayonnement, label: Rayonnement }
-                - { name: suspension, label: Suspension }
-                - { name: virage, label: Le virage }
-                - { name: strates, label: Les strates }
-                - { name: cercles, label: Cercles concentriques }
-                - { name: bifurcation, label: Bifurcation }
+                - { name: rayonnement, label: Le rayonnement }
+                - { name: visavis, label: Le vis-à-vis }
+                - { name: meandre, label: Le méandre }
+                - { name: fleche, label: La flèche du temps }
+                - { name: collectif, label: Le collectif }
+                - { name: cernes, label: Les cernes }
           - name: verbes
             label: Verbes propres à ce format
             type: string
@@ -203,6 +204,28 @@ content:
               - { name: probleme, label: Le problème nommé, type: text }
               - { name: geste, label: Le geste en réponse, type: text }
               - { name: sceau, label: Phrase au-dessus des portes, type: string }
+          - name: entreprise
+            label: La section « En entreprise »
+            type: object
+            description: >-
+              Les offres citées ici se lisent côte à côte, sous un chapeau commun, au lieu de suivre
+              les autres dans la liste des portes.
+            fields:
+              - { name: surtitre, label: Sur-titre, type: string }
+              - { name: titre, label: Chapeau commun, type: string }
+              - name: colonnes
+                label: Les colonnes
+                type: object
+                list: { min: 1, max: 2 }
+                fields:
+                  - name: offre
+                    label: Offre
+                    type: select
+                    options:
+                      values:
+                        - { name: permanence-entreprise, label: Permanence en entreprise }
+                        - { name: atelier-entreprise, label: Atelier en entreprise }
+                  - { name: texte, label: Résumé — deux ou trois lignes, type: text }
           - name: portrait
             label: Vous, brièvement
             type: object

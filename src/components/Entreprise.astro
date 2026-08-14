@@ -1,0 +1,46 @@
+---
+import Glyphe from './Glyphe.astro';
+import { offresPubliees } from '../lib/navigation';
+
+/**
+ * Les offres entreprise, côte à côte sous un chapeau commun : elles partagent
+ * le même cadre et se lisent mieux ensemble qu'à la file. Chaque volet garde
+ * le climat de son offre — la couleur suffit à les distinguer.
+ */
+interface Props {
+  surtitre: string;
+  titre: string;
+  colonnes: { offre: string; texte: string }[];
+}
+
+const { surtitre, titre, colonnes } = Astro.props;
+
+const offres = await offresPubliees();
+const volets = colonnes
+  .map(({ offre, texte }) => ({ entree: offres.find((o) => o.id === offre), texte }))
+  .filter((volet): volet is { entree: (typeof offres)[number]; texte: string } => Boolean(volet.entree));
+---
+
+{
+  volets.length > 0 && (
+    <section class="entreprise-bloc">
+      <div class="pile pile--centre pile--xs entreprise__chapeau">
+        <p class="micro">{surtitre}</p>
+        <p class="display entreprise__titre">{titre}</p>
+      </div>
+
+      <div class="entreprise">
+        {volets.map(({ entree, texte }) => (
+          <a class="volet" href={`/${entree.id}/`} data-climat={entree.data.climat}>
+            <Glyphe nom={entree.data.glyphe} class="volet__glyphe" epaisseur={7} />
+            <span class="volet__corps">
+              <span class="volet__intitule">{entree.data.porte.intitule}</span>
+              <span class="volet__precision">{entree.data.porte.precision}</span>
+              <span class="volet__texte">{texte}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}

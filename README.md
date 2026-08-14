@@ -101,11 +101,18 @@ public/
 1. **Deux registres typographiques seulement**, dans un rapport d'au moins un à six : les mots
    essentiels en Cormorant Garamond italique (`.display`), les informations pratiques en petites
    capitales très espacées (`.micro`). Le contraste *est* la hiérarchie — pas d'encadré, pas d'aplat.
-2. **Un climat par offre.** La couleur d'accent se pose sur `<body data-climat="…">` et se propage
-   par la variable `--accent`. Six climats existent : `garance`, `ambre`, `prune`, `vert`, `nuit`,
-   `ardoise`.
+2. **Un climat par offre.** La couleur d'accent se pose sur `data-climat="…"` — le `<body>`, ou un
+   volet de la section entreprise — et se propage par la variable `--accent`. Sept climats existent :
+   `garance`, `ambre`, `prune`, `vert`, `bronze`, `nuit`, `ardoise`.
 3. **Un geste graphique par offre**, jamais expliqué : en filigrane immense et pâle derrière le
    titre, et en sceau net sous la citation. Les glyphes vivent dans `src/components/Glyphe.astro`.
+   Six gestes pour les offres — le rayonnement, le vis-à-vis, le méandre, la flèche du temps, le
+   collectif, les cernes — auxquels s'ajoutent la suspension (pages légales), la bifurcation
+   (contact) et la marque, qui signe *Qui suis-je*. Ils sont tracés dans une boîte de 200 × 200, à
+   40 px par défaut, et ne descendent jamais sous 22 px.
+4. **Les deux offres entreprise se lisent côte à côte**, sous un chapeau commun, au lieu de suivre
+   les autres dans la liste des portes. La section est pilotée par le CMS : les offres citées dans
+   *Accueil → La section « En entreprise »* sortent d'elles-mêmes de la liste des portes.
 
 Le fil vertical relie les blocs et se trace au scroll. Sans JavaScript, ou si le visiteur a demandé
 moins d'animations, il est simplement là.
@@ -202,8 +209,9 @@ redirigé vers `/contact/merci/` ou `/contact/erreur/`.
 - [ ] Trancher les tarifs qui portent encore des crochets dans le document des six prestations.
 - [ ] Créer une image de partage `public/og.png` (1200 × 630) pour les liens envoyés aux prescripteurs.
 - [ ] Créer `public/apple-touch-icon.png` (180 × 180).
-- [ ] Définir les climats et glyphes des deux offres ajoutées si Alice ne garde pas ceux proposés
-      (`nuit` + cercles concentriques pour les entretiens, `ambre` + suspension pour l'entreprise).
+- [ ] Faire valider par Alice la planche des six gestes et le climat `bronze` d'*En résidence*.
+- [ ] Faire relire par Alice le texte de l'**atelier philosophique en entreprise** : la page est en
+      ligne avec un texte provisoire, écrit d'après le kit web et le format de La Cordée.
 
 ## Décisions actées
 
@@ -244,8 +252,11 @@ continuent de fonctionner après le changement de propriétaire.
 
 - **Regroupement La Cordée.** Les ateliers et la permanence partagent une page, comme demandé dans
   le cahier des charges, avec deux formats nettement distincts et deux jeux de verbes.
-- **Cinquième climat.** Le système en comptait quatre pour six prestations ; les entretiens
-  individuels ont reçu le bleu nuit et les cercles concentriques, la permanence en entreprise garde
-  l'ambre et la suspension. À valider ou à remplacer.
+- **Les climats et les gestes.** Un climat et un geste par offre, d'après le kit web fourni :
+  garance et le rayonnement pour La Cordée, bleu nuit et le vis-à-vis pour les entretiens, prune et
+  le méandre pour les grands tournants, ambre et la flèche du temps pour la permanence, vert et le
+  collectif pour l'atelier en entreprise, bronze et les cernes pour la résidence. Le kit nomme
+  « ardoise » le bleu des entretiens, mais donne la valeur du bleu nuit du site : c'est la valeur qui
+  a été suivie, l'ardoise restant le climat des pages légales et de *Qui suis-je*.
 - **Verbes des entretiens individuels.** Proposés faute de texte source : *s'attabler, déplier,
   éprouver, poursuivre*.

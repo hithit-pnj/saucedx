@@ -3,12 +3,12 @@ ordre: 4
 publie: true
 
 climat: ambre
-glyphe: suspension
+glyphe: fleche
 
 menu: Permanence en entreprise
 porte:
-  intitule: Permanence en entreprise
-  precision: Présence régulière en entreprise — sur devis
+  intitule: La permanence
+  precision: En tête-à-tête — sur devis
 
 hero:
   lignes:

@@ -14,7 +14,7 @@ import PiedDePage from '../components/PiedDePage.astro';
 interface Props {
   titre: string;
   description: string;
-  climat?: 'garance' | 'ambre' | 'prune' | 'vert' | 'nuit' | 'ardoise';
+  climat?: 'garance' | 'ambre' | 'prune' | 'vert' | 'bronze' | 'nuit' | 'ardoise';
   noindex?: boolean;
 }
 
@@ -26,8 +26,9 @@ const canonique = new URL(Astro.url.pathname, Astro.site).href;
 const accentsHex: Record<string, string> = {
   garance: '#973525',
   ambre: '#7d5a15',
-  prune: '#7d3765',
+  prune: '#683964',
   vert: '#1f6355',
+  bronze: '#585928',
   nuit: '#3b4f96',
   ardoise: '#40526f',
 };

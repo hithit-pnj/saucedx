@@ -44,7 +44,7 @@
   --display: 'Cormorant Garamond', var(--serif);
 }
 
-/* Les cinq climats — un par offre, posé sur <body data-climat="…"> */
+/* Les climats — un par offre, posé sur <body data-climat="…"> */
 [data-climat='garance'] {
   --accent: oklch(0.45 0.13 35);
   --accent-pale: oklch(0.45 0.13 35 / 0.14);
@@ -56,14 +56,19 @@
   --accent-fantome: oklch(0.45 0.11 70 / 0.055);
 }
 [data-climat='prune'] {
-  --accent: oklch(0.42 0.11 330);
-  --accent-pale: oklch(0.42 0.11 330 / 0.14);
-  --accent-fantome: oklch(0.42 0.11 330 / 0.055);
+  --accent: oklch(0.42 0.09 330);
+  --accent-pale: oklch(0.42 0.09 330 / 0.14);
+  --accent-fantome: oklch(0.42 0.09 330 / 0.055);
 }
 [data-climat='vert'] {
   --accent: oklch(0.44 0.08 165);
   --accent-pale: oklch(0.44 0.08 165 / 0.14);
   --accent-fantome: oklch(0.44 0.08 165 / 0.055);
+}
+[data-climat='bronze'] {
+  --accent: oklch(0.45 0.07 110);
+  --accent-pale: oklch(0.45 0.07 110 / 0.14);
+  --accent-fantome: oklch(0.45 0.07 110 / 0.055);
 }
 [data-climat='nuit'] {
   --accent: oklch(0.42 0.09 265);
@@ -300,17 +305,19 @@ a {
 
 /* --- 6. Le geste graphique ------------------------------------- */
 
-/* Le sceau : net, petit, une signature */
+/* Le sceau : net, petit, une signature.
+   40 px est la taille de référence des gestes : en dessous, les tracés
+   les plus denses (les cernes, la flèche rompue) se referment. */
 .sceau {
-  width: 1.625rem;
-  height: 1.625rem;
+  width: 2.5rem;
+  height: 2.5rem;
   margin-inline: auto;
   color: var(--accent);
 }
 
 .sceau--grand {
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 3.5rem;
+  height: 3.5rem;
 }
 
 /* Le filigrane : immense, très pâle, il habite le fond */
@@ -426,9 +433,11 @@ a {
 .porte {
   position: relative;
   display: grid;
-  grid-template-columns: 3.25rem 1fr auto;
-  align-items: center;
-  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: 2.5rem 1fr auto;
+  /* Tous les gestes ont la même boîte et s'alignent sur la première ligne du
+     titre : sans cela la liste « saute » d'une porte à l'autre. */
+  align-items: start;
+  gap: clamp(1.25rem, 3vw, 1.75rem);
   padding-block: clamp(1.6rem, 4vw, 2.4rem);
   border-bottom: 1px solid var(--filet);
   transition: border-color 0.3s;
@@ -455,8 +464,9 @@ a {
 }
 
 .porte .glyphe-porte {
-  width: 2.125rem;
-  height: 2.125rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-top: 0.5rem;
   color: var(--accent);
   opacity: 0.75;
   transition: opacity 0.35s, transform 0.35s;
@@ -487,6 +497,7 @@ a {
 }
 
 .porte .fleche {
+  align-self: center;
   font-size: 0.9rem;
   color: var(--accent);
   opacity: 0;
@@ -501,11 +512,112 @@ a {
 
 @media (max-width: 34rem) {
   .porte {
-    grid-template-columns: 2rem 1fr;
+    grid-template-columns: 2.5rem 1fr;
   }
   .porte .fleche {
     display: none;
   }
+}
+
+/* --- 10 bis. Les deux offres entreprise, côte à côte ----------- */
+/* Même cadre, un chapeau commun : le vert et l'ambre suffisent à les
+   distinguer — ni cartouche, ni encadré. */
+
+.entreprise-bloc {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--souffle-s);
+}
+
+.entreprise__chapeau {
+  gap: 0.85rem;
+}
+
+.entreprise__titre {
+  font-size: clamp(1.5rem, 3.4vw, 1.875rem);
+}
+
+.entreprise {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.25rem;
+  padding-top: var(--souffle-s);
+  border-top: 1px solid var(--filet-pale);
+}
+
+@media (max-width: 45rem) {
+  .entreprise {
+    grid-template-columns: 1fr;
+    gap: 2.125rem;
+  }
+}
+
+.volet {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1.375rem;
+  align-items: start;
+}
+
+.volet::before {
+  content: '';
+  position: absolute;
+  inset: -1rem;
+  background: var(--accent-fantome);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: -1;
+}
+
+.volet:hover::before,
+.volet:focus-visible::before {
+  opacity: 1;
+}
+
+.volet__glyphe {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-top: 0.5rem;
+  color: var(--accent);
+  opacity: 0.75;
+  transition: opacity 0.35s, transform 0.35s;
+}
+
+.volet:hover .volet__glyphe {
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+.volet__corps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.volet__intitule {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1.375rem, 3vw, 1.625rem);
+  line-height: 1.14;
+  color: var(--encre);
+}
+
+.volet__precision {
+  font-size: 0.625rem;
+  letter-spacing: 0.26em;
+  text-indent: 0.26em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.volet__texte {
+  font-size: 0.875em;
+  line-height: 1.62;
+  color: var(--encre-2);
+  text-wrap: pretty;
 }
 
 /* --- 11. L'appel — le seul geste attendu du visiteur ----------- */

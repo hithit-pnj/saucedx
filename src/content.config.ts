@@ -1,8 +1,8 @@
 import { defineCollection, z } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 
-const climats = ['garance', 'ambre', 'prune', 'vert', 'nuit', 'ardoise'] as const;
-const glyphes = ['rayonnement', 'suspension', 'virage', 'strates', 'cercles', 'bifurcation'] as const;
+const climats = ['garance', 'ambre', 'prune', 'vert', 'bronze', 'nuit', 'ardoise'] as const;
+const glyphes = ['rayonnement', 'visavis', 'meandre', 'fleche', 'collectif', 'cernes'] as const;
 
 const bloc = z.object({
   titre: z.string(),

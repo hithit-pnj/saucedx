@@ -1,9 +1,9 @@
 ---
-ordre: 5
+ordre: 6
 publie: true
 
-climat: vert
-glyphe: strates
+climat: bronze
+glyphe: cernes
 
 menu: En résidence
 porte:

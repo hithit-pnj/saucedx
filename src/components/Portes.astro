@@ -4,11 +4,13 @@ import { offresPubliees } from '../lib/navigation';
 
 /** Les portes de l'accueil : la page ne vend rien, elle oriente. */
 interface Props {
-  exclure?: string;
+  /** Les offres présentées ailleurs sur la page — les deux offres entreprise, par exemple. */
+  exclure?: string | string[];
 }
-const { exclure } = Astro.props;
+const { exclure = [] } = Astro.props;
 
-const offres = (await offresPubliees()).filter((o) => o.id !== exclure);
+const ecartees = Array.isArray(exclure) ? exclure : [exclure];
+const offres = (await offresPubliees()).filter((o) => !ecartees.includes(o.id));
 ---
 
 <ul class="portes">

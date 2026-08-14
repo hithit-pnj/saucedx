@@ -3,7 +3,16 @@ import Glyphe from './Glyphe.astro';
 
 /** Le geste en très grand, très pâle : il habite le fond sans jamais s'expliquer. */
 interface Props {
-  nom: 'rayonnement' | 'suspension' | 'virage' | 'strates' | 'cercles' | 'bifurcation' | 'marque';
+  nom:
+    | 'rayonnement'
+    | 'visavis'
+    | 'meandre'
+    | 'fleche'
+    | 'collectif'
+    | 'cernes'
+    | 'suspension'
+    | 'bifurcation'
+    | 'marque';
   position?: 'haut' | 'bas';
 }
 const { nom, position = 'haut' } = Astro.props;

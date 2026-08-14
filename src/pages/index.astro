@@ -6,6 +6,7 @@ import Filigrane from '../components/Filigrane.astro';
 import Glyphe from '../components/Glyphe.astro';
 import Prose from '../components/Prose.astro';
 import Portes from '../components/Portes.astro';
+import Entreprise from '../components/Entreprise.astro';
 import Appel from '../components/Appel.astro';
 
 const page = (await getEntry('pages', 'accueil'))!;
@@ -14,9 +15,13 @@ const d = page.data.donnees as {
   hero: { lignes: string[]; surtitre: string; lieu: string };
   manifeste: { probleme: string; geste: string; sceau: string };
   portes: { titre: string };
+  entreprise: { surtitre: string; titre: string; colonnes: { offre: string; texte: string }[] };
   portrait: { titre: string; surtitre: string; texte: string; photo: string; photoAlt: string; lien: string };
   appel: { titre: string; texte: string; label: string };
 };
+
+/* Les offres montrées dans la section entreprise sortent de la liste des portes. */
+const enEntreprise = (d.entreprise?.colonnes ?? []).map((c) => c.offre);
 ---
 
 <Base titre={page.data.seo.titre} description={page.data.seo.description} climat={page.data.climat}>
@@ -55,7 +60,7 @@ const d = page.data.donnees as {
     </div>
   </section>
 
-  {/* 3. Les cinq portes. */}
+  {/* 3. Les portes, puis les deux offres entreprise côte à côte. */}
   <section class="portes-section">
     <div class="colonne--large pile pile--m">
       <div class="pile pile--centre pile--xs paraitre">
@@ -63,8 +68,19 @@ const d = page.data.donnees as {
         <p class="micro micro--accent">{d.manifeste.sceau}</p>
       </div>
       <div class="paraitre">
-        <Portes />
+        <Portes exclure={enEntreprise} />
       </div>
+      {
+        d.entreprise && (
+          <div class="paraitre">
+            <Entreprise
+              surtitre={d.entreprise.surtitre}
+              titre={d.entreprise.titre}
+              colonnes={d.entreprise.colonnes}
+            />
+          </div>
+        )
+      }
     </div>
   </section>
 

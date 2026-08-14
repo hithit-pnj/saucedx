@@ -3,7 +3,7 @@ ordre: 3
 publie: true
 
 climat: prune
-glyphe: virage
+glyphe: meandre
 
 menu: Les grands tournants
 porte:

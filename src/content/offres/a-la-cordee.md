@@ -24,7 +24,7 @@ hero:
 sections:
   - titre: Atelier philo
     sousTitre: En collectif — une soirée par mois
-    glyphe: rayonnement
+    glyphe: collectif
     verbes:
       - s'étonner
       - identifier
@@ -56,7 +56,7 @@ sections:
 
   - titre: Permanence philosophique
     sousTitre: En individuel — sans rendez-vous
-    glyphe: suspension
+    glyphe: fleche
     verbes:
       - s'arrêter
       - poser

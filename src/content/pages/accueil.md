@@ -32,10 +32,9 @@ donnees:
   portrait:
     surtitre: Qui vous parle
     titre: Alice Berthoz
-    texte: Philosophe de formation, longtemps enseignante, installée à Annecy. J'ai
-      fait de la conversation philosophique un métier parce que j'ai constaté
-      qu'il manquait, partout, quelqu'un dont c'est le travail de penser avec
-      vous — sans diagnostiquer, sans conseiller, sans conclure à votre place.
+    texte: |-
+      Philosophe de formation, actuellement enseignante installée à Annecy. 
+       sans diagnostiquer, sans conseiller, sans conclure à votre place.
     photoAlt: Alice Berthoz
     lien: En savoir plus
   appel:

@@ -1,15 +1,22 @@
 {
-  "actif": true,
+  "actif": false,
+  "plages": [
+    {
+      "jour": "mardi",
+      "debut": "14:00",
+      "fin": "16:00"
+    },
+    {
+      "jour": "jeudi",
+      "debut": "10:00",
+      "fin": "12:00"
+    }
+  ],
   "duree": 15,
   "battement": 15,
   "delaiMinimum": 24,
   "horizon": 21,
   "expiration": 72,
-  "plages": [
-    { "jour": "mardi", "debut": "14:00", "fin": "16:00" },
-    { "jour": "jeudi", "debut": "10:00", "fin": "12:00" }
-  ],
-  "fermetures": [],
   "textes": {
     "surtitre": "Ou bien : parlons-nous",
     "titre": "Quinze minutes au téléphone.",

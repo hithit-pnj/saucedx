@@ -17,7 +17,7 @@ Identité graphique **Le Fil Pensant**, contenus rédigés par Alice.
 | **Astro 5**, sortie statique | Le site produit du HTML pur. Aucune base de données, aucun serveur à maintenir, chargement quasi instantané, et une durée de vie qui se compte en années plutôt qu'en versions majeures. |
 | **Contenus en Markdown / YAML** dans `src/content` | Les textes sont séparés du code. Alice peut les modifier sans toucher à une ligne de gabarit, et chaque modification est versionnée dans Git — donc annulable. |
 | **Pages CMS** (`.pages.yml`) | Interface d'édition en français, gratuite, hébergée. Elle écrit directement dans le dépôt Git ; la mise en ligne se déclenche toute seule. Aucun abonnement, aucun serveur CMS à surveiller. |
-| **Formulaire → endpoint PHP** (`public/api/contact.php`) | L'hébergement mutualisé exécute PHP nativement : le formulaire envoie un mail sans service tiers, sans abonnement, sans données qui transitent par un prestataire américain. |
+| **Formulaire et rendez-vous → endpoints PHP** (`public/api/`) | L'hébergement mutualisé exécute PHP nativement : le formulaire envoie un mail et la prise de rendez-vous tient son agenda sans service tiers, sans abonnement, sans données qui transitent par un prestataire américain. |
 | **Polices auto-hébergées** (`@fontsource`) | Cormorant Garamond et EB Garamond servies depuis le domaine : pas d'appel à Google Fonts, donc pas de bandeau cookies à prévoir et un affichage plus rapide. |
 | **Aucun outil de mesure d'audience** | Rien à déclarer, rien à consentir. |
 
@@ -82,6 +82,7 @@ l'hébergeur dans les mentions légales.
 src/
   content/
     reglages.json          Nom, mail, Instagram, ville — les constantes du site
+    rendez-vous.json       Disponibilités d'Alice et textes de la prise de rendez-vous
     offres/*.md            Une page par offre (ordre, climat, glyphe, textes, blocs pratiques)
     pages/*.md             Accueil, Qui suis-je, Contact
     legal/*.md             Mentions légales et confidentialité
@@ -91,6 +92,10 @@ src/
   styles/global.css        Le système Fil Pensant : couleurs, typographie, rythme
 public/
   api/contact.php          Réception du formulaire et envoi du mail
+  api/creneaux.php         Les créneaux téléphoniques encore libres
+  api/rendez-vous.php      Demande d'un créneau, puis décision d'Alice
+  api/agenda.php           Découpage des créneaux et rangement des demandes
+  api/courrier.php         Envoi SMTP, partagé par le formulaire et les rendez-vous
   .htaccess                HTTPS, domaine canonique, page 404, cache, sécurité
   favicon.svg
 .pages.yml                 Configuration de l'interface d'édition
@@ -168,8 +173,10 @@ pour voir où vous arrivez, plutôt que de deviner.
 
 ### Ce qu'il faut de l'hébergeur
 
-- **PHP**, pour `public/api/contact.php`. C'est la seule exigence dynamique, mais elle est
+- **PHP**, pour les scripts de `public/api/`. C'est la seule exigence dynamique, mais elle est
   éliminatoire : les offres statiques d'entrée de gamme ne conviennent pas.
+- **Un dossier accessible en écriture au-dessus de `public_html`**, pour les demandes de rendez-vous.
+  C'est le cas par défaut chez Hostinger ; rien à créer à la main.
 - **Un certificat** Let's Encrypt ou équivalent. À activer **avant** la première visite : le
   `.htaccess` force HTTPS, donc sans certificat le navigateur affiche un avertissement.
 - **Une adresse mail** au domaine, qui sert à la fois de destinataire et d'expéditeur du
@@ -197,6 +204,69 @@ Protections, toutes invisibles pour un humain :
 
 Avec JavaScript, la confirmation s'affiche sans quitter la page. Sans JavaScript, le visiteur est
 redirigé vers `/contact/merci/` ou `/contact/erreur/`.
+
+---
+
+## La prise de rendez-vous téléphonique
+
+Sous le formulaire, la page contact propose des créneaux de quinze minutes au téléphone. Alice
+valide chaque demande : rien ne se pose dans son agenda sans son accord.
+
+### Ce qu'Alice fait, et où
+
+Tout se règle dans le CMS, section **Rendez-vous téléphoniques**. Elle y décrit ses **habitudes** —
+« mardi de 14 h à 16 h » — et non des dates une à une : la règle vaut pour tous les mardis à venir,
+donc il n'y a rien à entretenir chaque semaine. Elle y déclare aussi ses vacances, la durée d'un
+appel, le battement entre deux, la prévenance minimale et l'horizon de réservation. Une case
+**Proposer des rendez-vous** retire le bloc de la page sans rien supprimer.
+
+### Le trajet d'une demande
+
+1. Le visiteur choisit un créneau, laisse son nom, son numéro, son mail et un mot sur ce qui
+   l'amène.
+2. La demande est déposée sur le serveur et le créneau disparaît aussitôt de la liste. Le visiteur
+   reçoit un accusé de réception ; Alice reçoit la demande avec **un lien**.
+3. Ce lien ouvre `/rendez-vous/decider/`, qui affiche la demande et deux boutons : *Accepter* ou
+   *Proposer un autre moment*.
+4. À l'acceptation, le visiteur reçoit la confirmation avec un fichier `.ics` à glisser dans son
+   agenda ; Alice reçoit le sien. Au refus, le visiteur reçoit un mot et le créneau redevient libre.
+5. Sans réponse d'Alice au bout du délai réglé (72 heures par défaut), la demande expire d'elle-même
+   et le créneau se rouvre. Un oubli ne condamne donc jamais un moment.
+
+### Trois choix de conception qui méritent une explication
+
+**Le mail d'Alice ne contient qu'un lien, et ce lien ne décide de rien.** Certains services de
+messagerie ouvrent les liens d'un message pour les analyser : un lien « accepter » se déclencherait
+tout seul, avant même qu'Alice ait lu la demande. Le lien ouvre donc une page, et seule la pression
+d'un bouton — un POST — engage quelque chose.
+
+**Le nom du fichier est le créneau.** Une demande est un fichier nommé `2026-08-18-1400.json`, créé
+en mode exclusif. Deux visiteurs qui cliquent sur le même créneau à la même seconde ne peuvent pas
+créer deux fois le même fichier : c'est le système de fichiers qui arbitre, donc l'arbitrage est
+indivisible et il n'y a aucun verrou à tenir.
+
+**Les créneaux sont calculés par le serveur, jamais par le navigateur.** Lui seul sait l'heure qu'il
+est réellement à Paris, quel que soit le fuseau du visiteur, et ce qui est déjà pris.
+
+### Où vivent les demandes
+
+Dans un dossier `rendez-vous/` placé **un cran au-dessus de `public_html`**, à côté de `smtp.php` :
+les noms, numéros et adresses n'y sont lisibles par personne depuis le web. Le dossier se crée tout
+seul au premier besoin. Si l'hébergement refuse d'y écrire, le script se rabat sur un dossier caché
+dans la racine publiée, que le `.htaccess` protège déjà.
+
+Le jeton des liens de décision n'est **jamais stocké en clair** : seule son empreinte l'est. Un accès
+en lecture au dossier ne permettrait pas de fabriquer un lien valable.
+
+Les demandes archivées sont effacées automatiquement au bout de quatre-vingt-dix jours — c'est ce
+qu'annonce la politique de confidentialité.
+
+### Tester en local
+
+`npm run dev` ne suffit pas : il n'exécute pas PHP, donc la liste des créneaux reste vide et le bloc
+affiche son message de repli. Utilisez `npm run preview:php`. L'envoi des mails, lui, exige un
+`smtp.php` valide — sans quoi la demande est refusée avec un message clair plutôt que de dormir dans
+un dossier que personne ne regarde.
 
 ---
 

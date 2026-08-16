@@ -16,7 +16,15 @@ export default defineConfig({
   site,
   output: 'static',
   trailingSlash: 'always',
-  integrations: [sitemap({ i18n: undefined })],
+  // Les pages de service — remerciement, erreur, écran de décision d'Alice —
+  // portent déjà un noindex. Les tenir aussi hors du sitemap évite d'annoncer
+  // aux moteurs des adresses qu'on leur demande par ailleurs d'ignorer.
+  integrations: [
+    sitemap({
+      i18n: undefined,
+      filter: (page) => !/\/(contact\/(merci|erreur)|rendez-vous)\//.test(page),
+    }),
+  ],
   build: { format: 'directory', inlineStylesheets: 'auto' },
   prefetch: { prefetchAll: true, defaultStrategy: 'hover' },
   compressHTML: true,

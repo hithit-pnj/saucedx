@@ -1,0 +1,474 @@
+---
+import { getEntry } from 'astro:content';
+import Fil from './Fil.astro';
+import Prose from './Prose.astro';
+
+/**
+ * Quinze minutes au téléphone.
+ *
+ * Les créneaux ne sont pas écrits dans la page : le serveur seul sait l'heure
+ * qu'il est à Paris et ce qui est déjà pris, donc la liste arrive après coup.
+ * Sans JavaScript, le bloc s'efface au profit du formulaire écrit — qui, lui,
+ * fonctionne sans rien.
+ */
+
+const { textes, champs } = (await getEntry('rendezVous', 'reglages'))!.data;
+const reglages = (await getEntry('reglages', 'site'))!.data;
+
+/** Au-delà, la liste des jours devient un mur : le reste attend un clic. */
+const JOURS_VISIBLES = 4;
+---
+
+<section
+  class="rdv"
+  id="rendez-vous"
+  data-jours-visibles={JOURS_VISIBLES}
+  data-attente={textes.attente}
+  data-vide={textes.vide}
+  data-succes={textes.succes}
+  data-erreur={textes.erreur}
+>
+  <div class="colonne pile pile--centre rdv__ouverture">
+    <Fil variante="court" />
+    <p class="micro micro--accent">{textes.surtitre}</p>
+    <h2 class="display display--section rdv__titre">{textes.titre}</h2>
+  </div>
+
+  <div class="colonne pile pile--s rdv__corps">
+    <Prose texte={textes.intro} class="rdv__intro" />
+
+    <p class="rdv__etat" role="status" aria-live="polite">{textes.attente}</p>
+
+    <div class="rdv__jours" hidden></div>
+
+    <button class="rdv__davantage" type="button" hidden>D'autres jours</button>
+
+    <form
+      class="formulaire rdv__formulaire"
+      action="/api/rendez-vous.php"
+      method="post"
+      novalidate
+      hidden
+    >
+      <p class="rdv__choisi">
+        <span class="micro micro--serre">{textes.choisi}</span>
+        <span class="rdv__moment"></span>
+        <button class="rdv__changer" type="button">{textes.changer}</button>
+      </p>
+
+      <div class="champ">
+        <label for="rdv-nom">{champs.nom}</label>
+        <input type="text" id="rdv-nom" name="nom" autocomplete="name" maxlength="120" required />
+      </div>
+
+      <div class="champ">
+        <label for="rdv-telephone">{champs.telephone}</label>
+        <input
+          type="tel"
+          id="rdv-telephone"
+          name="telephone"
+          autocomplete="tel"
+          maxlength="40"
+          required
+        />
+      </div>
+
+      <div class="champ">
+        <label for="rdv-email">{champs.email}</label>
+        <input type="email" id="rdv-email" name="email" autocomplete="email" maxlength="200" required />
+      </div>
+
+      <div class="champ">
+        <label for="rdv-motif">{champs.motif}</label>
+        <textarea id="rdv-motif" name="motif" rows="3" maxlength="1000"></textarea>
+      </div>
+
+      <label class="consentement">
+        <input type="checkbox" name="consentement" value="oui" required />
+        <span>
+          {textes.consentement} <a href="/confidentialite/">En savoir plus</a>.
+        </span>
+      </label>
+
+      {/* Anti-spam discret : un champ que seuls les robots remplissent, et l'heure d'ouverture. */}
+      <div class="miel" aria-hidden="true">
+        <label for="rdv-site">Ne pas remplir</label>
+        <input type="text" id="rdv-site" name="site" tabindex="-1" autocomplete="off" />
+      </div>
+      <input type="hidden" name="ouvert_a" value="" />
+      <input type="hidden" name="creneau" value="" />
+
+      <div class="formulaire__pied">
+        <button class="appel" type="submit" data-en-cours={textes.boutonEnCours}>{textes.bouton}</button>
+        <p class="reponse" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+
+    <p class="micro micro--serre rdv__fuseau">{textes.fuseau}</p>
+  </div>
+
+  <noscript>
+    <div class="colonne rdv__noscript">
+      <p class="micro micro--serre">
+        Le choix d'un créneau demande JavaScript. Écrivez-moi plutôt quelques lignes ci-dessus, ou
+        directement à {reglages.email} : je vous répondrai avec des dates.
+      </p>
+    </div>
+  </noscript>
+</section>
+
+<style>
+  .rdv {
+    position: relative;
+    z-index: 1;
+    margin-top: var(--souffle-l);
+  }
+
+  .rdv__ouverture {
+    gap: 1rem;
+  }
+
+  .rdv__titre {
+    font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  }
+
+  .rdv__corps {
+    margin-top: var(--souffle-s);
+  }
+
+  .rdv__intro {
+    color: var(--encre-2);
+    font-size: 0.9375em;
+  }
+
+  .rdv__etat {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.125rem;
+    color: var(--encre-3);
+  }
+
+  .rdv__etat:empty {
+    display: none;
+  }
+
+  .rdv__etat[data-ton='erreur'] {
+    color: oklch(0.48 0.15 28);
+  }
+
+  .rdv__jours {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .rdv__jours[hidden] {
+    display: none;
+  }
+
+  /* Les jours, et les heures dedans — pas de cartouche, seulement un filet. */
+  .rdv :global(.jour) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--filet-pale);
+  }
+
+  .rdv :global(.jour__nom) {
+    color: var(--encre-3);
+  }
+
+  .rdv :global(.jour__creneaux) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .rdv :global(.creneau) {
+    padding: 0.45rem 0.85rem;
+    border: 1px solid var(--filet);
+    border-radius: 0;
+    background: transparent;
+    font-family: var(--serif);
+    font-size: 0.875rem;
+    font-variant-numeric: lining-nums tabular-nums;
+    letter-spacing: 0.04em;
+    color: var(--encre-2);
+    cursor: pointer;
+    transition: border-color 0.25s, color 0.25s, background-color 0.25s;
+  }
+
+  .rdv :global(.creneau:hover),
+  .rdv :global(.creneau:focus-visible) {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-fantome);
+  }
+
+  .rdv__davantage {
+    align-self: flex-start;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-family: var(--serif);
+    font-size: 0.6875rem;
+    letter-spacing: 0.24em;
+    text-indent: 0.24em;
+    text-transform: uppercase;
+    color: var(--encre-3);
+    border-bottom: 1px solid var(--filet);
+    cursor: pointer;
+    transition: color 0.25s, border-color 0.25s;
+  }
+
+  .rdv__davantage:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .rdv__formulaire[hidden] {
+    display: none;
+  }
+
+  .rdv__choisi {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.9rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--filet-pale);
+  }
+
+  .rdv__moment {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.375rem;
+    line-height: 1.2;
+    color: var(--accent);
+  }
+
+  .rdv__changer {
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid var(--filet);
+    background: transparent;
+    font-family: var(--serif);
+    font-size: 0.75rem;
+    color: var(--encre-3);
+    cursor: pointer;
+    transition: color 0.25s, border-color 0.25s;
+  }
+
+  .rdv__changer:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .rdv__fuseau {
+    color: var(--encre-4);
+  }
+
+  .rdv__noscript {
+    margin-top: var(--souffle-s);
+  }
+
+  .rdv__noscript .micro {
+    font-size: 0.5625rem;
+    text-transform: none;
+    letter-spacing: 0.08em;
+    text-indent: 0;
+    line-height: 1.7;
+    color: var(--encre-3);
+  }
+</style>
+
+<script>
+  type Creneau = { cle: string; heure: string };
+  type Jour = { date: string; libelle: string; creneaux: Creneau[] };
+
+  const bloc = document.querySelector<HTMLElement>('.rdv');
+
+  if (bloc) {
+    const etat = bloc.querySelector<HTMLParagraphElement>('.rdv__etat')!;
+    const liste = bloc.querySelector<HTMLDivElement>('.rdv__jours')!;
+    const davantage = bloc.querySelector<HTMLButtonElement>('.rdv__davantage')!;
+    const formulaire = bloc.querySelector<HTMLFormElement>('.rdv__formulaire')!;
+    const moment = bloc.querySelector<HTMLElement>('.rdv__moment')!;
+    const changer = bloc.querySelector<HTMLButtonElement>('.rdv__changer')!;
+    const reponse = formulaire.querySelector<HTMLParagraphElement>('.reponse')!;
+    const bouton = formulaire.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const champCreneau = formulaire.querySelector<HTMLInputElement>('input[name="creneau"]')!;
+    const libelleBouton = bouton.textContent ?? 'Envoyer';
+    const visibles = Number(bloc.dataset.joursVisibles ?? 4);
+
+    formulaire.querySelector<HTMLInputElement>('input[name="ouvert_a"]')!.value = String(
+      Math.floor(Date.now() / 1000),
+    );
+
+    const dire = (texte: string, ton?: 'erreur') => {
+      etat.textContent = texte;
+      if (ton) etat.dataset.ton = ton;
+      else delete etat.dataset.ton;
+    };
+
+    const dessiner = (jours: Jour[]) => {
+      liste.textContent = '';
+
+      jours.forEach((jour, rang) => {
+        const cadre = document.createElement('div');
+        cadre.className = 'jour';
+        cadre.hidden = rang >= visibles;
+
+        const nom = document.createElement('p');
+        nom.className = 'jour__nom micro micro--serre';
+        nom.id = `jour-${jour.date}`;
+        nom.textContent = jour.libelle;
+
+        const heures = document.createElement('ul');
+        heures.className = 'jour__creneaux';
+        heures.setAttribute('aria-labelledby', nom.id);
+
+        for (const creneau of jour.creneaux) {
+          const ligne = document.createElement('li');
+          const choix = document.createElement('button');
+          choix.type = 'button';
+          choix.className = 'creneau';
+          choix.textContent = creneau.heure;
+          choix.dataset.cle = creneau.cle;
+          choix.dataset.libelle = `${jour.libelle} à ${creneau.heure}`;
+          // Le libellé visible ne dit que l'heure : la date reste dans le nom
+          // accessible, sans quoi la liste est illisible au lecteur d'écran.
+          choix.setAttribute('aria-label', choix.dataset.libelle);
+          ligne.append(choix);
+          heures.append(ligne);
+        }
+
+        cadre.append(nom, heures);
+        liste.append(cadre);
+      });
+
+      liste.hidden = false;
+      davantage.hidden = jours.length <= visibles;
+    };
+
+    const charger = async () => {
+      dire(bloc.dataset.attente ?? '');
+
+      try {
+        const requete = await fetch('/api/creneaux.php', { headers: { Accept: 'application/json' } });
+        const resultat = (await requete.json()) as { ouvert?: boolean; jours?: Jour[] };
+
+        if (!requete.ok || !resultat.ouvert || !resultat.jours?.length) {
+          liste.hidden = true;
+          davantage.hidden = true;
+          dire(bloc.dataset.vide ?? '');
+          return;
+        }
+
+        dire('');
+        dessiner(resultat.jours);
+      } catch {
+        liste.hidden = true;
+        davantage.hidden = true;
+        dire(bloc.dataset.vide ?? '');
+      }
+    };
+
+    const choisir = (cle: string, libelle: string) => {
+      champCreneau.value = cle;
+      moment.textContent = libelle;
+      liste.hidden = true;
+      davantage.hidden = true;
+      formulaire.hidden = false;
+      dire('');
+      reponse.textContent = '';
+      formulaire.querySelector<HTMLInputElement>('#rdv-nom')!.focus();
+    };
+
+    const relacher = () => {
+      formulaire.hidden = true;
+      champCreneau.value = '';
+      void charger();
+    };
+
+    liste.addEventListener('click', (evenement) => {
+      const choix = (evenement.target as HTMLElement).closest<HTMLButtonElement>('.creneau');
+      if (choix?.dataset.cle) choisir(choix.dataset.cle, choix.dataset.libelle ?? '');
+    });
+
+    davantage.addEventListener('click', () => {
+      liste.querySelectorAll<HTMLElement>('.jour[hidden]').forEach((jour) => (jour.hidden = false));
+      davantage.hidden = true;
+    });
+
+    changer.addEventListener('click', relacher);
+
+    formulaire.addEventListener('submit', async (evenement) => {
+      evenement.preventDefault();
+
+      const champs = [...formulaire.querySelectorAll<HTMLInputElement>('[required]')];
+      let valide = true;
+      for (const champ of champs) {
+        const ok = champ.checkValidity();
+        if (champ.type !== 'checkbox') champ.setAttribute('aria-invalid', String(!ok));
+        if (!ok && valide) {
+          champ.focus();
+          valide = false;
+        }
+      }
+      if (!valide) {
+        reponse.dataset.ton = 'erreur';
+        reponse.textContent = 'Merci de compléter les champs manquants.';
+        return;
+      }
+
+      bouton.disabled = true;
+      bouton.textContent = bouton.dataset.enCours ?? 'Envoi…';
+      reponse.textContent = '';
+
+      try {
+        const requete = await fetch(formulaire.action, {
+          method: 'POST',
+          body: new FormData(formulaire),
+          headers: { Accept: 'application/json' },
+        });
+        const resultat = (await requete.json().catch(() => ({}))) as {
+          ok?: boolean;
+          message?: string;
+        };
+
+        if (requete.ok && resultat.ok) {
+          formulaire.hidden = true;
+          dire(bloc.dataset.succes ?? 'Demande envoyée.');
+          return;
+        }
+
+        // Le serveur écrit ses refus pour être lus par un visiteur : les taire
+        // derrière une formule générique laisserait la personne buter sur la
+        // même erreur sans jamais savoir laquelle.
+        reponse.dataset.ton = 'erreur';
+        reponse.textContent = resultat.message ?? bloc.dataset.erreur ?? "La demande n'a pas abouti.";
+
+        // Créneau pris ou retiré entre-temps : la liste affichée ment, il faut
+        // la refaire sous les yeux de la personne plutôt que de la laisser
+        // recliquer sur un moment qui n'existe plus.
+        if (requete.status === 409 || requete.status === 410) {
+          formulaire.hidden = true;
+          champCreneau.value = '';
+          await charger();
+          dire(resultat.message ?? '', 'erreur');
+        }
+      } catch {
+        reponse.dataset.ton = 'erreur';
+        reponse.textContent = bloc.dataset.erreur ?? "La demande n'a pas abouti.";
+      } finally {
+        bouton.disabled = false;
+        bouton.textContent = libelleBouton;
+      }
+    });
+
+    void charger();
+  }
+</script>

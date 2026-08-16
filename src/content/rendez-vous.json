@@ -1,0 +1,34 @@
+{
+  "actif": true,
+  "duree": 15,
+  "battement": 15,
+  "delaiMinimum": 24,
+  "horizon": 21,
+  "expiration": 72,
+  "plages": [
+    { "jour": "mardi", "debut": "14:00", "fin": "16:00" },
+    { "jour": "jeudi", "debut": "10:00", "fin": "12:00" }
+  ],
+  "fermetures": [],
+  "textes": {
+    "surtitre": "Ou bien : parlons-nous",
+    "titre": "Quinze minutes au téléphone.",
+    "intro": "Si l'écrit vous coûte, ou si votre question tient en trois phrases, choisissez un moment ci-dessous. Je vous appelle. Quinze minutes, pas davantage — de quoi savoir si nous avons quelque chose à faire ensemble.",
+    "attente": "Je regarde l'agenda…",
+    "vide": "Aucun créneau n'est ouvert en ce moment. Écrivez-moi plutôt quelques lignes, je vous répondrai avec des dates.",
+    "choisi": "Vous demandez",
+    "changer": "Changer de moment",
+    "bouton": "Demander ce moment",
+    "boutonEnCours": "Envoi…",
+    "consentement": "J'accepte que mon nom, mon numéro et mon adresse mail soient conservés le temps d'organiser cet appel.",
+    "succes": "C'est noté. Alice vous confirme ce moment par mail, en général sous vingt-quatre heures.",
+    "erreur": "La demande n'a pas abouti. Écrivez-moi plutôt à contact@saucedexister.fr.",
+    "fuseau": "Heures françaises."
+  },
+  "champs": {
+    "nom": "Votre nom",
+    "telephone": "Votre numéro",
+    "email": "Votre adresse mail",
+    "motif": "En deux mots, ce qui vous amène"
+  }
+}

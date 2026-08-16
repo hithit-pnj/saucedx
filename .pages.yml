@@ -351,6 +351,137 @@ content:
               - { name: titre, label: Titre, type: string }
               - { name: texte, label: Texte, type: text }
 
+  # ─── Rendez-vous téléphoniques ────────────────────────────────────────────
+  - name: rendez-vous
+    label: Rendez-vous téléphoniques
+    type: file
+    path: src/content/rendez-vous.json
+    format: json
+    operations:
+      delete: false
+    fields:
+      - name: actif
+        label: Proposer des rendez-vous
+        type: boolean
+        default: true
+        description: >-
+          Décochez pour retirer le choix de créneaux de la page contact. Les rendez-vous déjà
+          confirmés ne sont pas annulés pour autant.
+
+      - name: plages
+        label: Vos disponibilités habituelles
+        type: object
+        description: >-
+          Décrivez vos habitudes, pas des dates : « mardi de 14 h à 16 h » vaut pour tous les mardis
+          à venir. Le site découpe ces plages en créneaux tout seul.
+        list:
+          min: 0
+          max: 20
+          collapsible:
+            collapsed: false
+            summary: '{jour} — {debut} à {fin}'
+        fields:
+          - name: jour
+            label: Jour
+            type: select
+            options:
+              values:
+                - { name: lundi, label: Lundi }
+                - { name: mardi, label: Mardi }
+                - { name: mercredi, label: Mercredi }
+                - { name: jeudi, label: Jeudi }
+                - { name: vendredi, label: Vendredi }
+                - { name: samedi, label: Samedi }
+                - { name: dimanche, label: Dimanche }
+          - name: debut
+            label: De
+            type: string
+            pattern:
+              regex: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+              message: 'Écrivez l''heure ainsi : 14:00'
+          - name: fin
+            label: À
+            type: string
+            pattern:
+              regex: '^([01][0-9]|2[0-3]):[0-5][0-9]$'
+              message: 'Écrivez l''heure ainsi : 16:00'
+
+      - name: fermetures
+        label: Vacances et empêchements
+        type: object
+        description: >-
+          Aucun créneau ne sera proposé entre ces deux dates, bornes comprises. Pour une seule
+          journée, mettez la même date des deux côtés.
+        list:
+          collapsible:
+            collapsed: true
+            summary: '{motif} — du {du} au {au}'
+        fields:
+          - { name: du, label: Du, type: date, options: { format: 'yyyy-MM-dd' } }
+          - { name: au, label: Au, type: date, options: { format: 'yyyy-MM-dd' } }
+          - { name: motif, label: Motif (pour vous seule), type: string }
+
+      - name: duree
+        label: Durée d'un appel (minutes)
+        type: number
+        default: 15
+        options: { min: 5, max: 120, step: 5 }
+
+      - name: battement
+        label: Battement entre deux appels (minutes)
+        type: number
+        default: 15
+        description: Le temps de souffler. Deux appels ne se collent jamais l'un à l'autre.
+        options: { min: 0, max: 120, step: 5 }
+
+      - name: delaiMinimum
+        label: Prévenance minimale (heures)
+        type: number
+        default: 24
+        description: Personne ne peut réserver un créneau qui commence dans moins de ce délai.
+        options: { min: 0, max: 720, step: 1 }
+
+      - name: horizon
+        label: Réservable jusqu'à (jours)
+        type: number
+        default: 21
+        description: Au-delà, les créneaux ne sont pas encore proposés.
+        options: { min: 1, max: 120, step: 1 }
+
+      - name: expiration
+        label: Une demande sans réponse expire au bout de (heures)
+        type: number
+        default: 72
+        description: Passé ce délai, le créneau se libère tout seul et redevient réservable.
+        options: { min: 1, max: 720, step: 1 }
+
+      - name: textes
+        label: Les textes affichés
+        type: object
+        fields:
+          - { name: surtitre, label: Sur-titre, type: string }
+          - { name: titre, label: Titre, type: string }
+          - { name: intro, label: Texte d'introduction, type: text }
+          - { name: attente, label: Pendant le chargement des créneaux, type: string }
+          - { name: vide, label: Quand aucun créneau n'est libre, type: text }
+          - { name: choisi, label: Mention au-dessus du moment choisi, type: string }
+          - { name: changer, label: Lien pour changer de moment, type: string }
+          - { name: bouton, label: Bouton d'envoi, type: string }
+          - { name: boutonEnCours, label: Bouton pendant l'envoi, type: string }
+          - { name: consentement, label: Case de consentement RGPD, type: text }
+          - { name: succes, label: Demande envoyée, type: text }
+          - { name: erreur, label: Demande échouée, type: text }
+          - { name: fuseau, label: Mention sur l'heure, type: string }
+
+      - name: champs
+        label: Libellés du formulaire
+        type: object
+        fields:
+          - { name: nom, label: Champ « nom », type: string }
+          - { name: telephone, label: Champ « téléphone », type: string }
+          - { name: email, label: Champ « mail », type: string }
+          - { name: motif, label: Champ « ce qui vous amène », type: string }
+
   # ─── Pages légales ────────────────────────────────────────────────────────
   - name: legal
     label: Pages légales

@@ -7,3 +7,8 @@ dist/
 Thumbs.db
 *.log
 _scratch_*.py
+
+# Créés hors du dépôt en production, mais un essai en local les fait apparaître
+# ici : le mot de passe SMTP et les demandes de rendez-vous n'ont rien à y faire.
+/smtp.php
+/rendez-vous/

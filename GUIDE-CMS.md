@@ -435,6 +435,58 @@ d'être invitée sur le dépôt : **Settings → Collaborators → Add people**,
 
 ---
 
+## Annexe — Tenir l'agenda des rendez-vous téléphoniques
+
+Sous le formulaire, la page contact propose des créneaux de quinze minutes au téléphone. Ce
+paragraphe est écrit pour Alice.
+
+### Déclarer vos disponibilités
+
+Dans le CMS, section **Rendez-vous téléphoniques**. Vous décrivez des **habitudes**, pas des
+dates : « Mardi, de 14:00 à 16:00 » vaut pour tous les mardis à venir. Il n'y a donc rien à
+remettre à jour chaque semaine. Ajoutez autant de lignes que de plages hebdomadaires.
+
+Le site découpe ces plages tout seul. Avec des appels de quinze minutes et un battement de
+quinze minutes, « mardi de 14:00 à 16:00 » donne quatre créneaux : 14 h, 14 h 30, 15 h et
+15 h 30.
+
+**Vacances et empêchements** : ajoutez une ligne avec la date de début et la date de fin,
+bornes comprises. Pour une seule journée, mettez la même date des deux côtés. Aucun créneau ne
+sera proposé pendant cette période.
+
+**Pour tout couper**, décochez **Proposer des rendez-vous** : le bloc disparaît de la page
+contact. Les rendez-vous déjà confirmés, eux, ne sont pas annulés — prévenez les personnes
+concernées vous-même.
+
+### Quand quelqu'un demande un créneau
+
+Vous recevez un mail avec son nom, son numéro, ce qui l'amène, et **un lien**. Ce lien ouvre une
+page qui vous montre la demande et vous propose deux boutons : **Accepter ce moment** ou
+**Proposer un autre moment**.
+
+- **Accepter** : la personne reçoit aussitôt la confirmation et un fichier à glisser dans son
+  agenda. Vous recevez le même. C'est vous qui appelez, au numéro indiqué.
+- **Proposer un autre moment** : la personne reçoit un mot vous excusant, avec le lien vers la
+  page contact. Le créneau redevient libre pour quelqu'un d'autre.
+
+**Si vous ne répondez pas**, la demande expire au bout de trois jours et le créneau se rouvre
+tout seul. Un oubli ne bloque donc jamais un moment définitivement.
+
+Tant que vous n'avez pas tranché, le créneau est retiré du site : personne d'autre ne peut le
+demander en même temps.
+
+### Les réglages, et à quoi ils servent
+
+| Réglage | Ce qu'il change |
+| --- | --- |
+| **Durée d'un appel** | La longueur annoncée, et la taille des créneaux. |
+| **Battement** | Le temps de souffler entre deux appels. Deux appels ne se collent jamais. |
+| **Prévenance minimale** | Personne ne peut réserver un créneau qui commence dans moins de ce délai. Vingt-quatre heures évite d'être appelée à l'improviste. |
+| **Réservable jusqu'à** | Jusqu'où on peut réserver à l'avance. Trois semaines est un bon équilibre. |
+| **Expiration d'une demande** | Au bout de combien de temps sans réponse le créneau se rouvre. |
+
+---
+
 ## Annexe — Fermer temporairement le site
 
 Le site dispose d'un interrupteur de maintenance qui ne demande ni déploiement, ni ligne de

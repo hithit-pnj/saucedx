@@ -57,7 +57,7 @@ const reglages = (await getEntry('reglages', 'site'))!.data;
   <input type="hidden" name="sujet" value="" />
 
   <div class="formulaire__pied">
-    <button class="appel" type="submit">{champs.envoyer}</button>
+    <button class="appel" type="submit" data-en-cours={champs.envoiEnCours}>{champs.envoyer}</button>
     <p class="reponse" role="status" aria-live="polite"></p>
   </div>
 

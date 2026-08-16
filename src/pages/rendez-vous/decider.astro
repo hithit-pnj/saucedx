@@ -1,0 +1,243 @@
+---
+import Placard from '../../layouts/Placard.astro';
+
+/**
+ * L'écran d'Alice — atteint depuis le lien reçu par mail, jamais autrement.
+ *
+ * Le mail ne contient qu'un seul lien, et ce lien ne décide de rien : il ouvre
+ * cette page, qui lit la demande et attend un bouton. Certains services de
+ * messagerie ouvrent les liens d'un message pour les analyser ; un lien
+ * « accepter » se déclencherait alors tout seul.
+ */
+---
+
+<Placard
+  titre="Une demande de rendez-vous"
+  description="Accepter ou proposer un autre moment."
+  surtitre="Quinze minutes au téléphone"
+  lignes={['Une demande.']}
+  glyphe="visavis"
+  noindex
+>
+  <p class="etat" role="status" aria-live="polite">Je regarde…</p>
+
+  <dl class="demande" hidden>
+    <div><dt>Qui</dt><dd data-champ="nom"></dd></div>
+    <div><dt>Téléphone</dt><dd data-champ="telephone"></dd></div>
+    <div><dt>Mail</dt><dd data-champ="email"></dd></div>
+    <div><dt>Moment</dt><dd data-champ="moment"></dd></div>
+    <div class="demande__motif" hidden><dt>Ce qui l'amène</dt><dd data-champ="motif"></dd></div>
+  </dl>
+
+  <div class="gestes" hidden>
+    <button class="appel" type="button" data-geste="accepter">Accepter ce moment</button>
+    <button class="decliner" type="button" data-geste="refuser">Proposer un autre moment</button>
+  </div>
+
+  <a class="appel retour" href="/" hidden>Retour au site</a>
+</Placard>
+
+<style>
+  .etat {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    color: var(--accent);
+  }
+
+  .etat:empty {
+    display: none;
+  }
+
+  .etat[data-ton='erreur'] {
+    color: oklch(0.48 0.15 28);
+  }
+
+  .demande {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    width: 100%;
+    max-width: 26rem;
+    margin: 0;
+    padding-top: var(--souffle-xs);
+    text-align: start;
+  }
+
+  .demande[hidden] {
+    display: none;
+  }
+
+  .demande dt {
+    font-size: 0.625rem;
+    letter-spacing: 0.34em;
+    text-indent: 0.34em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.35rem;
+  }
+
+  .demande dd {
+    margin: 0;
+    font-size: 0.9375em;
+    line-height: 1.66;
+    color: var(--encre-2);
+    text-wrap: pretty;
+  }
+
+  .demande [data-champ='moment'] {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.375rem;
+    color: var(--encre);
+  }
+
+  .gestes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    margin-top: var(--souffle-xs);
+  }
+
+  .gestes[hidden] {
+    display: none;
+  }
+
+  .decliner {
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid var(--filet);
+    background: transparent;
+    font-family: var(--serif);
+    font-size: 0.8125rem;
+    color: var(--encre-3);
+    cursor: pointer;
+    transition: color 0.25s, border-color 0.25s;
+  }
+
+  .decliner:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .retour[hidden] {
+    display: none;
+  }
+</style>
+
+<script>
+  const etat = document.querySelector<HTMLParagraphElement>('.etat')!;
+  const demande = document.querySelector<HTMLDListElement>('.demande')!;
+  const gestes = document.querySelector<HTMLDivElement>('.gestes')!;
+  const retour = document.querySelector<HTMLAnchorElement>('.retour')!;
+
+  const parametres = new URLSearchParams(location.search);
+  const creneau = parametres.get('creneau') ?? '';
+  const jeton = parametres.get('jeton') ?? '';
+
+  const dire = (texte: string, ton?: 'erreur') => {
+    etat.textContent = texte;
+    if (ton) etat.dataset.ton = ton;
+    else delete etat.dataset.ton;
+  };
+
+  const remplir = (champ: string, valeur: string) => {
+    const cible = demande.querySelector<HTMLElement>(`[data-champ="${champ}"]`)!;
+    cible.textContent = valeur;
+  };
+
+  const finir = (texte: string) => {
+    dire(texte);
+    demande.hidden = true;
+    gestes.hidden = true;
+    retour.hidden = false;
+  };
+
+  const trancher = async (geste: string) => {
+    const boutons = [...gestes.querySelectorAll('button')];
+    boutons.forEach((b) => (b.disabled = true));
+    dire('Un instant…');
+
+    try {
+      const corps = new FormData();
+      corps.set('geste', geste);
+      corps.set('creneau', creneau);
+      corps.set('jeton', jeton);
+
+      const requete = await fetch('/api/rendez-vous.php', {
+        method: 'POST',
+        body: corps,
+        headers: { Accept: 'application/json' },
+      });
+      const resultat = (await requete.json().catch(() => ({}))) as { ok?: boolean; message?: string };
+
+      if (requete.ok && resultat.ok) {
+        // Le serveur seul sait si le mail est bien parti : sa phrase le dit.
+        finir(resultat.message ?? 'C’est noté.');
+        return;
+      }
+
+      dire(resultat.message ?? 'L’enregistrement n’a pas abouti.', 'erreur');
+      boutons.forEach((b) => (b.disabled = false));
+    } catch {
+      dire('L’enregistrement n’a pas abouti. Réessayez dans un instant.', 'erreur');
+      boutons.forEach((b) => (b.disabled = false));
+    }
+  };
+
+  const lire = async () => {
+    if (!creneau || !jeton) {
+      finir('Ce lien est incomplet. Ouvrez-le depuis le mail reçu.');
+      return;
+    }
+
+    try {
+      const adresse = `/api/rendez-vous.php?geste=voir&creneau=${encodeURIComponent(creneau)}&jeton=${encodeURIComponent(jeton)}`;
+      const requete = await fetch(adresse, { headers: { Accept: 'application/json' } });
+      const resultat = (await requete.json().catch(() => ({}))) as {
+        ok?: boolean;
+        message?: string;
+        demande?: Record<string, string>;
+      };
+
+      if (!requete.ok || !resultat.ok || !resultat.demande) {
+        finir(resultat.message ?? 'Ce lien n’est plus valable.');
+        return;
+      }
+
+      const d = resultat.demande;
+      remplir('nom', d.nom);
+      remplir('telephone', d.telephone);
+      remplir('email', d.email);
+      remplir('moment', d.moment);
+
+      if (d.motif) {
+        remplir('motif', d.motif);
+        demande.querySelector<HTMLElement>('.demande__motif')!.hidden = false;
+      }
+
+      demande.hidden = false;
+
+      if (d.statut === 'confirme') {
+        dire('Ce rendez-vous est déjà confirmé.');
+        gestes.querySelector<HTMLButtonElement>('[data-geste="accepter"]')!.hidden = true;
+        gestes.hidden = false;
+        retour.hidden = false;
+        return;
+      }
+
+      dire('');
+      gestes.hidden = false;
+    } catch {
+      finir('La page n’a pas pu joindre le serveur. Réessayez dans un instant.');
+    }
+  };
+
+  for (const bouton of gestes.querySelectorAll<HTMLButtonElement>('button[data-geste]')) {
+    bouton.addEventListener('click', () => void trancher(bouton.dataset.geste ?? ''));
+  }
+
+  void lire();
+</script>

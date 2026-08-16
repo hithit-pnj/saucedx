@@ -7,9 +7,11 @@ import Filigrane from '../../components/Filigrane.astro';
 import Citation from '../../components/Citation.astro';
 import Prose from '../../components/Prose.astro';
 import FormulaireContact from '../../components/FormulaireContact.astro';
+import PriseDeRendezVous from '../../components/PriseDeRendezVous.astro';
 
 const page = (await getEntry('pages', 'contact'))!;
 const reglages = (await getEntry('reglages', 'site'))!.data;
+const rendezVous = (await getEntry('rendezVous', 'reglages'))!.data;
 const d = page.data.donnees as {
   hero: { lignes: string[]; surtitre: string; citation: string };
   intro: string;
@@ -52,6 +54,8 @@ const d = page.data.donnees as {
       <Prose texte={d.intro} class="intro" />
       <FormulaireContact champs={d.champs} reponses={d.reponses} />
     </div>
+
+    {rendezVous.actif && <PriseDeRendezVous />}
 
     <div class="colonne pile pile--centre pile--s autrement">
       <Fil variante="court" />

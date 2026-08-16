@@ -69,9 +69,10 @@ ErrorDocument 503 /maintenance.html
   RewriteCond %{REQUEST_URI} !^/\.well-known/
   RewriteRule (^|/)\. - [F]
 
-  # La bibliothèque d'envoi ne s'appelle que depuis contact.php. Rien n'y répond
-  # d'utile, mais autant ne pas exposer une surface qui n'a pas à l'être.
-  RewriteRule ^api/phpmailer/ - [F]
+  # Ces fichiers-là ne sont appelés que par les autres scripts : ils ne
+  # définissent que des fonctions et ne répondent rien d'utile. Autant ne pas
+  # exposer une surface qui n'a pas à l'être.
+  RewriteRule ^api/(phpmailer/|courrier\.php|agenda\.php) - [F]
 </IfModule>
 
 # --- En-têtes de sécurité ---------------------------------------------------

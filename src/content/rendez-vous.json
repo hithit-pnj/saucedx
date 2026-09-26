@@ -18,24 +18,24 @@
   "horizon": 21,
   "expiration": 72,
   "textes": {
-    "surtitre": "Ou bien : parlons-nous",
-    "titre": "Quinze minutes au téléphone.",
-    "intro": "Si l'écrit vous coûte, ou si votre question tient en trois phrases, choisissez un moment ci-dessous. Je vous appelle. Quinze minutes, pas davantage — de quoi savoir si nous avons quelque chose à faire ensemble.",
-    "attente": "Je regarde l'agenda…",
-    "vide": "Aucun créneau n'est ouvert en ce moment. Écrivez-moi plutôt quelques lignes, je vous répondrai avec des dates.",
-    "choisi": "Vous demandez",
-    "changer": "Changer de moment",
-    "bouton": "Demander ce moment",
-    "boutonEnCours": "Envoi…",
-    "consentement": "J'accepte que mon nom, mon numéro et mon adresse mail soient conservés le temps d'organiser cet appel.",
-    "succes": "C'est noté. Alice vous confirme ce moment par mail, en général sous vingt-quatre heures.",
-    "erreur": "La demande n'a pas abouti. Écrivez-moi plutôt à contact@saucedexister.fr.",
-    "fuseau": "Heures françaises."
+    "surtitre": "Or : let's talk",
+    "titre": "15 minutes over the phone",
+    "intro": "If writing is not the way for you, reach me this way.",
+    "attente": "Looking at the time slots...",
+    "vide": "None of the slots are available right now. Please right to me.",
+    "choisi": "Booked here",
+    "changer": "Switch",
+    "bouton": "Ask this slot",
+    "boutonEnCours": "Sending...",
+    "consentement": "I agree that my name, phone number and email address will be kept only for as long as it takes to arrange this call.",
+    "succes": "Got it. Alice will confirm this time by email, usually within 24 hours.",
+    "erreur": "Something went wrong. Please write to me directly at contact@lasaucedexister.fr.",
+    "fuseau": "All times are Paris time."
   },
   "champs": {
-    "nom": "Votre nom",
-    "telephone": "Votre numéro",
-    "email": "Votre adresse mail",
-    "motif": "En deux mots, ce qui vous amène"
+    "nom": "Your name",
+    "telephone": "Your phone number (with country code)",
+    "email": "Your email address",
+    "motif": "What brings you here, in a few words"
   }
 }

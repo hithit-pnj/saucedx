@@ -7,6 +7,15 @@ glyphe: meandre
 porte:
   intitule: In the sauce ? Get unstuck.
   precision: gain time & go deeper
+hero:
+  lignes:
+    - Frenchy Sauce
+    - "- deep in."
+  surtitre: Get unstuck.
+  citation: |-
+    gain time
+    go deeper 
+  mention: Book your call
 sections:
   - titre: Access the French your researche, mind and life deserve
     sousTitre: Sparring partner for English-speaking researchers in Philosophy & the

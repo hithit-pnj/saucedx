@@ -9,7 +9,7 @@ donnees:
       - La Sauce
       - d'Exister *
     surtitre: "* to exist is, essentially, to be deep in the dip. "
-    lieu: Philosophical and grammatical rigour, native French, and a pinch of wit
+    lieu: Philosophical and grammatical rigour, native French,     and a pinch of wit
   manifeste:
     probleme: >-
       RESEARCH IS THE DEEPEST SAUCE OF ALL

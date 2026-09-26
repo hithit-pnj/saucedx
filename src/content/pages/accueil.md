@@ -1,8 +1,8 @@
 ---
 seo:
-  titre: Frenchy Sauce — French Sparring Partner for Humanities Researchers
-  description: Read French thinkers in the original, write and speak like yourself
-    within a few month
+  titre: Your French self, from potency to act | Frenchy Sauce
+  description: Sparring partner for English-speaking researchers in Philosophy &
+    the Humanities, working on French thought and navigating French academia
 donnees:
   hero:
     lignes:

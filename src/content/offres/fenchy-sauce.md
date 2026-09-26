@@ -66,12 +66,12 @@ sections:
           personally, and tell you honestly whether and how I can help.
 cta:
   titre: Book your discovery call
-  texte: few words about you and your research are all it takes.
+  texte: few words about you and your goals and your research are all it takes.
   label: Book a call
-  sujet: Frenchy Sauce
+  sujet: Frenchy Sauce - see which
 seo:
-  titre: French Sparring Partner for Humanities Researchers | Frenchy Sauce.
-  description: "1:1 French for English-speaking researchers in philosophy and the
-    humanities: read French thinkers in the original, write and speak like
-    yourself."
+  titre: Access the french you in potency are | Frenchy Sauce.
+  description: "1:1 sparring French mentor for English-speaking researchers in
+    philosophy and the humanities: read French thinkers in the original, write
+    and speak like yourself."
 ---

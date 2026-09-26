@@ -35,4 +35,43 @@ sections:
       because eloquence isn't about knowing everything, or sounding perfectly
       French; it's about sounding like yourself, in French. Expect rigour, and
       expect wit."
+    blocs:
+      - titre: This is for you if...
+        texte: >-
+          You're writing on Beauvoir, Foucault, Bourdieu, Deleuze, Lacan,
+          Badiou, Meillassoux, Rousseau, Lévi-Strauss… any French thinker, and
+          the English translation no longer feels like enough.
+
+          Reading a single page of French takes you longer than you can bear.
+
+          You can feel what you're missing: the connotations slip through your
+          fingers.
+
+          You're heading to a seminar, a conference or a job interview in
+          France, and you want to sound like yourself, not like a phrasebook, or
+          like the silent one at the back of the room.
+
+          A PhD can be a lonely road. You could use someone from outside your
+          everyday life, cheering you on, one step at a time.
+      - titre: What is NOT going to happen
+        texte: Not a language school, not a translation service, not coaching. No
+          drills, no one-size-fits-all method. A thinking partnership, in
+          French, built on the texts that matter to you.
+      - titre: "The setup "
+        texte: "See how it works. [lien vers l'offre détaillée avec les modules(bêta
+          testing d'abord du coup)] "
+      - titre: Get started
+        texte: Tell me a few lines about your research, the texts you're working on, and
+          what you're struggling with right now. I'll get back to you
+          personally, and tell you honestly whether and how I can help.
+cta:
+  titre: Book your discovery call
+  texte: few words about you and your research are all it takes.
+  label: Book a call
+  sujet: Frenchy Sauce
+seo:
+  titre: French Sparring Partner for Humanities Researchers | Frenchy Sauce.
+  description: "1:1 French for English-speaking researchers in philosophy and the
+    humanities: read French thinkers in the original, write and speak like
+    yourself."
 ---

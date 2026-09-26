@@ -11,10 +11,11 @@ hero:
     - Frenchy
     - Sauce
   verbes:
-    - read
-    - analyse
-    - discuss
-    - understand
+    - Read the texts closely
+    - Catch the connotations
+    - Write with precision
+    - Speak eloquently
+    - Become your French self
 sections:
   - titre: Sparring partner for English-speaking researchers in Philosophy & the
       Humanities, working on French thought and navigating French academia.

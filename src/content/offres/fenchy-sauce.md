@@ -6,6 +6,8 @@ climat: ambre
 glyphe: fleche
 porte:
   intitule: Fenchy Sauce
+  precision: Sparring partner for English-speaking researchers in Philosophy & the
+    Humanities, working on French thought and navigating French academia
 hero:
   lignes:
     - Frenchy
@@ -16,6 +18,10 @@ hero:
     - Write with precision
     - Speak eloquently
     - Become your French self
+  citation: |-
+    Lonelyness doesn't have to mark
+    your journey.
+  mention: Book your call
 sections:
   - titre: Sparring partner for English-speaking researchers in Philosophy & the
       Humanities, working on French thought and navigating French academia.

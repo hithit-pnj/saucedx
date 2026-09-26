@@ -1,6 +1,6 @@
 ---
 menu: À La Cordée
-ordre: 1
+ordre: 7
 publie: false
 climat: garance
 glyphe: rayonnement

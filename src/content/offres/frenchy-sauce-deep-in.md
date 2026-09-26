@@ -39,7 +39,7 @@ sections:
       - titre: MODULE 4
 cta:
   titre: Book your discovery call
-  texte: few words about you and your research are all it takes.
+  texte: few words about you and your needs and your research are all it takes.
   label: Book a call
   sujet: Frenchy Sauce - deep in.
 seo:

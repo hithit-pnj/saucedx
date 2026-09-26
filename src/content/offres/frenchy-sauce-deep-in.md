@@ -13,7 +13,7 @@ hero:
     - Deep in
   surtitre: Get unstuck.
   verbes:
-    - Crack the text
+    - Access to the originals
     - Meet the deadline
     - Rehearse the talk
     - Walk in ready
@@ -50,7 +50,7 @@ cta:
   sujet: Frenchy Sauce - deep in.
 seo:
   titre: Access the french you in potency are | Frenchy Sauce.
-  description: "1:1 sparring French mentor for English-speaking researchers in
+  description: "French sparring-partner for English-speaking researchers in
     philosophy and the humanities: read French thinkers in the original, write
     and speak like yourself."
 ---

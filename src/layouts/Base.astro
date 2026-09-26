@@ -41,8 +41,17 @@ const schema = {
   url: Astro.site?.href,
   email: reglages.email,
   founder: { '@type': 'Person', name: reglages.personne, jobTitle: reglages.signature },
-  areaServed: { '@type': 'City', name: reglages.ville },
-  address: { '@type': 'PostalAddress', addressLocality: reglages.ville, addressRegion: reglages.region, addressCountry: 'FR' },
+  ...(reglages.ville
+    ? {
+        areaServed: { '@type': 'City', name: reglages.ville },
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: reglages.ville,
+          addressRegion: reglages.region,
+          addressCountry: 'FR',
+        },
+      }
+    : {}),
   sameAs: [reglages.instagramUrl],
 };
 ---

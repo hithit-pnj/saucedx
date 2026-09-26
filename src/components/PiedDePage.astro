@@ -24,9 +24,13 @@ const reglages = (await getEntry('reglages', 'site'))!.data;
       <li><a href="/confidentialite/">Politique de confidentialité</a></li>
     </ul>
 
-    <p class="pied__lieu micro micro--serre">
-      {reglages.ville} — {reglages.region}
-    </p>
+    {
+      reglages.ville && (
+        <p class="pied__lieu micro micro--serre">
+          {[reglages.ville, reglages.region].filter(Boolean).join(' — ')}
+        </p>
+      )
+    }
   </div>
 </footer>
 

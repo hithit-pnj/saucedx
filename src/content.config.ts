@@ -33,7 +33,7 @@ const offres = defineCollection({
 
     hero: z.object({
       lignes: z.array(z.string()).min(1).max(3),
-      surtitre: z.string(),
+      surtitre: z.string().optional(),
       verbes: z.array(z.string()).default([]),
       citation: z.string().optional(),
       mention: z.string().optional(),
@@ -47,7 +47,8 @@ const offres = defineCollection({
           sousTitre: z.string().optional(),
           glyphe: z.enum(glyphes).optional(),
           verbes: z.array(z.string()).default([]),
-          texte: z.string(),
+          /** Une section peut n'être qu'une suite de blocs : le chapeau est facultatif. */
+          texte: z.string().optional(),
           blocs: z.array(bloc).default([]),
         }),
       )
@@ -167,8 +168,9 @@ const reglages = defineCollection({
     email: z.string().email(),
     instagram: z.string(),
     instagramUrl: z.string().url(),
-    ville: z.string(),
-    region: z.string(),
+    /** Le lieu ne se mentionne que si Alice le renseigne : le public peut être international. */
+    ville: z.string().optional(),
+    region: z.string().optional(),
     baseline: z.string(),
   }),
 });

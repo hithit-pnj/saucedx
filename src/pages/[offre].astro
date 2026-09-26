@@ -33,7 +33,7 @@ const plusieursFormats = sections.length > 1;
           {hero.lignes.map((ligne, i) => (<>{i > 0 && <br />}{ligne}</>))}
         </h1>
 
-        <p class="micro micro--accent">{hero.surtitre}</p>
+        {hero.surtitre && <p class="micro micro--accent">{hero.surtitre}</p>}
 
         {
           hero.verbes.length > 0 && (
@@ -77,9 +77,11 @@ const plusieursFormats = sections.length > 1;
               )}
             </div>
 
-            <div class="colonne format__texte paraitre">
-              <Prose texte={section.texte} justifie />
-            </div>
+            {section.texte && (
+              <div class="colonne format__texte paraitre">
+                <Prose texte={section.texte} justifie />
+              </div>
+            )}
 
             {section.blocs.length > 0 && (
               <div class="colonne format__blocs paraitre">

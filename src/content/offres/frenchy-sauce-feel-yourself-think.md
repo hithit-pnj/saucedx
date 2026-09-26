@@ -36,4 +36,14 @@ sections:
         texte: "** to define **"
       - titre: MODULE 4
         texte: "** to define **"
+cta:
+  titre: Book your discovery call
+  texte: few words about you and your needs and your research are all it takes.
+  label: Book a call
+  sujet: Frenchy Sauce - all in.
+seo:
+  titre: Access the french you in potency are | Frenchy Sauce.
+  description: "French parring-partner for English-speaking researchers in
+    philosophy and the humanities: read French thinkers in the original, write
+    and speak like yourself."
 ---

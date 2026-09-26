@@ -25,7 +25,7 @@ hero:
 sections:
   - titre: Sparring partner for English-speaking researchers in Philosophy & the
       Humanities, working on French thought and navigating French academia.
-    sousTitre: Access the French your researche & mind deserves
+    sousTitre: Access the French your researche & mind deserve
     glyphe: fleche
     texte: "Here to support your intellectual and professional flourishing, so you
       don't have to do it alone. Together, we work towards two closely linked

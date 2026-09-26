@@ -6,16 +6,30 @@ seo:
 donnees:
   hero:
     lignes:
-      - La Sauce
-      - d'Exister*
+      - "La Sauce * "
+      - d'Exister
     surtitre: Philosophical rigour, fluent French, and a pinch of wit
-    lieu: "être dans la sauce: literally \"to be in the sauce\", meaning to be in
-      trouble, in a mess. I believe British people would say \"in the soup\".
-      Exister: to exist. A very vivid image in both languages: existing is a bit
-      of a mess, and that's where the flavour is. Untranslatable, of course."
   manifeste:
     probleme: >-
       RESEARCH PUTS IN THE SAUCE
+
+
+      * "être dans la sauce" : 
+
+      - literally "to be in the sauce", meaning to be in trouble, in a mess.
+
+
+      I believe British people would say "in the soup". 
+
+
+      Exister: to exist. 
+
+      A very vivid image in both languages: existing is a bit of a mess, and
+      that's where the flavour is. 
+
+
+      Untranslatable, of course.
+
 
       You work on French thinkers, but French keeps getting in the way. You read
       them through translation, and something gets lost: the connotations, the

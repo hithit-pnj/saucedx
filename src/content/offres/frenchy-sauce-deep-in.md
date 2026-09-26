@@ -6,12 +6,17 @@ climat: bronze
 glyphe: meandre
 porte:
   intitule: In the sauce ? Get unstuck.
-  precision: gain time & go deeper
+  precision: gain time, go deeper
 hero:
   lignes:
     - Frenchy Sauce
-    - deep in
+    - Deep in
   surtitre: Get unstuck.
+  verbes:
+    - Crack the text
+    - Meet the deadline
+    - Rehearse the talk
+    - Walk in ready
   citation: |-
     less panic
     less lonelyness

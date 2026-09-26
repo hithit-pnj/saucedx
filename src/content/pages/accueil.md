@@ -39,7 +39,7 @@ donnees:
     titre: Whether you're in the sauce, or intellectualy hungry for more
     colonnes:
       - texte: >-
-          In the soup? Get unstuck :
+          In the sauce ? Get unstuck :
 
 
           A deadline, a conference, a text you can't crack. You need help now,

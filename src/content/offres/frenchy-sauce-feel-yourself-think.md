@@ -1,5 +1,5 @@
 ---
-menu: Frenchy sauce - Feel yourself think.
+menu: Frenchy sauce - all in.
 ordre: 3
 publie: true
 climat: nuit
@@ -27,6 +27,17 @@ sections:
       Humanities, unlock French thought and navigate French academia within a
       few month
     glyphe: cernes
+    texte: >-
+      For those who want more than getting by. All in is a demanding programme
+      for researchers ready to reach the next stage of their intellectual life.
+      No deadline to meet, no emergency to handle: just the texts, read slowly
+      and in the original, until their connotations open up. We discuss them in
+      French, test your ideas against theirs, and build the grammar from what
+      the texts demand rather than from drills. Eloquence follows: not knowing
+      everything, or sounding perfectly French, but thinking out loud as
+      yourself, in French.
+
+      Expect rigour, and expect wit.
     blocs:
       - titre: MODULE 1
         texte: "** to define **"

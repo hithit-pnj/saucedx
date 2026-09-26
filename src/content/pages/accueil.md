@@ -36,7 +36,7 @@ donnees:
     sceau: La Sauce d'Exister
   entreprise:
     surtitre: Two ways in
-    titre: Whether you're in the sauce, or intellectualy hungry for more
+    titre: Whether you're in the sauce, or just intellectualy hungry for more
     colonnes:
       - texte: >-
           In the sauce ? Get unstuck :

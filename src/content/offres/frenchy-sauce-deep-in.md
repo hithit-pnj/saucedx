@@ -10,7 +10,7 @@ porte:
 hero:
   lignes:
     - Frenchy Sauce
-    - "- deep in."
+    - "- deep in"
   surtitre: Get unstuck.
   citation: |-
     gain time

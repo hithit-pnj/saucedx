@@ -3,7 +3,7 @@ menu: Fenchy Sauce
 ordre: 1
 publie: true
 sections:
-  - titre: A sparring partner for English-speaking researchers in Philosophy & the
+  - titre: Sparring partner for English-speaking researchers in Philosophy & the
       Humanities, working on French thought and navigating French academia
     sousTitre: "I'm here to support your intellectual and professional flourishing,
       so you don't have to do it alone. Together, we work towards two closely

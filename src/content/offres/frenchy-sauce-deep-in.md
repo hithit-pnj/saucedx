@@ -73,6 +73,15 @@ sections:
 
           Personalised feedback on your writing to sharpen its precision and
           rigour.
+      - titre: BEFORE
+        texte: You feel frustrated and isolated. You spend hours deciphering texts, you
+          dread speaking in public, and you doubt you'll ever find your place in
+          French-speaking academia.
+      - titre: AFTER
+        texte: You read the originals with easyness, you take part in conferences with
+          confidence and humour, and you feel fully legitimate and connected to
+          the French-speaking philosophical community. You save precious time
+          for your thesis, and you flourish, intellectually and socially.
 cta:
   titre: Book your discovery call
   texte: few words about you and your needs and your research are all it takes.

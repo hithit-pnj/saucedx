@@ -30,8 +30,9 @@ donnees:
       few months you can open the originals and hold your own in French-speaking
       academia, as your French self. 
 
-      Not a language school, not a translation service, not coaching. A key to
-      French thought, with rigour, wit, and without the headache.
+      Not a language school, not a translation service, not coaching. 
+
+      A key to French thought, with rigour, wit, and without the headache.
     sceau: La Sauce d'Exister
   entreprise:
     surtitre: Two ways in

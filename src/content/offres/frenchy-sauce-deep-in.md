@@ -10,11 +10,12 @@ porte:
 hero:
   lignes:
     - Frenchy Sauce
-    - "- deep in"
+    - deep in
   surtitre: Get unstuck.
   citation: |-
-    gain time
-    go deeper 
+    less panic
+    less lonelyness
+    more French
   mention: Book your call
 sections:
   - titre: Access the French your researche, mind and life deserve

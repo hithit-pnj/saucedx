@@ -12,7 +12,7 @@ donnees:
     lieu: Philosophical and grammatical rigour, native French, and a pinch of wit
   manifeste:
     probleme: >-
-      RESEARCH PUTS IN THE SAUCE
+      RESEARCH IS THE DEEPEST SAUCE OF ALL
 
 
       You work on French thinkers, but French keeps getting in the way. You read

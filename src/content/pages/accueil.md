@@ -54,12 +54,10 @@ donnees:
     surtitre: Who's talking
     titre: Alice Camille
     texte: >-
-      Philosophy teacher in high school based in Annecy, trained at Sorbonne
-      University and Paris 1 Panthéon-Sorbonne, where I wrote my master's theses
-      on Kant's concept of illusion and human finitude, then on Freud's
-      contribution on religion's psychology (Religionsspsychologie). 
-
-      I have the CAPES of Philosophy.
+      Certified Philosophy teacher in high school based in Annecy, trained at
+      Sorbonne University and Paris 1 Panthéon-Sorbonne, where I wrote my
+      master's theses on Kant's concept of illusion and human finitude, then on
+      Freud's contribution on religion's psychology (Religionsspsychologie). 
 
 
       I grew up in Montmartre, in Paris, and spent twelve years in hospitality

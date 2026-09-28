@@ -58,8 +58,9 @@ sections:
           drills, no one-size-fits-all method. A thinking partnership, in
           French, built on the texts that matter to you.
       - titre: "The setup "
-        texte: "See how it works. [lien vers l'offre détaillée avec les modules(bêta
-          testing d'abord du coup)] "
+        texte: |-
+          Deep in
+          All in
       - titre: Get started
         texte: Tell me a few lines about your research, the texts you're working on, and
           what you're struggling with right now. I'll get back to you

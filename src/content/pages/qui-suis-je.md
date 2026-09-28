@@ -33,14 +33,18 @@ donnees:
       insists, and is never in a hurry to move on."
   reperes:
     - titre: Education
-      texte: |
+      texte: |-
         Philosophy Masters at Paris 1 Panthéon-Sorbonne.
         CAPES of philosophy, preparation at Sorbonne-Université (Paris IV)
-    - titre: Enseignement
-      texte: Professeure de philosophie en lycée.
-    - titre: Aujourd'hui
-      texte: Interlocutrice pour dialogues philosophants à Annecy. Marque déposée à
-        l'INPI, classe 41.
+    - titre: Teaching
+      texte: |-
+        Philosophy teacher in a French lycée (upper secondary school).
+        French tutor for non-native speakers.
+    - titre: Today
+      texte: "Sparring partner in French for English-speaking researchers, with
+        Frenchy Sauce. Part of La Sauce d'Exister, a project built on one idea :
+        to exist is to be in the sauce, essentially, and it's worth thinking it
+        through with someone."
   appel:
     titre: Parlons-en.
     texte: Si ce que vous lisez vous parle, la suite tient en quelques lignes

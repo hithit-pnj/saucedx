@@ -20,10 +20,12 @@ donnees:
       of it all, something inevitably gets lost: the connotations, the wordplay,
       the texture of the thought.
 
+
       In French-speaking academic circles, you never quite feel like yourself.
       You can't speak your mind, quite literally.
 
-      You're always busy, and it's overwhelming.
+
+      You're always busy, and it's overwhelming. 
 
 
       In short: PhD life.
@@ -31,11 +33,14 @@ donnees:
       I bring together the rigour of a philosophy teacher and the ease of a
       native speaker and lover of the spoken living french. 
 
+
       We read the texts themselves, build the grammar from there, and within a
       few months you can open the originals and hold your own in French-speaking
       academia, as your French self. 
 
+
       Not a language school, not a translation service, not coaching. 
+
 
       A key to French thought, with rigour, wit, and without the headache.
     sceau: Two ways in

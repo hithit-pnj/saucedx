@@ -16,9 +16,17 @@ donnees:
 
 
       You work on French thinkers, but French keeps getting in the way. You read
-      them through translation, and something gets lost: the connotations, the
-      wordplay, the texture of the thought. And in French-speaking academic
-      circles, you never quite feel you belong.
+      them through translation, spend long hours with a dictionary, and on top
+      of it all, something inevitably gets lost: the connotations, the wordplay,
+      the texture of the thought.
+
+      In French-speaking academic circles, you never quite feel like yourself.
+      You can't speak your mind, quite literally.
+
+      You're always busy, and it's overwhelming.
+
+
+      In short: PhD life.
     geste: >-
       I bring together what rarely comes in one person: the rigour of a
       philosophy teacher and the ease of a native speaker and lover of the

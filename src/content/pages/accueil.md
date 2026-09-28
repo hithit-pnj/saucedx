@@ -62,8 +62,9 @@ donnees:
     texte: >-
       Certified Philosophy teacher in high school based in Annecy, trained at
       Sorbonne University and Paris 1 Panthéon-Sorbonne, where I wrote my
-      master's theses on Kant's concept of illusion and human finitude, then on
-      Freud's contribution on religion's psychology (Religionsspsychologie). 
+      master's theses on Kant's concept of illusion in relation with human
+      finitude ; then on Freud's contribution on religion's psychology
+      (Religionsspsychologie). 
 
 
       I grew up in Montmartre, in Paris, and spent twelve years in hospitality

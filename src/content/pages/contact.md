@@ -1,31 +1,30 @@
 ---
 seo:
-  titre: Contact - Frenchy Sauce  |  Access the french you in potency are Access
-    the french you in potency are | Frenchy Sauce.
-  description: "Écrire à Alice Berthoz. Quelques lignes suffisent : je réponds
-    personnellement, et le premier échange n'engage à rien."
+  titre: Contact | Frenchy Sauce
+  description: Contact Alice Camille | French sauce
 donnees:
   hero:
     lignes:
       - Let's talk.
     surtitre: Write to Alice
-    citation: What brings you here, in a few words
+    citation: What brings you here, a few words are enough.
   intro: Dites-moi ce qui vous amène — une question, une situation, une demande de
     devis. Je réponds personnellement, en général sous deux ou trois jours. Le
     premier échange n'engage à rien.
   champs:
-    nom: Votre nom
-    email: Votre adresse mail
-    message: Ce qui vous amène
-    consentement: J'accepte que les informations saisies soient utilisées pour me
-      recontacter. Elles ne servent qu'à cela et ne sont transmises à personne.
-    envoyer: Envoyer
-    envoiEnCours: Envoi…
+    nom: Your name
+    email: Your email address
+    message: What brings you here
+    consentement: I agree that the information I've entered may be used to contact
+      me. It is used for nothing else and never shared with anyone.
+    envoyer: Send
+    envoiEnCours: Sending...
   reponses:
-    succes: Merci — votre message est parti. Je vous réponds personnellement.
-    erreur: L'envoi n'a pas abouti. Écrivez-moi directement à contact@saucedexister.fr.
+    succes: Thank you, your message is on its way. Looking forward to meeting you !
+    erreur: Your message couldn't be sent. Please write to me directly at
+      contact@saucedexister.fr.
   autrement:
-    titre: Autrement
-    texte: Par mail direct, ou en message sur Instagram — les dates d'ateliers et
-      les créneaux de permanence y sont annoncés.
+    titre: Other ways to reach me
+    texte: By email, or send me a message on Instagram @saucedexister_frenchysauce,
+      where I also post about French thought, translation, and PhD life.
 ---

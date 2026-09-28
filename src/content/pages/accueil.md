@@ -28,9 +28,8 @@ donnees:
 
       In short: PhD life.
     geste: >-
-      I bring together what rarely comes in one person: the rigour of a
-      philosophy teacher and the ease of a native speaker and lover of the
-      spoken living french. 
+      I bring together the rigour of a philosophy teacher and the ease of a
+      native speaker and lover of the spoken living french. 
 
       We read the texts themselves, build the grammar from there, and within a
       few months you can open the originals and hold your own in French-speaking
@@ -39,9 +38,8 @@ donnees:
       Not a language school, not a translation service, not coaching. 
 
       A key to French thought, with rigour, wit, and without the headache.
-    sceau: La Sauce d'Exister
+    sceau: Two ways in
   entreprise:
-    surtitre: Two ways in
     titre: Whether you're in the sauce, or just intellectualy hungry for more
     colonnes:
       - texte: >-

@@ -40,13 +40,11 @@ sections:
       Expect rigour, and expect wit.
     blocs:
       - titre: MODULE 1
-        texte: "** to define **"
+        texte: still in the oven...
       - titre: MODULE 2
-        texte: "** to define **"
+        texte: still in the oven...
       - titre: MODULE 3
-        texte: "** to define **"
-      - titre: MODULE 4
-        texte: "** to define **"
+        texte: still in the oven...
 cta:
   titre: Book your discovery call
   texte: few words about you and your needs and your research are all it takes.

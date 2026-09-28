@@ -43,7 +43,7 @@ donnees:
 
 
       A key to French thought, with rigour, wit, and without the headache.
-    sceau: Two ways in
+    sceau: WAYS IN
   entreprise:
     titre: Whether you're in the sauce, or just intellectualy hungry for more
     colonnes:

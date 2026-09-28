@@ -10,11 +10,7 @@ donnees:
       - Who
       - am I ?
     surtitre: Alice Camille - native french speaking philosophy teacher
-    citation: >-
-      Il faut quYou need someone whose job is to think with you, in
-      French.elqu'un dont c'est le métier
-
-      de penser avec vous.
+    citation: A sparring partner whose job is to think French thought with you.
   photoAlt: Portrait of Alice Camille
   photoLegende: Alice Camille loving Camus&sun
   texte:
@@ -47,7 +43,6 @@ donnees:
         through with someone."
   appel:
     titre: Parlons-en.
-    texte: Si ce que vous lisez vous parle, la suite tient en quelques lignes
-      envoyées.
-    label: Écrire à Alice
+    texte: If what you've read speaks to you, the rest starts with a few lines.
+    label: Write to Alice
 ---

@@ -10,7 +10,7 @@ donnees:
       - your research, mind and self
       - need & deserve
     surtitre: "Intellectual rigor meets eloquence : on the page, around the seminar
-      table and over an apéro. Rigorous, personal and witty"
+      table and over an apéro. Precise, personal and witty"
     lieu: philosophical and grammatical rigour, native French, and wit
   manifeste:
     probleme: >-

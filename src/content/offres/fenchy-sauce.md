@@ -12,7 +12,6 @@ hero:
   lignes:
     - What is
     - Frenchy Sauce ?
-    - A resource for your work.
   surtitre: A resource for your work.
   verbes:
     - Read the texts closely

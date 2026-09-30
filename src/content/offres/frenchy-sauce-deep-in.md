@@ -84,7 +84,7 @@ sections:
           for your thesis, and you flourish, intellectually and socially.
 cta:
   titre: Book your discovery call
-  texte: few words about you and your needs and your research are all it takes.
+  texte: few words about you, your needs and your research are all it takes.
   label: Book a call
   sujet: working on french author
 seo:

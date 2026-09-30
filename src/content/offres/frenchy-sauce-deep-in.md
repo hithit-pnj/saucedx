@@ -24,8 +24,7 @@ hero:
   mention: Book your call
 sections:
   - titre: Need a sparring partner for your researchers in Philosophy & the
-      Humanities ? Unlock French thought and navigate French academia within a
-      few month ?
+      Humanities ?
     sousTitre: Unlock French thought and navigate French academia within a few month.
     glyphe: rayonnement
     texte: >-

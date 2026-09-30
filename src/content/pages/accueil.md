@@ -78,8 +78,10 @@ donnees:
     photoAlt: Portrait of Alice Camille
     lien: More about me
   appel:
-    titre: Let's talk.
-    texte: "It always starts the same way: a few lines about what brings you here. I
-      reply personally, and our first conversation commits you to nothing."
-    label: Write to Alice
+    titre: Ten spots. Is one of them yours?
+    texte: It starts with a few questions about your research and where French gets
+      in the way. In return, you'll receive a free reading sheet, and if we're a
+      good fit, we'll book a call. Ten researchers every six months, and nothing
+      is binding until we've talked.
+    label: Apply for a spot
 ---

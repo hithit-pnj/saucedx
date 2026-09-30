@@ -73,16 +73,16 @@ sections:
           Next intake : STILL OPEN (sept 30)
       - titre: Get started
         texte: >-
-          Three months or six, same price : you choose the pace that fits your
-          priorities. 
-
-          I only work with ten researchers every six months, so that each of
-          them gets the attention this work deserves. 
+          Write to me, and You'll receive a short questionnaire to see where you
+          stand, along with a free reading sheet : a French passage, with notes
+          to help you read it closely. 
 
 
-          Enrolment opens twice a year.
+          If you mention your research topic, or send me a text you're working
+          on, and I'll make one that fits your subject.
 
-          Next intake: STILL ON (sept 30)
+
+          Then, since French is learned by practising it, let's talk.
       - titre: My guarantee
         texte: >-
           At the start, we set a clear goal together. 

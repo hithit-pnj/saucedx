@@ -10,8 +10,9 @@ porte:
     Humanities, working on French thought and navigating French academia
 hero:
   lignes:
+    - What is
     - Frenchy
-    - Sauce
+    - Sauce ?
   verbes:
     - Read the texts closely
     - Catch the connotations

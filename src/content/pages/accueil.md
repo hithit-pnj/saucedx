@@ -7,10 +7,11 @@ donnees:
   hero:
     lignes:
       - Access the French
-      - your researche, mind and self
+      - your research, mind and self
       - need & deserve
-    surtitre: "* to exist is, essentially, to be deep in the dip. "
-    lieu: Philosophical and grammatical rigour, native French, and a pinch of wit
+    surtitre: "Intellectual rigor meets eloquence : on the page, around the seminar
+      table and over an apéro. Rigorous, personal and witty"
+    lieu: philosophical and grammatical rigour, native French, and wit
   manifeste:
     probleme: >-
       RESEARCH IS THE DEEPEST SAUCE OF ALL

@@ -23,7 +23,7 @@ hero:
     more French
   mention: Book your call
 sections:
-  - titre: Access the French your researche, mind and life deserve
+  - titre: Access the French your researche, mind & life deserve
     sousTitre: Sparring partner for English-speaking researchers in Philosophy & the
       Humanities, unlock French thought and navigate French academia within a
       few month
@@ -41,7 +41,7 @@ sections:
   - titre: A three-month one-to-one programme combining language and philosophy
       sessions, targeted exercises on your own research texts, and practice
       scenarios to prepare you for speaking.
-    sousTitre: 3 months
+    sousTitre: 3 months or 6 months
     glyphe: rayonnement
     blocs:
       - titre: MODULE 1 - Unlock philosophical reading
@@ -88,8 +88,8 @@ cta:
   label: Book a call
   sujet: Frenchy Sauce - deep in.
 seo:
-  titre: Access the french you in potency are | Frenchy Sauce.
+  titre: Meet your French researcher self | Frenchy Sauce.
   description: "French sparring-partner for English-speaking researchers in
-    philosophy and the humanities: read French thinkers in the original, write
+    philosophy and the humanities : read French thinkers in the original, write
     and speak like yourself."
 ---

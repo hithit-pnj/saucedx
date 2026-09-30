@@ -11,7 +11,7 @@ hero:
   lignes:
     - Meet your French
     - researcher self
-  surtitre: Get unstuck. Get access to french thought
+  surtitre: Get unstuck. Get access to french thought.
   verbes:
     - Access to the originals
     - Meet the deadline
@@ -23,12 +23,17 @@ hero:
     more French
   mention: Book your call
 sections:
-  - titre: Access the French your researche, mind & life deserve
-    sousTitre: Sparring partner for English-speaking researchers in Philosophy & the
-      Humanities, unlock French thought and navigate French academia within a
-      few month
+  - titre: Need a sparring partner for your researchers in Philosophy & the
+      Humanities ? Unlock French thought and navigate French academia within a
+      few month ?
+    sousTitre: Unlock French thought and navigate French academia within a few month.
     glyphe: rayonnement
     texte: >-
+      Sparring partner for English-speaking researchers in Philosophy & the
+      Humanities, unlock French thought and navigate French academia within a
+      few month
+
+
       Here to support your intellectual and professional flourishing, so you
       don't have to do it alone. Together, we work towards two closely linked
       goals. The first is a precise command of written and academic French: we

@@ -1,6 +1,6 @@
 ---
 seo:
-  titre: Your French self | Frenchy Sauce
+  titre: Meet your French researcher self | Frenchy Sauce
   description: Sparring partner for English-speaking researchers in Philosophy &
     the Humanities, working on French thought and navigating French academia
 donnees:

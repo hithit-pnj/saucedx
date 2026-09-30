@@ -83,7 +83,12 @@ sections:
           Enrolment opens twice a year.
 
           Next intake: STILL ON (sept 30)
-      - titre: M
+      - titre: My guarantee
+        texte: >-
+          At the start, we set a clear goal together. 
+
+          If, at the end of your three or six months, you've applied the method
+          and yet haven't reached that goal, we'll set a refund.
 cta:
   titre: Book your discovery call
   label: Book a call

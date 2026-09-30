@@ -1,5 +1,5 @@
 ---
-menu: Fenchy Sauce
+menu: What is Fenchy Sauce ?
 ordre: 1
 publie: true
 climat: ambre
@@ -19,8 +19,9 @@ hero:
     - Speak eloquently
     - Become your French self
   citation: |-
+    Research is the deepest sauce of all.
     Lonelyness doesn't have to mark
-    your journey.
+    this journey of yours.
   mention: Book your call
 sections:
   - titre: Sparring partner for English-speaking researchers in Philosophy & the

@@ -9,9 +9,10 @@ donnees:
       - Access the French
       - your research, mind and self
       - need & deserve
-    surtitre: "Intellectual rigor meets eloquence : on the page, around the seminar
-      table and over an apéro. Precise, personal and witty"
-    lieu: Native French sparring partner
+    surtitre: "Firsthand & in-depth understanding of the French thinkers you work
+      on. Within a few months, your intellectual rigor meets eloquence: on the
+      page, around the seminar table and over an apéro."
+    lieu: " Precise, personal and witty"
   manifeste:
     probleme: >-
       RESEARCH IS THE DEEPEST SAUCE OF ALL

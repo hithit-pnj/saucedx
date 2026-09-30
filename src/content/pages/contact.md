@@ -5,18 +5,20 @@ seo:
 donnees:
   hero:
     lignes:
-      - Let's talk.
-    surtitre: Write to Alice
-    citation: What brings you here, a few words are enough.
-  intro: Dites-moi ce qui vous amène — une question, une situation, une demande de
-    devis. Je réponds personnellement, en général sous deux ou trois jours. Le
-    premier échange n'engage à rien.
+      - Save your spot.
+    surtitre: Ten spots every six months
+    citation: A few questions, and we'll know where to start.
+  intro: "Tell me about your research and where French gets in the way. In return,
+    you'll receive a free reading sheet: a French passage, annotated to help you
+    read it closely, drawn from your research topic or from a text you send me.
+    Then, if we seem a good fit, we'll book a call. I reply personally, usually
+    within two or three days, and nothing is binding at this stage."
   champs:
     nom: Your name
     email: Your email address
-    message: What brings you here
-    consentement: I agree that the information I've entered may be used to contact
-      me. It is used for nothing else and never shared with anyone.
+    message: Your difficulties with French right now
+    consentement: agree that the information I've entered may be used to contact me
+      about my request. It is never shared with anyone.
     envoyer: Send
     envoiEnCours: Sending...
   reponses:

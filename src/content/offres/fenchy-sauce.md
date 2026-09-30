@@ -58,6 +58,22 @@ sections:
         texte: Not a language school, not a translation service, not coaching. No
           drills, no one-size-fits-all method. A thinking partnership, in
           French, built on the texts that matter to you.
+      - titre: The missing piece ?
+        texte: >-
+          You don't need another language course, and you don't need another
+          academic reviewing your work. You need someone who reads philosophy
+          for a living, speaks French natively, and stands just outside the
+          pressure you're under. I teach philosophy at a French lycée, where the
+          explication de texte, reading a philosophical passage line by line, is
+          one of the two exercises of the baccalauréat. I hold a master's degree
+          from Paris 1 Panthéon-Sorbonne, with the highest distinction, and
+          wrote my dissertations on Kant's concept of illusion in relation to
+          human's finitude ; and on Freud's contribution to psychology of
+          religion.
+
+          AND, above all, I'm NOT curently doing a PhD myself : I'm not in the
+          sauce, which is exactly why I can help pull you out of it. An outside
+          eye. 
       - titre: "The setup "
         texte: >-
           Three months or six, same price : you choose the pace that fits your
@@ -71,6 +87,37 @@ sections:
 
 
           Next intake : STILL OPEN (sept 30)
+      - titre: What you get
+        texte: >-
+          One-to-one sessions on the texts you're actually working on, so every
+          hour moves your research forward.
+
+          Targeted exercises on key concepts and argumentative subtleties, to
+          catch what translations miss.
+
+          Reading strategies for French academic texts, so a single page no
+          longer takes you hours.
+
+          Practice scenarios, from seminars and conferences to informal
+          conversations, to speak with confidence when it counts.
+
+          Personal feedback on your abstracts, papers and presentations, to
+          write in French with precision.
+
+          A reading sheet after each session: the passage we worked on,
+          annotated, to review at your own pace.
+
+          A personal glossary built from your own texts, gathering your field's
+          vocabulary as we go.
+
+          A rehearsal before your next talk or interview, so you walk in ready.
+
+          Messages between sessions for quick questions, so you're never stuck
+          on your own.
+
+
+          And if you come to France, an IRL coffee, a walk, and of course :
+          talks ! with pleasure. 
       - titre: Get started
         texte: >-
           Write to me, and You'll receive a short questionnaire to see where you

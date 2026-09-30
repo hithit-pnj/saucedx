@@ -15,9 +15,6 @@ donnees:
     lieu: " Precise, personal and witty"
   manifeste:
     probleme: >-
-      RESEARCH IS THE DEEPEST SAUCE OF ALL
-
-
       You work on French thinkers, but French keeps getting in the way. You read
       them through translation, spend long hours with a dictionary, and on top
       of it all, something inevitably gets lost: the connotations, the wordplay,

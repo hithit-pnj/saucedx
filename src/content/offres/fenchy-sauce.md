@@ -11,8 +11,7 @@ porte:
 hero:
   lignes:
     - What is
-    - Frenchy
-    - Sauce ?
+    - Frenchy Sauce ?
   verbes:
     - Read the texts closely
     - Catch the connotations

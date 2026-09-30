@@ -2,17 +2,32 @@
   "actif": true,
   "plages": [
     {
-      "jour": "mardi",
-      "debut": "14:00",
+      "jour": "lundi",
+      "debut": "08:00",
       "fin": "16:00"
     },
     {
       "jour": "jeudi",
+      "debut": "15:00",
+      "fin": "19:00"
+    },
+    {
+      "jour": "mercredi",
+      "debut": "15:00",
+      "fin": "19:00"
+    },
+    {
+      "jour": "vendredi",
+      "debut": "08:00",
+      "fin": "20:00"
+    },
+    {
+      "jour": "samedi",
       "debut": "10:00",
-      "fin": "12:00"
+      "fin": "18:00"
     }
   ],
-  "duree": 15,
+  "duree": 45,
   "battement": 15,
   "delaiMinimum": 24,
   "horizon": 21,
@@ -28,7 +43,7 @@
     "bouton": "Ask this slot",
     "boutonEnCours": "Sending...",
     "consentement": "I agree that my name, phone number and email address will be kept only for as long as it takes to arrange this call.",
-    "succes": "Got it. Alice will confirm this time by email, usually within 24 hours.",
+    "succes": "Got it. You'll get confirmation by email, usually within 24 hours.",
     "erreur": "Something went wrong. Please write to me directly at contact@lasaucedexister.fr.",
     "fuseau": "All times are Paris time."
   },

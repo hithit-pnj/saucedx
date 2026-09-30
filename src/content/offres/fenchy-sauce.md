@@ -1,5 +1,5 @@
 ---
-menu: What is Fenchy Sauce ?
+menu: What is Frenchy Sauce ?
 ordre: 1
 publie: true
 climat: ambre

@@ -1,5 +1,5 @@
 ---
-menu: Frenchy sauce - deep in.
+menu: Get access to french thought
 ordre: 2
 publie: true
 climat: garance
@@ -11,7 +11,7 @@ hero:
   lignes:
     - Meet your French
     - researcher self
-  surtitre: Get unstuck.
+  surtitre: Get unstuck. Get access to french thought
   verbes:
     - Access to the originals
     - Meet the deadline
@@ -86,7 +86,7 @@ cta:
   titre: Book your discovery call
   texte: few words about you and your needs and your research are all it takes.
   label: Book a call
-  sujet: Frenchy Sauce - deep in.
+  sujet: working on french author
 seo:
   titre: Meet your French researcher self | Frenchy Sauce.
   description: "French sparring-partner for English-speaking researchers in

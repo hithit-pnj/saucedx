@@ -43,24 +43,7 @@ donnees:
 
 
       A key to French thought, with rigour, wit, and without the headache.
-    sceau: WAYS IN
-  entreprise:
-    titre: Whether you're in the sauce, or just intellectualy hungry for more
-    colonnes:
-      - texte: >-
-          In the sauce ? Get unstuck :
-
-
-          A deadline, a conference, a text you can't crack. You need help now,
-          and you'll get it: focused sessions on what's urgent, until you're
-          back on your feet.
-      - texte: >-
-          Feel yourself think :
-
-
-          High standards. A demanding, rigorous programme to unlock the next
-          stage of your intellectual life: we read French texts in the original,
-          discuss them in French, and test your ideas against theirs.
+    sceau: Stuck on the page, silent in the seminar?
   portrait:
     surtitre: Who's talking
     titre: Alice Camille

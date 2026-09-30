@@ -7,11 +7,11 @@ donnees:
   hero:
     lignes:
       - Access the French
-      - your research, mind & self
-      - deserve
-    surtitre: "Firsthand & in-depth understanding of the French thinkers you work
-      on. Within a few months, your intellectual rigor meets eloquence: on the
-      page, around the seminar table and over an apéro."
+      - your research,
+      - mind & self deserve
+    surtitre: Firsthand & in-depth understanding of the French thinkers you work on.
+      Within a few months, your intellectual rigor meets eloquence on the page,
+      around the seminar table and over an apéro.
     lieu: " Precise, personal and witty"
   manifeste:
     probleme: >-

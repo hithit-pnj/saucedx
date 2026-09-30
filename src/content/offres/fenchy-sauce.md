@@ -19,10 +19,9 @@ hero:
     - Write with precision
     - Speak eloquently
     - Become your French self
-  citation: >-
-    Research is the deepest sauce of all, a true condition of existence. 
-
-    Let's not let French get in the way, and turn it into a real asset.
+  citation: |-
+    Research is the deepest sauce of all. 
+    Let's not let French get in the way, and turn it into a real asset. 
     Loneliness and overwork don't have to define this journey of yours.
   mention: Let's talk.
 sections:

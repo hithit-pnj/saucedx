@@ -12,17 +12,18 @@ hero:
   lignes:
     - What is
     - Frenchy Sauce ?
-  surtitre: A resource for your work.
+  surtitre: A living resource for your work.
   verbes:
     - Read the texts closely
     - Catch the connotations
     - Write with precision
     - Speak eloquently
     - Become your French self
-  citation: |-
-    Research is the deepest sauce of all.
-    Lonelyness doesn't have to mark
-    this journey of yours.
+  citation: >-
+    Research is the deepest sauce of all, a true condition of existence. 
+
+    Let's not let French get in the way, and turn it into a real asset.
+    Loneliness and overwork don't have to define this journey of yours.
   mention: Book your call
 sections:
   - titre: Sparring partner for English-speaking researchers in Philosophy & the
@@ -40,9 +41,9 @@ sections:
     blocs:
       - titre: This is for you if...
         texte: >-
-          You're writing on Beauvoir, Foucault, Bourdieu, Deleuze, Lacan,
-          Badiou, Meillassoux, Rousseau, Lévi-Strauss… any French thinker, and
-          the English translation no longer feels like enough.
+          You're studying or writing on Beauvoir, Foucault, Bourdieu, Deleuze,
+          Lacan, Badiou, Meillassoux, Rousseau, Lévi-Strauss… any French
+          thinker, and the English translation no longer feels like enough.
 
           Reading a single page of French takes you longer than you can bear.
 

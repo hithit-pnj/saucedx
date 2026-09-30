@@ -11,9 +11,8 @@ donnees:
       - am I ?
     surtitre: Alice Camille - native french speaking philosophy teacher
     citation: A sparring partner whose job is to think French thought with you.
-  photo: /media/insta tof.jpeg
+  photo: /media/FRENCHYSOOOOOCE.jpeg
   photoAlt: Portrait of Alice Camille
-  photoLegende: Alice Camille loving Camus&sun
   texte:
     - I studied philosophy because the questions I carried never found anyone to
       meet them. I became a teacher because I wanted to see what those questions
@@ -51,7 +50,10 @@ donnees:
         to exist is to be in the sauce, essentially, and it's worth thinking it
         through with someone."
   appel:
-    titre: Let's talk.
-    texte: If what you've read speaks to you, the rest starts with a few lines.
-    label: Write to Alice
+    titre: Ten spots. Is one of them yours?
+    texte: It starts with a few questions about your research and where French gets
+      in the way. In return, you'll receive a free reading sheet, and if we're a
+      good fit, we'll book a call. Ten researchers every six months, and nothing
+      is binding until we've talked.
+    label: Apply for a spot
 ---

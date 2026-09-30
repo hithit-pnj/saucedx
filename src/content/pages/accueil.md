@@ -77,9 +77,6 @@ donnees:
       I grew up in Montmartre, in Paris, and spent twelve years in hospitality
       before teaching, so I know French lives around a dinner table as much as
       in a seminar room.
-
-
-      I take ideas seriously, but never myself.
     photoAlt: Portrait of Alice Camille
     lien: More about me
   appel:

@@ -139,7 +139,7 @@ sections:
 cta:
   titre: Book a call with Alice and be one of the next ten
   texte: You've carried this alone long enough. Let's share the load.
-  label: Book a call
+  label: Apply for a spot
 seo:
   titre: Your French self | Frenchy Sauce.
   description: "Sparring French mentor for English-speaking researchers in

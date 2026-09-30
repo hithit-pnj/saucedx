@@ -9,14 +9,14 @@ porte:
   precision: gain time, go deeper
 hero:
   lignes:
-    - Frenchy Sauce
-    - Deep in
+    - Meet your French
+    - researcher self
   surtitre: Get unstuck.
   verbes:
     - Access to the originals
     - Meet the deadline
     - Rehearse the talk
-    - Walk in ready
+    - Feel empowered
   citation: |-
     less busyness
     less lonelyness

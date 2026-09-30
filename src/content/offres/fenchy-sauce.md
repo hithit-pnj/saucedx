@@ -26,9 +26,7 @@ hero:
     Loneliness and overwork don't have to define this journey of yours.
   mention: Book your call
 sections:
-  - titre: Sparring partner for English-speaking researchers in Philosophy & the
-      Humanities, working on French thought and navigating French academia.
-    sousTitre: Access the French your researche, mind and life deserve, within a few month
+  - sousTitre: Access the French your researche, mind and life deserve, within a few month
     glyphe: fleche
     texte: "Here to support your intellectual and professional flourishing, so you
       don't have to do it alone. Together, we work towards two closely linked
@@ -70,12 +68,10 @@ sections:
           personally, and tell you honestly whether and how I can help.
 cta:
   titre: Book your discovery call
-  texte: few words about you and your goals and your research are all it takes.
   label: Book a call
-  sujet: Frenchy Sauce - see which
 seo:
-  titre: Access the french you in potency are | Frenchy Sauce.
-  description: "1:1 sparring French mentor for English-speaking researchers in
-    philosophy and the humanities: read French thinkers in the original, write
+  titre: Your French self | Frenchy Sauce.
+  description: "Sparring French mentor for English-speaking researchers in
+    philosophy and the humanities : read French thinkers in the original, write
     and speak like yourself."
 ---

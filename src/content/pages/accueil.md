@@ -11,7 +11,7 @@ donnees:
       - need & deserve
     surtitre: "Intellectual rigor meets eloquence : on the page, around the seminar
       table and over an apéro. Precise, personal and witty"
-    lieu: philosophical and grammatical rigour, native French, and wit
+    lieu: Native French sparring partner
   manifeste:
     probleme: >-
       RESEARCH IS THE DEEPEST SAUCE OF ALL

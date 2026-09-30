@@ -5,7 +5,7 @@ publie: true
 climat: garance
 glyphe: rayonnement
 porte:
-  intitule: Working on French authors ?
+  intitule: Get access to french thought
   precision: gain time, go deeper
 hero:
   lignes:
@@ -18,6 +18,7 @@ hero:
     - Rehearse the talk
     - Feel empowered
   citation: |-
+    Working on french thinkers ?
     less busyness
     less lonelyness
     more French
@@ -85,8 +86,7 @@ sections:
 cta:
   titre: Book your discovery call
   texte: few words about you, your needs and your research are all it takes.
-  label: Book a call
-  sujet: working on french author
+  label: Get a spot
 seo:
   titre: Meet your French researcher self | Frenchy Sauce.
   description: "French sparring-partner for English-speaking researchers in

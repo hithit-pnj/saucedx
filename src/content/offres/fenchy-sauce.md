@@ -5,9 +5,9 @@ publie: true
 climat: ambre
 glyphe: fleche
 porte:
-  intitule: Fenchy Sauce
-  precision: Sparring partner for English-speaking researchers in Philosophy & the
-    Humanities, working on French thought and navigating French academia
+  intitule: What is Fenchy Sauce ?
+  precision: Sparring partnership for researchers in Philosophy & the Humanities,
+    working on French thought and navigating French academia
 hero:
   lignes:
     - What is
@@ -24,7 +24,7 @@ hero:
 
     Let's not let French get in the way, and turn it into a real asset.
     Loneliness and overwork don't have to define this journey of yours.
-  mention: Book your call
+  mention: Let's talk.
 sections:
   - sousTitre: Access the French your researche, mind and life deserve, within a few month
     glyphe: fleche
@@ -59,9 +59,18 @@ sections:
           drills, no one-size-fits-all method. A thinking partnership, in
           French, built on the texts that matter to you.
       - titre: "The setup "
-        texte: |-
-          Deep in
-          All in
+        texte: >-
+          Three months or six, same price : you choose the pace that fits your
+          priorities.
+
+
+          I only work with ten researchers every six months, so that each of
+          them gets the attention this work deserves. 
+
+          Enrolment opens twice a year. 
+
+
+          Next intake : STILL OPEN (sept 30)
       - titre: Get started
         texte: Tell me a few lines about your research, the texts you're working on, and
           what you're struggling with right now. I'll get back to you

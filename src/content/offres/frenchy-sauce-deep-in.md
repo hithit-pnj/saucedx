@@ -2,10 +2,10 @@
 menu: Frenchy sauce - deep in.
 ordre: 2
 publie: true
-climat: bronze
-glyphe: meandre
+climat: garance
+glyphe: rayonnement
 porte:
-  intitule: In the sauce ? Get unstuck.
+  intitule: Working on French authors ?
   precision: gain time, go deeper
 hero:
   lignes:
@@ -18,7 +18,7 @@ hero:
     - Rehearse the talk
     - Walk in ready
   citation: |-
-    less panic
+    less busyness
     less lonelyness
     more French
   mention: Book your call

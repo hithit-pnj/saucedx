@@ -42,9 +42,9 @@ sections:
       French; it's about sounding like yourself, in French. 
 
       Expect rigour, and expect wit.
-  - titre: A three-month one-to-one programme combining language and philosophy
-      sessions, targeted exercises on your own research texts, and practice
-      scenarios to prepare you for speaking.
+  - titre: Programme combining language and philosophy sessions, targeted exercises
+      on your own research texts, and practice scenarios to prepare you for
+      speaking.
     sousTitre: 3 months or 6 months
     glyphe: rayonnement
     blocs:

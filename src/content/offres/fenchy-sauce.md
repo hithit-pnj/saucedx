@@ -72,9 +72,18 @@ sections:
 
           Next intake : STILL OPEN (sept 30)
       - titre: Get started
-        texte: Tell me a few lines about your research, the texts you're working on, and
-          what you're struggling with right now. I'll get back to you
-          personally, and tell you honestly whether and how I can help.
+        texte: >-
+          Three months or six, same price : you choose the pace that fits your
+          priorities. 
+
+          I only work with ten researchers every six months, so that each of
+          them gets the attention this work deserves. 
+
+
+          Enrolment opens twice a year.
+
+          Next intake: STILL ON (sept 30)
+      - titre: M
 cta:
   titre: Book your discovery call
   label: Book a call

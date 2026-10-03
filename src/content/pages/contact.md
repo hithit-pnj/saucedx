@@ -5,9 +5,11 @@ seo:
 donnees:
   hero:
     lignes:
-      - Save your spot.
-    surtitre: Ten spots every six months
-    citation: A few questions, and we'll know where to start.
+      - Become a founding
+      - " researcher <3"
+    surtitre: Let's talk !
+    citation: Tell me something that is blocking you, and we'll see how we can turn
+      that into a strength !
   intro: "Tell me about your research and where French gets in the way. In return,
     you'll receive a free reading sheet: a French passage, annotated to help you
     read it closely, drawn from your research topic or from a text you send me.

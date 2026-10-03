@@ -13,8 +13,8 @@ donnees:
   intro: "Tell me about your research and where French gets in the way. In return,
     you'll receive a free reading sheet: a French passage, annotated to help you
     read it closely, drawn from your research topic or from a text you send me.
-    Then, if we seem a good fit, we'll book a call. I reply personally, usually
-    within two or three days, and nothing is binding at this stage."
+    Then, if we seem a good fit, we'll book a call. I reply personally, and
+    nothing is binding at this stage."
   champs:
     nom: Your name
     email: Your email address

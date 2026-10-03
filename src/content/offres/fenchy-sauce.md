@@ -74,18 +74,7 @@ sections:
           sauce, which is exactly why I can help pull you out of it. An outside
           eye. 
       - titre: "The setup "
-        texte: >-
-          Three months or six, same price : you choose the pace that fits your
-          priorities.
-
-
-          I only work with ten researchers every six months, so that each of
-          them gets the attention this work deserves. 
-
-          Enrolment opens twice a year. 
-
-
-          Next intake : STILL OPEN (sept 30)
+        texte: "Now building the founding researcher team <3 "
       - titre: What you get
         texte: >-
           One-to-one sessions on the texts you're actually working on, so every

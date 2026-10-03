@@ -62,8 +62,8 @@ donnees:
     lien: More about me
   appel:
     titre: founding researchers <3
-    texte: Where French gets in the way ? You'll receive a free reading sheet, and
-      if we're a good fit, we'll book a call. Five researchers, and nothing is
-      binding until we've talked.
+    texte: Where does French get in the way ? You'll receive a free reading sheet,
+      and if we're a good fit, we'll book a call. Five researchers, and nothing
+      is binding until we've talked.
     label: Apply for a spot
 ---

@@ -61,7 +61,7 @@ donnees:
     photoAlt: Portrait of Alice Camille
     lien: More about me
   appel:
-    titre: Funding intake
+    titre: Founding session!
     texte: Where French gets in the way ? You'll receive a free reading sheet, and
       if we're a good fit, we'll book a call. Five researchers, and nothing is
       binding until we've talked.

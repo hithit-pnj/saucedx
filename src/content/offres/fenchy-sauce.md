@@ -136,8 +136,8 @@ sections:
           If, at the end of your three or six months, you've applied the method
           and yet haven't reached that goal, we'll set a refund.
 cta:
-  titre: Book a call with Alice and be one of the next ten
-  texte: You've carried this alone long enough. Let's share the load.
+  titre: founding researchers <3
+  texte: "You've carried this alone long enough. Let's share the load ! "
   label: Apply for a spot
 seo:
   titre: Your French self | Frenchy Sauce.

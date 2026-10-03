@@ -6,9 +6,9 @@ seo:
 donnees:
   hero:
     lignes:
-      - Access the French
-      - your research,
-      - mind & self NEED
+      - The French your
+      - researcher
+      - self needs.
     surtitre: Firsthand & in-depth understanding of the French thinkers you work on.
       Within a few months, your intellectual rigor meets eloquence on the page,
       around the seminar table and over an apéro.
@@ -61,10 +61,9 @@ donnees:
     photoAlt: Portrait of Alice Camille
     lien: More about me
   appel:
-    titre: Ten spots. Is one of them yours?
-    texte: It starts with a few questions about your research and where French gets
-      in the way. In return, you'll receive a free reading sheet, and if we're a
-      good fit, we'll book a call. Ten researchers every six months, and nothing
-      is binding until we've talked.
+    titre: Funding intake
+    texte: Where French gets in the way ? You'll receive a free reading sheet, and
+      if we're a good fit, we'll book a call. Five researchers, and nothing is
+      binding until we've talked.
     label: Apply for a spot
 ---

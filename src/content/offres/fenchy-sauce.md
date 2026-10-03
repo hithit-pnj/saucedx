@@ -137,7 +137,7 @@ sections:
           and yet haven't reached that goal, we'll set a refund.
 cta:
   titre: founding researchers <3
-  texte: "You've carried this alone long enough. Let's share the load ! "
+  texte: Let's make you flourish in your researcher life !
   label: Apply for a spot
 seo:
   titre: Your French self | Frenchy Sauce.

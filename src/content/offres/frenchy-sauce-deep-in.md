@@ -84,9 +84,9 @@ sections:
           the French-speaking philosophical community. You save precious time
           for your thesis, and you flourish, intellectually and socially.
 cta:
-  titre: Book your discovery call
+  titre: "Wanna be one of the five founders ? "
   texte: Few words about you, your needs in French, and we'll figure out the rest
-    together.
+    together <3
   label: Let's meet !
 seo:
   titre: Meet your French researcher self | Frenchy Sauce.

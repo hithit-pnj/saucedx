@@ -50,10 +50,7 @@ donnees:
         to exist is to be in the sauce, essentially, and it's worth thinking it
         through with someone."
   appel:
-    titre: Ten spots. Is one of them yours?
-    texte: It starts with a few questions about your research and where French gets
-      in the way. In return, you'll receive a free reading sheet, and if we're a
-      good fit, we'll book a call. Ten researchers every six months, and nothing
-      is binding until we've talked.
-    label: Apply for a spot
+    titre: Become a founding researcher of Frenchy Sauce! <3
+    texte: Where is French giving you a hard time ?
+    label: Let's meet !
 ---

@@ -85,8 +85,9 @@ sections:
           for your thesis, and you flourish, intellectually and socially.
 cta:
   titre: Book your discovery call
-  texte: few words about you, your needs and your research are all it takes.
-  label: Get a spot
+  texte: Few words about you, your needs in French, and we'll figure out the rest
+    together.
+  label: Let's meet !
 seo:
   titre: Meet your French researcher self | Frenchy Sauce.
   description: "French sparring-partner for English-speaking researchers in

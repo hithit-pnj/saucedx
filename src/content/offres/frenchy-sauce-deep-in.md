@@ -83,7 +83,7 @@ sections:
           the French-speaking philosophical community. You save precious time
           for your thesis, and you flourish, intellectually and socially.
 cta:
-  titre: Wanna be one of the five founding researchers?
+  titre: Wanna be one of my first five Frenchies?
   texte: A few words about you and your needs in French, and we'll figure out the
     rest together <3
   label: Let's meet!

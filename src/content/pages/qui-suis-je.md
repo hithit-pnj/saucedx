@@ -50,7 +50,7 @@ donnees:
         to exist is to be in the sauce, essentially, and it's worth thinking it
         through with someone."
   appel:
-    titre: Be one of my first five Frenchies! <3
+    titre: Be one of my first five Frenchies!
     texte: Where is French giving you a hard time?
     label: Let's meet!
 ---

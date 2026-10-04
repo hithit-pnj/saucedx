@@ -37,20 +37,20 @@
     "titre": "Get in my diary <3",
     "intro": "Sent your answers? Now pick a time, and you're in my diary. 45' to see whether we're a good fit, and where we could go together.",
     "attente": "Looking at the time slots...",
-    "vide": "None of the slots are available right now. Please right to me.",
-    "choisi": "Booked here",
-    "changer": "Switch",
-    "bouton": "Ask this slot",
+    "vide": "None of the slots are available right now. Please write to me.",
+    "choisi": "Your chosen slot",
+    "changer": "Change",
+    "bouton": "Request this slot",
     "boutonEnCours": "Sending...",
     "consentement": "I agree that my name, phone number and email address will be kept only for as long as it takes to arrange this call.",
     "succes": "Got it. You'll get confirmation by email, usually within 24 hours.",
-    "erreur": "Something went wrong. Please write to me directly at contact@lasaucedexister.fr.",
+    "erreur": "Something went wrong. Please write to me directly at contact@saucedexister.fr.",
     "fuseau": "All times are Paris time."
   },
   "champs": {
     "nom": "Your name",
     "telephone": "Your phone number (with country code)",
     "email": "Your email address",
-    "motif": "What do you need right now with french ?"
+    "motif": "What do you need in French right now?"
   }
 }

@@ -128,7 +128,7 @@ sections:
           still haven't reached that goal by the end of your three or six
           months, I'll refund you in full.
 cta:
-  titre: my first five Frenchies <3
+  titre: my first five Frenchies
   texte: Let's make you flourish in your researcher life!
   label: Apply for a spot!
 seo:

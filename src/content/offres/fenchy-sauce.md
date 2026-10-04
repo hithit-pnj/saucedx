@@ -1,17 +1,17 @@
 ---
-menu: What is Frenchy Sauce ?
+menu: What is Frenchy Sauce?
 ordre: 1
 publie: true
 climat: ambre
 glyphe: fleche
 porte:
-  intitule: What is Fenchy Sauce ?
+  intitule: What is Frenchy Sauce?
   precision: Sparring partnership for researchers in Philosophy & the Humanities,
     working on French thought and navigating French academia
 hero:
   lignes:
     - What is
-    - Frenchy Sauce ?
+    - Frenchy Sauce?
   surtitre: A living resource for your work.
   verbes:
     - Read the texts closely
@@ -25,7 +25,7 @@ hero:
     Loneliness and overwork don't have to define this journey of yours.
   mention: Let's talk.
 sections:
-  - sousTitre: The French your self researcher needs.
+  - sousTitre: The French your researcher self needs.
     glyphe: fleche
     texte: "Here to support your intellectual and professional flourishing, so you
       don't have to do it alone. Together, we work towards two closely linked
@@ -57,7 +57,7 @@ sections:
         texte: Not a language school, not a translation service, not coaching. No
           drills, no one-size-fits-all method. A thinking partnership, in
           French, built on the texts that matter to you.
-      - titre: The missing piece ?
+      - titre: The missing piece?
         texte: >-
           You don't need another language course, and you don't need another
           academic reviewing your work. You need someone who reads philosophy
@@ -67,10 +67,10 @@ sections:
           one of the two exercises of the baccalauréat. I hold a master's degree
           from Paris 1 Panthéon-Sorbonne, with the highest distinction, and
           wrote my dissertations on Kant's concept of illusion in relation to
-          human's finitude ; and on Freud's contribution to psychology of
+          human finitude, and on Freud's contribution to the psychology of
           religion.
 
-          AND, above all, I'm NOT curently doing a PhD myself : I'm not in the
+          AND, above all, I'm NOT currently doing a PhD myself: I'm not in the
           sauce, which is exactly why I can help pull you out of it. An outside
           eye. 
       - titre: "The setup "
@@ -104,33 +104,36 @@ sections:
           on your own.
 
 
-          And if you come to France, an IRL coffee, a walk, and of course :
-          talks ! with pleasure. 
+          And if you come to France, an IRL coffee, a walk, and of course:
+          talks! With pleasure. 
       - titre: Get started
         texte: >-
-          Write to me, and You'll receive a short questionnaire to see where you
-          stand, along with a free reading sheet : a French passage, with notes
-          to help you read it closely. 
+          Write to me, and you'll receive your free starter pack, built around
+          your research: a French passage chosen for you, with notes to help you
+          read it closely, and the keys to introduce yourself and your work in
+          French.
 
 
-          If you mention your research topic, or send me a text you're working
-          on, and I'll make one that fits your subject.
+          Tell me which thinker, text or paragraph is giving you a hard time,
+          and I'll build it around that.
 
 
-          Then, since French is learned by practising it, let's talk.
+          Then, since French is learned by practising it, let's talk: 45 minutes
+          together, for free.
       - titre: My guarantee
         texte: >-
           At the start, we set a clear goal together. 
 
-          If, at the end of your three or six months, you've applied the method
-          and yet haven't reached that goal, we'll set a refund.
+          If you come to our sessions, do the work we agree on between them, and
+          still haven't reached that goal by the end of your three or six
+          months, I'll refund you in full.
 cta:
   titre: founding researchers <3
-  texte: Let's make you flourish in your researcher life !
+  texte: Let's make you flourish in your researcher life!
   label: Apply for a spot
 seo:
   titre: Your French self | Frenchy Sauce.
   description: "Sparring French mentor for English-speaking researchers in
-    philosophy and the humanities : read French thinkers in the original, write
+    philosophy and the humanities: read French thinkers in the original, write
     and speak like yourself."
 ---

@@ -6,7 +6,7 @@ donnees:
   hero:
     lignes:
       - Be one of my
-      - first five Frenchies <3
+      - first five Frenchies
     surtitre: Let's talk!
     citation: Tell me something that is blocking you, and we'll see how we can turn
       that into a strength!

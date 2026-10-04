@@ -61,10 +61,10 @@ donnees:
     photoAlt: Portrait of Alice Camille
     lien: More about me
   appel:
-    titre: founding researchers <3
+    titre: my first five Frenchies <3
     texte: Where does French get in your way? Tell me, and you'll receive your free
       starter pack, built around it. Then we'll spend 45 minutes on it together,
-      for free. Five founding researchers, and nothing is binding until we've
-      talked.
-    label: Apply for a spot
+      for free. Five spots for my first Frenchies, and nothing is binding until
+      we've talked.
+    label: Apply for a spot!
 ---

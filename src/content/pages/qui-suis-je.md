@@ -8,8 +8,8 @@ donnees:
   hero:
     lignes:
       - Who
-      - am I ?
-    surtitre: Alice Camille - native french speaking philosophy teacher
+      - am I?
+    surtitre: Alice Camille - native French-speaking philosophy teacher
     citation: A sparring partner whose job is to think French thought with you.
   photo: /media/FRENCHYSOOOOOCE.jpeg
   photoAlt: Portrait of Alice Camille
@@ -46,11 +46,11 @@ donnees:
         French tutor for non-native speakers.
     - titre: Today
       texte: "Sparring partner in French for English-speaking researchers, with
-        Frenchy Sauce. Part of La Sauce d'Exister, a project built on one idea :
+        Frenchy Sauce. Part of La Sauce d'Exister, a project built on one idea:
         to exist is to be in the sauce, essentially, and it's worth thinking it
         through with someone."
   appel:
     titre: Become a founding researcher of Frenchy Sauce! <3
-    texte: Where is French giving you a hard time ?
-    label: Let's meet !
+    texte: Where is French giving you a hard time?
+    label: Let's meet!
 ---

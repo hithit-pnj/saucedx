@@ -10,7 +10,7 @@ donnees:
       - researcher
       - self needs.
     surtitre: Firsthand & in-depth understanding of the French thinkers you work on.
-      Within a few months, your intellectual rigor meets eloquence on the page,
+      Within a few months, your intellectual rigour meets eloquence on the page,
       around the seminar table and over an apéro.
     lieu: " Precise, personal and witty"
   manifeste:
@@ -31,7 +31,7 @@ donnees:
       In short: PhD life.
     geste: >-
       I bring together the rigour of a philosophy teacher and the ease of a
-      native speaker and lover of the spoken living french. 
+      native speaker and lover of living, spoken French. 
 
 
       We read the texts themselves, build the grammar from there, and within a
@@ -50,9 +50,9 @@ donnees:
     texte: >-
       Certified Philosophy teacher in high school based in Annecy, trained at
       Sorbonne University and Paris 1 Panthéon-Sorbonne, where I wrote my
-      master's theses on Kant's concept of illusion in relation with human
-      finitude ; then on Freud's contribution on religion's psychology
-      (Religionsspsychologie). 
+      master's theses on Kant's concept of illusion in relation to human
+      finitude, then on Freud's contribution to the psychology of religion
+      (Religionspsychologie). 
 
 
       I grew up in Montmartre, in Paris, and spent twelve years in hospitality
@@ -62,8 +62,9 @@ donnees:
     lien: More about me
   appel:
     titre: founding researchers <3
-    texte: Where does French get in the way ? You'll receive a free reading sheet,
-      and if we're a good fit, we'll book a call. Five researchers, and nothing
-      is binding until we've talked.
+    texte: Where does French get in your way? Tell me, and you'll receive your free
+      starter pack, built around it. Then we'll spend 45 minutes on it together,
+      for free. Five founding researchers, and nothing is binding until we've
+      talked.
     label: Apply for a spot
 ---

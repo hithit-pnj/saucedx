@@ -74,7 +74,7 @@ sections:
           sauce, which is exactly why I can help pull you out of it. An outside
           eye. 
       - titre: "The setup "
-        texte: "Now building the founding researcher team <3 "
+        texte: "Now welcoming my first five Frenchies <3 "
       - titre: What you get
         texte: >-
           One-to-one sessions on the texts you're actually working on, so every
@@ -128,9 +128,9 @@ sections:
           still haven't reached that goal by the end of your three or six
           months, I'll refund you in full.
 cta:
-  titre: founding researchers <3
+  titre: my first five Frenchies <3
   texte: Let's make you flourish in your researcher life!
-  label: Apply for a spot
+  label: Apply for a spot!
 seo:
   titre: Your French self | Frenchy Sauce.
   description: "Sparring French mentor for English-speaking researchers in

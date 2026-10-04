@@ -5,8 +5,8 @@ seo:
 donnees:
   hero:
     lignes:
-      - Become a founding
-      - " researcher <3"
+      - Be one of my
+      - first five Frenchies <3
     surtitre: Let's talk!
     citation: Tell me something that is blocking you, and we'll see how we can turn
       that into a strength!

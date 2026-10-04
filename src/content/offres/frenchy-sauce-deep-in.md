@@ -1,32 +1,31 @@
 ---
-menu: Get access to french thought
+menu: Get access to French thought
 ordre: 2
 publie: true
 climat: garance
 glyphe: rayonnement
 porte:
-  intitule: Get access to french thought
+  intitule: Get access to French thought
   precision: gain time, go deeper
 hero:
   lignes:
     - Meet your French
     - researcher self
-  surtitre: Get unstuck. Get access to french thought.
+  surtitre: Get unstuck. Get access to French thought.
   verbes:
     - Access to the originals
     - Meet the deadline
     - Rehearse the talk
     - Feel empowered
   citation: |-
-    Working on french thinkers ?
+    Working on French thinkers?
     less busyness
-    less lonelyness
+    less loneliness
     more French
   mention: Book your call
 sections:
-  - titre: Need a sparring partner for your researchers in Philosophy & the
-      Humanities ?
-    sousTitre: Unlock French thought and navigate French academia within a few month.
+  - titre: Need a sparring partner for your research in Philosophy & the Humanities?
+    sousTitre: Unlock French thought and navigate French academia within a few months.
     glyphe: rayonnement
     texte: >-
       Here to support and challenge your intellectual and professional
@@ -79,18 +78,18 @@ sections:
           dread speaking in public, and you doubt you'll ever find your place in
           French-speaking academia.
       - titre: AFTER
-        texte: You read the originals with easyness, you take part in conferences with
+        texte: You read the originals with ease, you take part in conferences with
           confidence and humour, and you feel fully legitimate and connected to
           the French-speaking philosophical community. You save precious time
           for your thesis, and you flourish, intellectually and socially.
 cta:
-  titre: "Wanna be one of the five founders ? "
-  texte: Few words about you, your needs in French, and we'll figure out the rest
-    together <3
-  label: Let's meet !
+  titre: Wanna be one of the five founding researchers?
+  texte: A few words about you and your needs in French, and we'll figure out the
+    rest together <3
+  label: Let's meet!
 seo:
   titre: Meet your French researcher self | Frenchy Sauce.
-  description: "French sparring-partner for English-speaking researchers in
-    philosophy and the humanities : read French thinkers in the original, write
+  description: "French sparring partner for English-speaking researchers in
+    philosophy and the humanities: read French thinkers in the original, write
     and speak like yourself."
 ---

@@ -14,9 +14,8 @@ donnees:
     anything! In return, you'll receive your free starter pack, built around it:
     a French passage chosen for you, with notes to help you read it closely, and
     the keys to introduce yourself and your research in French. Then pick a time
-    for our 45 minutes together, for free: the calendar is just below the form.
-    I reply personally, usually within 24 hours, and nothing is binding at this
-    stage."
+    for our 45 minutes together: the calendar is just below the form. I reply
+    personally, usually within 24 hours, and nothing is binding at this stage."
   champs:
     nom: Your name
     email: Your email address

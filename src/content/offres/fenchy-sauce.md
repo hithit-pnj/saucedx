@@ -71,8 +71,8 @@ sections:
           religion.
 
           AND, above all, I'm NOT currently doing a PhD myself: I'm not in the
-          sauce, which is exactly why I can help pull you out of it. An outside
-          eye. 
+          same sauce as you, which is exactly why I can help you with yours. An
+          outside eye. 
       - titre: "The setup "
         texte: "Now welcoming my first five Frenchies <3 "
       - titre: What you get

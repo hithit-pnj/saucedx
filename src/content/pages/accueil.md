@@ -63,8 +63,8 @@ donnees:
   appel:
     titre: my first five Frenchies
     texte: Where does French get in your way? Tell me, and you'll receive your free
-      starter pack, built around it. Then we'll spend 45 minutes on it together,
-      for free. Five spots for my first Frenchies, and nothing is binding until
-      we've talked.
+      starter pack, built around it. Then we'll spend 45 minutes on it together.
+      Five spots for my first Frenchies, and nothing is binding until we've
+      talked.
     label: Apply for a spot!
 ---

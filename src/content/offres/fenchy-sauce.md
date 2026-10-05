@@ -119,7 +119,7 @@ sections:
 
 
           Then, since French is learned by practising it, let's talk: 45 minutes
-          together, for free.
+          together.
       - titre: My guarantee
         texte: >-
           At the start, we set a clear goal together. 

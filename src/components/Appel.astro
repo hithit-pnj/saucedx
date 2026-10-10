@@ -1,40 +1,37 @@
 ---
-import Fil from './Fil.astro';
+import { getEntry } from 'astro:content';
 import Prose from './Prose.astro';
 
-/** L'unique mécanisme de conversion du site : que le visiteur écrive. */
+/**
+ * L'appel final de chaque page, en Framboise profonde : la seule couleur forte
+ * du site, réservée au moment d'agir. Le bouton mène à la page de capture,
+ * réglée par Alice dans les réglages du site.
+ */
 interface Props {
   titre: string;
   texte: string;
   label: string;
-  sujet?: string;
 }
-const { titre, texte, label, sujet } = Astro.props;
-const href = sujet ? `/contact/?sujet=${encodeURIComponent(sujet)}` : '/contact/';
+const { titre, texte, label } = Astro.props;
+const { capture } = (await getEntry('reglages', 'site'))!.data;
 ---
 
-<section class="appel-section mesure">
-  <div class="colonne pile pile--centre pile--s paraitre">
-    <Fil variante="court" />
+<section class="appel" data-palette="framboise">
+  <div class="conteneur pile pile--s paraitre">
     <h2 class="display display--section">{titre}</h2>
-    <Prose texte={texte} class="appel-section__texte" />
-    <a class="appel" href={href}>{label}</a>
+    <Prose texte={texte} class="prose--chapeau appel__texte" />
+    <a class="bouton" href={capture} rel="noopener">{label}</a>
   </div>
 </section>
 
 <style>
-  .appel-section {
+  .appel {
     position: relative;
     z-index: 1;
+    padding-block: var(--souffle-l);
   }
 
-  .appel-section__texte {
-    max-width: 30rem;
-    color: var(--encre-2);
-    font-size: 0.9375em;
-  }
-
-  .appel-section .appel {
-    margin-top: 1.25rem;
+  .appel .bouton {
+    margin-top: 0.75rem;
   }
 </style>

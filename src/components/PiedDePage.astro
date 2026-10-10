@@ -2,15 +2,21 @@
 import { getEntry } from 'astro:content';
 import Glyphe from './Glyphe.astro';
 
+/** Le pied de page, en Framboise profonde, aligné à gauche comme le reste. */
 const reglages = (await getEntry('reglages', 'site'))!.data;
+const { libelles } = reglages;
+const nomComplet = [reglages.nom, reglages.nomSecond].filter(Boolean).join(' - ');
 ---
 
-<footer class="pied">
-  <div class="pied__corps">
-    <Glyphe nom="marque" class="pied__marque" epaisseur={5} />
+<footer class="pied" data-palette="framboise">
+  <div class="conteneur pied__corps">
+    <div class="pied__marque-rang">
+      <Glyphe nom="marque" class="pied__marque" epaisseur={6} />
+      <p class="micro pied__nom">{nomComplet}</p>
+    </div>
 
-    <p class="micro micro--large pied__nom">{reglages.personne}</p>
-    <p class="micro micro--serre pied__signature">{reglages.signature}</p>
+    <p class="pied__personne">{reglages.personne}</p>
+    <p class="pied__signature">{reglages.signature}</p>
 
     <ul class="pied__liens">
       <li><a href={`mailto:${reglages.email}`}>{reglages.email}</a></li>
@@ -20,15 +26,13 @@ const reglages = (await getEntry('reglages', 'site'))!.data;
     </ul>
 
     <ul class="pied__legal">
-      <li><a href="/mentions-legales/">Mentions légales</a></li>
-      <li><a href="/confidentialite/">Politique de confidentialité</a></li>
+      <li><a href="/mentions-legales/">{libelles.mentionsLegales}</a></li>
+      <li><a href="/confidentialite/">{libelles.confidentialite}</a></li>
     </ul>
 
     {
       reglages.ville && (
-        <p class="pied__lieu micro micro--serre">
-          {[reglages.ville, reglages.region].filter(Boolean).join(' — ')}
-        </p>
+        <p class="pied__lieu">{[reglages.ville, reglages.region].filter(Boolean).join(' — ')}</p>
       )
     }
   </div>
@@ -38,84 +42,80 @@ const reglages = (await getEntry('reglages', 'site'))!.data;
   .pied {
     position: relative;
     z-index: 1;
-    margin-top: var(--souffle-xl);
     padding-block: var(--souffle-m) clamp(2.5rem, 6vw, 4rem);
-    border-top: 1px solid var(--filet);
-    background: var(--papier);
+    /* Le pied suit l'appel, de la même couleur : une ligne pâle les distingue. */
+    border-top: 1px solid rgb(255 255 255 / 0.16);
   }
 
   .pied__corps {
-    width: min(100% - var(--marge) * 2, 40rem);
-    margin-inline: auto;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .pied__marque-rang {
+    display: flex;
     align-items: center;
-    gap: 0.9rem;
-    text-align: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
   }
 
   .pied__marque {
-    width: 1.4rem;
-    height: 1.4rem;
+    width: 1.5rem;
+    height: 1.5rem;
     color: var(--accent);
-    opacity: 0.75;
-    margin-bottom: 0.6rem;
   }
 
   .pied__nom {
-    color: var(--encre);
-    font-size: 0.625rem;
+    color: var(--titre);
+  }
+
+  .pied__personne {
+    font-weight: 600;
+    color: var(--titre);
   }
 
   .pied__signature {
-    font-size: 0.625rem;
-    color: var(--encre-3);
+    max-width: var(--mesure);
+    font-size: 0.9375rem;
+    color: var(--encre);
   }
 
   .pied__liens,
   .pied__legal {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     gap: 0.4rem 1.5rem;
   }
 
   .pied__liens {
-    margin-top: 0.6rem;
-    font-size: 0.9375rem;
+    margin-top: 0.75rem;
   }
 
-  .pied__liens a {
-    color: var(--encre-2);
-    border-bottom: 1px solid var(--filet);
-    transition: color 0.25s, border-color 0.25s;
+  .pied__liens a,
+  .pied__legal a {
+    color: var(--encre);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 0.25em;
+    transition: color 0.25s, text-decoration-color 0.25s;
   }
 
-  .pied__liens a:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
+  .pied__liens a:hover,
+  .pied__legal a:hover {
+    color: var(--titre);
+    text-decoration-color: var(--accent);
   }
 
   .pied__legal {
-    margin-top: 0.4rem;
-  }
-
-  .pied__legal a {
-    font-size: 0.625rem;
-    letter-spacing: 0.22em;
-    text-indent: 0.22em;
-    text-transform: uppercase;
-    color: var(--encre-3);
-    transition: color 0.25s;
-  }
-
-  .pied__legal a:hover {
-    color: var(--encre);
+    margin-top: 0.25rem;
+    font-size: 0.9375rem;
   }
 
   .pied__lieu {
-    margin-top: 0.6rem;
-    font-size: 0.5625rem;
-    color: var(--encre-4);
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--encre);
   }
 </style>

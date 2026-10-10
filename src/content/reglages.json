@@ -1,9 +1,26 @@
 {
   "nom": "La Sauce d'Exister",
+  "nomSecond": "Frenchy Sauce",
   "signature": "Your French self | Frenchy Sauce.",
   "personne": "Alice Camille",
   "email": "contact@saucedexister.fr",
   "instagram": "@saucedexister_frenchysauce",
   "instagramUrl": "https://www.instagram.com/saucedexister_frenchysauce/",
-  "baseline": "French sparring partner for English-speaking researchers in philosophy and the humanities: read French thinkers in the original, write and speak like yourself."
+  "baseline": "French sparring partner for English-speaking researchers in philosophy and the humanities: read French thinkers in the original, write and speak like yourself.",
+  "capture": "https://bed9-contact.systeme.io/hellofrenchysauce",
+  "langue": "en",
+  "libelles": {
+    "accueil": "Home",
+    "quiSuisJe": "About me",
+    "contact": "Contact",
+    "mentionsLegales": "Legal notice",
+    "confidentialite": "Privacy policy",
+    "enSavoirPlus": "Learn more",
+    "autresJours": "More days",
+    "menu": "Menu",
+    "fermer": "Close",
+    "navigation": "Main navigation",
+    "allerAuContenu": "Skip to content",
+    "miseAJour": "Last updated:"
+  }
 }

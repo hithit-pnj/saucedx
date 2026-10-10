@@ -1,46 +1,15 @@
 ---
-import Glyphe from './Glyphe.astro';
-
-/** Le geste en très grand, très pâle : il habite le fond sans jamais s'expliquer. */
+/**
+ * Le filigrane : une grande lettre par page, dans le hero seulement.
+ * L'initiale du titre, en Fraunces, ton sur ton, calée en haut à gauche et
+ * rognée par le bord de la section (le hero porte overflow: hidden).
+ */
 interface Props {
-  nom:
-    | 'rayonnement'
-    | 'visavis'
-    | 'meandre'
-    | 'fleche'
-    | 'collectif'
-    | 'cernes'
-    | 'suspension'
-    | 'bifurcation'
-    | 'marque';
-  position?: 'haut' | 'bas';
+  /** Le texte dont on prend l'initiale — en général la première ligne du titre. */
+  texte: string;
 }
-const { nom, position = 'haut' } = Astro.props;
+const { texte } = Astro.props;
+const lettre = [...texte.trim()].find((c) => /\p{L}/u.test(c))?.toUpperCase() ?? '';
 ---
 
-<div class:list={['filigrane-cadre', `filigrane-cadre--${position}`]} aria-hidden="true">
-  <Glyphe nom={nom} class="filigrane" epaisseur={0.9} />
-</div>
-
-<style>
-  .filigrane-cadre {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    pointer-events: none;
-    z-index: 0;
-    line-height: 0;
-  }
-
-  .filigrane-cadre--haut {
-    top: clamp(1rem, 5vw, 4rem);
-  }
-
-  .filigrane-cadre--bas {
-    bottom: calc(var(--souffle-l) * -0.5);
-  }
-
-  .filigrane-cadre :global(.filigrane) {
-    position: static;
-  }
-</style>
+{lettre && <span class="filigrane" aria-hidden="true">{lettre}</span>}

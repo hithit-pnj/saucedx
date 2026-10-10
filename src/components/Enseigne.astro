@@ -2,6 +2,7 @@
 import Glyphe from './Glyphe.astro';
 import { getEntry } from 'astro:content';
 
+/** Les deux noms, côte à côte, sur toutes les pages : « La Sauce d'Exister - Frenchy Sauce ». */
 interface Props {
   lien?: boolean;
   class?: string;
@@ -14,5 +15,33 @@ const Balise = lien ? 'a' : 'span';
 
 <Balise class:list={['enseigne-nav', classe]} {...lien ? { href: '/' } : {}}>
   <Glyphe nom="marque" class="marque" epaisseur={9} />
-  <span>{reglages.nom}</span>
+  <span class="noms">
+    <span class="nom">{reglages.nom}</span>
+    {
+      reglages.nomSecond && (
+        <>
+          <span class="separateur" aria-hidden="true">-</span>
+          <span class="nom">{reglages.nomSecond}</span>
+        </>
+      )
+    }
+  </span>
 </Balise>
+
+<style>
+  /* Sur petit écran, les deux noms peuvent passer sur deux lignes, jamais disparaître. */
+  .noms {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.5em;
+  }
+  .nom {
+    white-space: nowrap;
+  }
+  @media (max-width: 30rem) {
+    .separateur {
+      display: none;
+    }
+  }
+</style>

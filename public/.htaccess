@@ -28,6 +28,11 @@ ErrorDocument 404 /404.html
   # RewriteCond %{HTTP_HOST} !^exemple\.fr$ [NC]
   # RewriteRule ^ https://exemple.fr%{REQUEST_URI} [L,R=301]
 
+  # --- Anciennes adresses ----------------------------------------------------
+  # /fenchy-sauce/ portait une coquille et a été diffusée : elle mène à la page
+  # renommée, pour que les liens déjà envoyés restent valables.
+  RewriteRule ^fenchy-sauce/?$ /frenchy-sauce/ [L,R=301]
+
   # --- Mise en maintenance ---------------------------------------------------
   # Interrupteur sans déploiement : déposer un fichier vide nommé « .maintenance »
   # à la racine du site le ferme, le supprimer le rouvre. Effet immédiat.

@@ -1,50 +1,28 @@
 ---
 import Base from './Base.astro';
-import Fil from '../components/Fil.astro';
-import Glyphe from '../components/Glyphe.astro';
 import Filigrane from '../components/Filigrane.astro';
 import Citation from '../components/Citation.astro';
 
-/** Une page brève : un mot, un geste, une porte de sortie. */
+/** Une page brève : un mot, une porte de sortie. */
 interface Props {
   titre: string;
   description: string;
   climat?: 'garance' | 'ambre' | 'prune' | 'vert' | 'bronze' | 'nuit' | 'ardoise';
-  glyphe?:
-    | 'rayonnement'
-    | 'visavis'
-    | 'meandre'
-    | 'fleche'
-    | 'collectif'
-    | 'cernes'
-    | 'suspension'
-    | 'bifurcation';
   surtitre: string;
   lignes: string[];
   citation?: string;
   noindex?: boolean;
 }
 
-const {
-  titre,
-  description,
-  climat = 'garance',
-  glyphe = 'bifurcation',
-  surtitre,
-  lignes,
-  citation,
-  noindex = false,
-} = Astro.props;
+const { titre, description, climat = 'garance', surtitre, lignes, citation, noindex = false } = Astro.props;
 ---
 
 <Base titre={titre} description={description} climat={climat} noindex={noindex}>
-  <section class="placard">
-    <Filigrane nom={glyphe} />
+  <section class="hero placard">
+    <Filigrane texte={lignes[0] ?? surtitre} />
 
-    <div class="colonne pile pile--centre placard__pile">
-      <Fil variante="long" />
-
-      <p class="micro micro--accent">{surtitre}</p>
+    <div class="conteneur pile pile--s">
+      <p class="micro">{surtitre}</p>
 
       <h1 class="display display--titre">
         {lignes.map((ligne, i) => (<>{i > 0 && <br />}{ligne}</>))}
@@ -52,9 +30,7 @@ const {
 
       {citation && <Citation texte={citation} />}
 
-      <Glyphe nom={glyphe} class="sceau" />
-
-      <div class="placard__suite">
+      <div class="placard__suite pile pile--s">
         <slot />
       </div>
     </div>
@@ -63,31 +39,24 @@ const {
 
 <style>
   .placard {
-    position: relative;
-    padding-block: clamp(3rem, 10vw, 6rem) var(--souffle-l);
-    overflow: hidden;
-  }
-
-  .placard__pile {
-    position: relative;
-    z-index: 1;
-    gap: clamp(1.25rem, 3vw, 1.75rem);
+    padding-bottom: var(--souffle-xl);
   }
 
   .placard__suite {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    margin-top: 1rem;
+    width: 100%;
+    margin-top: 0.5rem;
   }
 
   .placard__suite :global(p) {
-    max-width: 28rem;
-    text-align: center;
-    color: var(--encre-2);
-    font-size: 0.9375em;
-    line-height: 1.7;
+    max-width: var(--mesure);
+    color: var(--encre);
+    line-height: 1.6;
     text-wrap: pretty;
+  }
+
+  .placard__suite :global(p a) {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
   }
 </style>

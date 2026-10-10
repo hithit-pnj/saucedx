@@ -52,8 +52,11 @@ content:
         description: Décochez pour retirer la page du site sans la supprimer.
 
       - name: climat
-        label: Climat (couleur d'accent)
+        label: Climat
         type: select
+        description: >-
+          Sans effet visuel depuis la refonte d'octobre 2026 : toutes les pages partagent la
+          palette Mauve × framboise. Le champ est conservé pour les offres existantes.
         options:
           values:
             - { name: garance, label: Garance (rouge profond) }
@@ -154,9 +157,11 @@ content:
           - { name: texte, label: Texte, type: text }
           - { name: label, label: Libellé du bouton, type: string }
           - name: sujet
-            label: Sujet pré-rempli dans le formulaire
+            label: Sujet (sans effet)
             type: string
-            description: Apparaît dans l'objet du mail que vous recevrez.
+            description: >-
+              Le bouton mène désormais à la page de capture (voir Réglages du site) ; ce
+              champ n'est plus utilisé.
 
       - name: seo
         label: Référencement
@@ -223,6 +228,9 @@ content:
                     type: select
                     options:
                       values:
+                        - { name: frenchy-sauce-deep-in, label: Frenchy Sauce — deep in }
+                        - { name: frenchy-sauce-feel-yourself-think, label: Frenchy Sauce — all in }
+                        - { name: frenchy-sauce, label: Frenchy Sauce }
                         - { name: permanence-entreprise, label: Permanence en entreprise }
                         - { name: atelier-entreprise, label: Atelier en entreprise }
                   - { name: texte, label: Résumé — deux ou trois lignes, type: text }
@@ -519,6 +527,12 @@ content:
       delete: false
     fields:
       - { name: nom, label: Nom de la marque, type: string }
+      - name: nomSecond
+        label: Second nom
+        type: string
+        description: >-
+          Affiché à côté du premier en tête de toutes les pages, séparé par un tiret :
+          « La Sauce d'Exister - Frenchy Sauce ».
       - { name: signature, label: Signature, type: string }
       - { name: personne, label: Nom de la personne, type: string }
       - name: email
@@ -540,3 +554,37 @@ content:
         label: Phrase de présentation
         type: text
         description: Utilisée pour le référencement et les lecteurs d'écran.
+      - name: capture
+        label: Adresse de la page de capture
+        type: string
+        description: Tous les boutons d'appel du site mènent à cette adresse.
+        pattern:
+          regex: '^https://.+'
+          message: Le lien doit commencer par https://
+      - name: langue
+        label: Langue des pages
+        type: select
+        default: en
+        description: Indiquée aux navigateurs et aux lecteurs d'écran.
+        options:
+          values:
+            - { name: en, label: Anglais }
+            - { name: fr, label: Français }
+      - name: libelles
+        label: Mots d'interface
+        type: object
+        description: >-
+          Les quelques mots qui ne viennent d'aucune page : menu, pied de page, formulaires.
+        fields:
+          - { name: accueil, label: Menu — lien vers l'accueil, type: string }
+          - { name: quiSuisJe, label: Menu — lien vers Qui suis-je, type: string }
+          - { name: contact, label: Menu — lien vers Contact, type: string }
+          - { name: menu, label: Bouton « Menu » sur petit écran, type: string }
+          - { name: fermer, label: Bouton « Fermer » sur petit écran, type: string }
+          - { name: navigation, label: Nom du menu pour les lecteurs d'écran, type: string }
+          - { name: allerAuContenu, label: Lien d'évitement « Aller au contenu », type: string }
+          - { name: mentionsLegales, label: Pied — lien vers les mentions légales, type: string }
+          - { name: confidentialite, label: Pied — lien vers la confidentialité, type: string }
+          - { name: enSavoirPlus, label: Formulaires — lien « En savoir plus », type: string }
+          - { name: autresJours, label: Rendez-vous — bouton « D'autres jours », type: string }
+          - { name: miseAJour, label: Pages légales — mention « Mise à jour », type: string }

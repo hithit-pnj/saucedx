@@ -417,9 +417,12 @@ parfois rafraîchir la page du site en ligne pour voir le changement.
 - **Page en ligne** : décochez pour retirer une page du site — elle disparaît du menu et de
   l'accueil sans être supprimée. C'est le bon geste pour une page dont le texte n'est pas
   prêt.
-- **Climat** et **Geste graphique** : la couleur et le symbole de la page. À ne toucher qu'à
-  bon escient : ils forment la cohérence de la collection — un climat et un geste par offre,
-  jamais deux offres avec le même.
+- **Climat** : sans effet visuel depuis la refonte d'octobre 2026 — toutes les pages partagent la
+  même palette. **Geste graphique** : le symbole de l'offre sur les cartes de l'accueil ; un geste
+  par offre, jamais deux offres avec le même.
+- **Réglages du site → Adresse de la page de capture** : tous les boutons d'appel du site y
+  mènent. **Second nom** et **Mots d'interface** y sont aussi : le second nom de l'en-tête, les
+  libellés du menu, du pied de page et des formulaires.
 - **La section « En entreprise »**, dans *Accueil* : les offres citées là se présentent côte à
   côte sur l'accueil, sous un chapeau commun, au lieu de suivre les autres dans la liste des
   portes. Retirer une offre de cette section la remet simplement dans la liste.

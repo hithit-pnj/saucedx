@@ -1,8 +1,6 @@
 ---
 import type { GetStaticPaths } from 'astro';
 import Base from '../layouts/Base.astro';
-import Fil from '../components/Fil.astro';
-import Glyphe from '../components/Glyphe.astro';
 import Filigrane from '../components/Filigrane.astro';
 import Verbes from '../components/Verbes.astro';
 import Citation from '../components/Citation.astro';
@@ -17,151 +15,57 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { offre } = Astro.props;
-const { hero, sections, cta, seo, climat, glyphe } = offre.data;
+const { hero, sections, cta, seo, climat } = offre.data;
 const plusieursFormats = sections.length > 1;
 ---
 
 <Base titre={seo.titre} description={seo.description} climat={climat}>
   <article>
-    <header class="ouverture">
-      <Filigrane nom={glyphe} />
+    <header class="hero">
+      <Filigrane texte={hero.lignes[0] ?? offre.data.menu} />
 
-      <div class="colonne pile pile--centre ouverture__pile">
-        <Fil variante="long" />
+      <div class="conteneur pile pile--s">
+        {hero.surtitre && <p class="micro">{hero.surtitre}</p>}
 
         <h1 class="display display--titre">
           {hero.lignes.map((ligne, i) => (<>{i > 0 && <br />}{ligne}</>))}
         </h1>
 
-        {hero.surtitre && <p class="micro micro--accent">{hero.surtitre}</p>}
-
-        {
-          hero.verbes.length > 0 && (
-            <>
-              <Fil />
-              <Verbes verbes={hero.verbes} />
-            </>
-          )
-        }
-
-        <Fil />
+        {hero.verbes.length > 0 && <Verbes verbes={hero.verbes} />}
 
         {hero.citation && <Citation texte={hero.citation} />}
 
-        <Glyphe nom={glyphe} class="sceau" />
-
-        {hero.mention && <p class="micro">{hero.mention}</p>}
+        {hero.mention && <p class="note">{hero.mention}</p>}
       </div>
     </header>
 
-    <div class="corps">
-      {
-        sections.map((section, index) => (
-          <section class:list={['format', index > 0 && 'format--suivant']}>
-            <div class="colonne pile pile--centre paraitre">
-              {plusieursFormats && (
-                <>
-                  <Fil variante="long" />
-                  {section.glyphe && <Glyphe nom={section.glyphe} class="sceau sceau--grand format__sceau" />}
-                  <h2 class="format__titre">{section.titre}</h2>
-                  {section.sousTitre && <p class="micro format__sous-titre">{section.sousTitre}</p>}
-                </>
-              )}
-
-              {section.verbes.length > 0 && (
-                <>
-                  <Fil variante="court" />
-                  <Verbes verbes={section.verbes} />
-                  <Fil variante="court" />
-                </>
-              )}
-            </div>
-
-            {section.texte && (
-              <div class="colonne format__texte paraitre">
-                <Prose texte={section.texte} justifie />
+    {
+      sections.map((section) => (
+        <section class="section format">
+          <div class="conteneur pile pile--m paraitre">
+            {plusieursFormats && (section.titre || section.sousTitre) && (
+              <div class="pile pile--xs">
+                {section.sousTitre && <p class="micro">{section.sousTitre}</p>}
+                {section.titre && <h2 class="display display--section">{section.titre}</h2>}
               </div>
             )}
 
-            {section.blocs.length > 0 && (
-              <div class="colonne format__blocs paraitre">
-                <Fil variante="court" class="format__filet" />
-                <BlocsPratiques blocs={section.blocs} />
-              </div>
-            )}
-          </section>
-        ))
-      }
-    </div>
+            {section.verbes.length > 0 && <Verbes verbes={section.verbes} />}
 
-    <Appel titre={cta.titre} texte={cta.texte} label={cta.label} sujet={cta.sujet} />
+            {section.texte && <Prose texte={section.texte} class="prose--chapeau" />}
+
+            {section.blocs.length > 0 && <BlocsPratiques blocs={section.blocs} />}
+          </div>
+        </section>
+      ))
+    }
+
+    <Appel titre={cta.titre} texte={cta.texte} label={cta.label} />
   </article>
 </Base>
 
 <style>
-  .ouverture {
-    position: relative;
-    padding-block: clamp(2rem, 6vw, 4rem) var(--souffle-l);
-    overflow: hidden;
+  .format + .format {
+    padding-top: 0;
   }
-
-  .ouverture__pile {
-    position: relative;
-    z-index: 1;
-    gap: clamp(1.25rem, 3vw, 1.75rem);
-  }
-
-  .ouverture h1 {
-    margin-top: 0.25rem;
-  }
-
-  .corps {
-    position: relative;
-    z-index: 1;
-  }
-
-  .format {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--souffle-m);
-  }
-
-  .format--suivant {
-    margin-top: var(--souffle-l);
-    padding-top: var(--souffle-m);
-    border-top: 1px solid var(--filet-pale);
-  }
-
-  .format__sceau {
-    margin-bottom: 0.25rem;
-  }
-
-  .format__titre {
-    font-size: clamp(0.8125rem, 1.6vw, 0.9375rem);
-    font-weight: 400;
-    letter-spacing: 0.44em;
-    text-indent: 0.44em;
-    text-transform: uppercase;
-    color: var(--accent);
-    text-wrap: balance;
-  }
-
-  .format__sous-titre {
-    font-size: 0.625rem;
-    color: var(--encre-3);
-  }
-
-  .format__blocs {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--souffle-s);
-  }
-
-  .format__blocs :global(.pratique) {
-    width: 100%;
-    gap: clamp(1.25rem, 3vw, 1.75rem);
-  }
-
 </style>

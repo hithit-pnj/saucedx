@@ -30,10 +30,10 @@ Jonavos g. 60C, 44192 Kaunas, Lituanie
 
 ## Propriété intellectuelle
 
-L'ensemble des contenus de ce site — textes, identité graphique « Le Fil Pensant », glyphes et
-compositions typographiques — est protégé par le droit d'auteur. Toute reproduction, même partielle, est
-soumise à autorisation préalable.
+L'ensemble des contenus de ce site — textes, identité graphique, glyphes et compositions
+typographiques — est protégé par le droit d'auteur. Toute reproduction, même partielle, est soumise à
+autorisation préalable.
 
 ## Crédits
 
-Polices de caractères : Cormorant Garamond et EB Garamond (SIL Open Font License).
+Polices de caractères : Fraunces et Space Grotesk (SIL Open Font License).

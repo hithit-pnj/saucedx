@@ -2,9 +2,9 @@
 import Glyphe from './Glyphe.astro';
 import { offresPubliees } from '../lib/navigation';
 
-/** Les portes de l'accueil : la page ne vend rien, elle oriente. */
+/** Les portes de l'accueil : une carte blanche par offre. La page ne vend rien, elle oriente. */
 interface Props {
-  /** Les offres présentées ailleurs sur la page — les deux offres entreprise, par exemple. */
+  /** Les offres présentées ailleurs sur la page — la section « Two ways in », par exemple. */
   exclure?: string | string[];
 }
 const { exclure = [] } = Astro.props;
@@ -13,29 +13,21 @@ const ecartees = Array.isArray(exclure) ? exclure : [exclure];
 const offres = (await offresPubliees()).filter((o) => !ecartees.includes(o.id));
 ---
 
-<ul class="portes">
-  {
-    offres.map((offre) => (
-      <li data-climat={offre.data.climat}>
-        <a class="porte" href={`/${offre.id}/`}>
-          <Glyphe nom={offre.data.glyphe} class="glyphe-porte" epaisseur={7} />
-          <span>
-            <span class="intitule">{offre.data.porte.intitule}</span>
-            <span class="precision">{offre.data.porte.precision}</span>
-          </span>
-          <span class="fleche" aria-hidden="true">⟶</span>
-        </a>
-      </li>
-    ))
-  }
-</ul>
-
-<style>
-  .portes {
-    position: relative;
-    z-index: 1;
-  }
-  li {
-    display: contents;
-  }
-</style>
+{
+  offres.length > 0 && (
+    <ul class="portes">
+      {offres.map((offre) => (
+        <li class="carte">
+          <a class="porte" href={`/${offre.id}/`}>
+            <Glyphe nom={offre.data.glyphe} class="glyphe-porte" epaisseur={7} />
+            <span>
+              <span class="intitule display display--carte">{offre.data.porte.intitule}</span>
+              <span class="precision">{offre.data.porte.precision}</span>
+              <span class="fleche" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}

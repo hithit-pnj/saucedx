@@ -16,32 +16,30 @@ import Placard from '../../layouts/Placard.astro';
   description="Accepter ou proposer un autre moment."
   surtitre="Quinze minutes au téléphone"
   lignes={['Une demande.']}
-  glyphe="visavis"
   noindex
 >
   <p class="etat" role="status" aria-live="polite">Je regarde…</p>
 
-  <dl class="demande" hidden>
-    <div><dt>Qui</dt><dd data-champ="nom"></dd></div>
-    <div><dt>Téléphone</dt><dd data-champ="telephone"></dd></div>
-    <div><dt>Mail</dt><dd data-champ="email"></dd></div>
-    <div><dt>Moment</dt><dd data-champ="moment"></dd></div>
-    <div class="demande__motif" hidden><dt>Ce qui l'amène</dt><dd data-champ="motif"></dd></div>
+  <dl class="demande carte carte--compacte" hidden>
+    <div><dt class="micro">Qui</dt><dd data-champ="nom"></dd></div>
+    <div><dt class="micro">Téléphone</dt><dd data-champ="telephone"></dd></div>
+    <div><dt class="micro">Mail</dt><dd data-champ="email"></dd></div>
+    <div><dt class="micro">Moment</dt><dd data-champ="moment"></dd></div>
+    <div class="demande__motif" hidden><dt class="micro">Ce qui l'amène</dt><dd data-champ="motif"></dd></div>
   </dl>
 
   <div class="gestes" hidden>
-    <button class="appel" type="button" data-geste="accepter">Accepter ce moment</button>
-    <button class="decliner" type="button" data-geste="refuser">Proposer un autre moment</button>
+    <button class="bouton" type="button" data-geste="accepter">Accepter ce moment</button>
+    <button class="decliner lien" type="button" data-geste="refuser">Proposer un autre moment</button>
   </div>
 
-  <a class="appel retour" href="/" hidden>Retour au site</a>
+  <a class="bouton retour" href="/" hidden>Retour au site</a>
 </Placard>
 
 <style>
   .etat {
-    font-family: var(--display);
-    font-style: italic;
-    font-size: 1.25rem;
+    font-weight: 500;
+    font-size: 1.0625rem;
     line-height: 1.5;
     color: var(--accent);
   }
@@ -51,7 +49,7 @@ import Placard from '../../layouts/Placard.astro';
   }
 
   .etat[data-ton='erreur'] {
-    color: oklch(0.48 0.15 28);
+    color: #c2185b;
   }
 
   .demande {
@@ -59,10 +57,8 @@ import Placard from '../../layouts/Placard.astro';
     flex-direction: column;
     gap: 1.1rem;
     width: 100%;
-    max-width: 26rem;
+    max-width: 28rem;
     margin: 0;
-    padding-top: var(--souffle-xs);
-    text-align: start;
   }
 
   .demande[hidden] {
@@ -70,34 +66,31 @@ import Placard from '../../layouts/Placard.astro';
   }
 
   .demande dt {
-    font-size: 0.625rem;
-    letter-spacing: 0.34em;
-    text-indent: 0.34em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.3rem;
   }
 
   .demande dd {
     margin: 0;
-    font-size: 0.9375em;
-    line-height: 1.66;
-    color: var(--encre-2);
+    line-height: 1.6;
+    color: var(--encre);
     text-wrap: pretty;
   }
 
   .demande [data-champ='moment'] {
     font-family: var(--display);
-    font-style: italic;
-    font-size: 1.375rem;
-    color: var(--encre);
+    font-weight: 700;
+    font-optical-sizing: auto;
+    font-variation-settings: 'SOFT' 100;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: var(--titre);
   }
 
   .gestes {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 1.1rem;
+    gap: 1.1rem 1.5rem;
     margin-top: var(--souffle-xs);
   }
 
@@ -108,18 +101,8 @@ import Placard from '../../layouts/Placard.astro';
   .decliner {
     padding: 0;
     border: none;
-    border-bottom: 1px solid var(--filet);
     background: transparent;
-    font-family: var(--serif);
-    font-size: 0.8125rem;
-    color: var(--encre-3);
     cursor: pointer;
-    transition: color 0.25s, border-color 0.25s;
-  }
-
-  .decliner:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
   }
 
   .retour[hidden] {

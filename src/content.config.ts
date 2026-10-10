@@ -163,6 +163,8 @@ const reglages = defineCollection({
   }),
   schema: z.object({
     nom: z.string(),
+    /** Le second nom, affiché à côté du premier en tête de site : « La Sauce d'Exister - Frenchy Sauce ». */
+    nomSecond: z.string().default(''),
     signature: z.string(),
     personne: z.string(),
     email: z.string().email(),
@@ -172,6 +174,30 @@ const reglages = defineCollection({
     ville: z.string().optional(),
     region: z.string().optional(),
     baseline: z.string(),
+
+    /** La page de capture : tous les boutons d'appel y mènent. */
+    capture: z.string().url().default('https://bed9-contact.systeme.io/hellofrenchysauce'),
+
+    /** La langue des pages publiées, pour <html lang> et les métadonnées. */
+    langue: z.enum(['en', 'fr']).default('en'),
+
+    /** Les quelques mots d'interface qui ne viennent d'aucune page : menu, pied, formulaires. */
+    libelles: z
+      .object({
+        accueil: z.string().default('Home'),
+        quiSuisJe: z.string().default('About me'),
+        contact: z.string().default('Contact'),
+        mentionsLegales: z.string().default('Legal notice'),
+        confidentialite: z.string().default('Privacy policy'),
+        enSavoirPlus: z.string().default('Learn more'),
+        autresJours: z.string().default('More days'),
+        menu: z.string().default('Menu'),
+        fermer: z.string().default('Close'),
+        navigation: z.string().default('Main navigation'),
+        allerAuContenu: z.string().default('Skip to content'),
+        miseAJour: z.string().default('Last updated:'),
+      })
+      .default({}),
   }),
 });
 

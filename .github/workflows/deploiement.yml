@@ -9,6 +9,12 @@ concurrency:
   group: deploiement
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  # Pour ouvrir une issue quand la mise en ligne échoue : sans cela, une
+  # correction d'Alice peut rester hors ligne sans que personne le sache.
+  issues: write
+
 jobs:
   construire-et-publier:
     name: Construire et publier chez l'hébergeur
@@ -35,6 +41,8 @@ jobs:
           SITE_URL: ${{ vars.SITE_URL }}
 
       - name: Envoyer par FTP
+        id: ftp
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVEUR }}
@@ -49,3 +57,38 @@ jobs:
           # Le journal de synchronisation évite de tout réenvoyer à chaque fois.
           state-name: .ftp-deploy-sync-state.json
           dangerous-clean-slate: false
+          # L'hébergeur a déjà coupé la connexion de contrôle au bout des 30 s par
+          # défaut (« Timeout (control socket) ») : on lui laisse deux minutes.
+          timeout: 120000
+
+      - name: Nouvelle tentative d'envoi FTP
+        id: ftp-bis
+        if: steps.ftp.outcome == 'failure'
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVEUR }}
+          username: ${{ secrets.FTP_UTILISATEUR }}
+          password: ${{ secrets.FTP_MOT_DE_PASSE }}
+          protocol: ${{ vars.FTP_PROTOCOLE || 'ftps' }}
+          local-dir: ./dist/
+          server-dir: ${{ secrets.FTP_DOSSIER }}
+          state-name: .ftp-deploy-sync-state.json
+          dangerous-clean-slate: false
+          timeout: 120000
+
+      - name: Signaler l'échec de la mise en ligne
+        if: steps.ftp.outcome == 'failure' && steps.ftp-bis.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ADRESSE: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh issue create \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "Mise en ligne échouée — $(date -u +'%d/%m/%Y %H:%M') UTC" \
+            --body "Le site a été construit mais l'envoi FTP a échoué deux fois de suite. La dernière modification n'est donc **pas en ligne**.
+
+          Journal : $ADRESSE
+
+          Pour relancer : onglet *Actions* → *Mise en ligne* → *Run workflow*. Si l'erreur est « Timeout (control socket) », l'hébergeur a coupé la connexion : relancer suffit en général."
+          exit 1

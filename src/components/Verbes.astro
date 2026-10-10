@@ -1,21 +1,17 @@
 ---
-/** Les quatre verbes à l'infinitif que le fil relie. */
+/** Les verbes à l'infinitif : une liste à puces en anneau. */
 interface Props {
   verbes: string[];
-  numerotes?: boolean;
 }
-const { verbes, numerotes = true } = Astro.props;
+const { verbes } = Astro.props;
 ---
 
 {
   verbes.length > 0 && (
-    <ol class="verbes">
-      {verbes.map((verbe, i) => (
-        <li>
-          {numerotes && <span class="rang" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>}
-          <span class="verbe">{verbe}</span>
-        </li>
+    <ul class="liste">
+      {verbes.map((verbe) => (
+        <li>{verbe}</li>
       ))}
-    </ol>
+    </ul>
   )
 }

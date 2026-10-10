@@ -1,7 +1,8 @@
 # La Sauce d'Exister — site vitrine
 
 Site statique de dialogues philosophants à Annecy.
-Identité graphique **Le Fil Pensant**, contenus rédigés par Alice.
+Direction artistique alignée sur les pages de vente Systeme.io d'Alice (octobre 2026), contenus
+rédigés par Alice.
 
 > **Copie de travail autonome.** Ce dépôt reprend à l'identique le site construit pour Alice,
 > mais sans aucun de ses accès : domaine, hébergement, dépôt Git et CMS sont les vôtres. Le
@@ -18,7 +19,7 @@ Identité graphique **Le Fil Pensant**, contenus rédigés par Alice.
 | **Contenus en Markdown / YAML** dans `src/content` | Les textes sont séparés du code. Alice peut les modifier sans toucher à une ligne de gabarit, et chaque modification est versionnée dans Git — donc annulable. |
 | **Pages CMS** (`.pages.yml`) | Interface d'édition en français, gratuite, hébergée. Elle écrit directement dans le dépôt Git ; la mise en ligne se déclenche toute seule. Aucun abonnement, aucun serveur CMS à surveiller. |
 | **Formulaire et rendez-vous → endpoints PHP** (`public/api/`) | L'hébergement mutualisé exécute PHP nativement : le formulaire envoie un mail et la prise de rendez-vous tient son agenda sans service tiers, sans abonnement, sans données qui transitent par un prestataire américain. |
-| **Polices auto-hébergées** (`@fontsource`) | Cormorant Garamond et EB Garamond servies depuis le domaine : pas d'appel à Google Fonts, donc pas de bandeau cookies à prévoir et un affichage plus rapide. |
+| **Polices auto-hébergées** (`@fontsource-variable`) | Fraunces (titres) et Space Grotesk (texte) servies depuis le domaine : pas d'appel à Google Fonts, donc pas de bandeau cookies à prévoir et un affichage plus rapide. |
 | **Aucun outil de mesure d'audience** | Rien à déclarer, rien à consentir. |
 
 Le site ne pèse qu'une poignée de kilo-octets de JavaScript (le menu mobile, le formulaire et deux
@@ -86,10 +87,10 @@ src/
     offres/*.md            Une page par offre (ordre, climat, glyphe, textes, blocs pratiques)
     pages/*.md             Accueil, Qui suis-je, Contact
     legal/*.md             Mentions légales et confidentialité
-  components/              Glyphe, Fil, Portes, Formulaire, Filigrane…
+  components/              Glyphe, Portes, Formulaire, Filigrane, Appel…
   layouts/                 Base (SEO, polices, en-tête, pied), Placard, PageLegale
   pages/                   Les routes du site
-  styles/global.css        Le système Fil Pensant : couleurs, typographie, rythme
+  styles/global.css        Le système graphique : palettes, typographie, cartes, bouton, grilles
 public/
   api/contact.php          Réception du formulaire et envoi du mail
   api/creneaux.php         Les créneaux téléphoniques encore libres
@@ -101,26 +102,28 @@ public/
 .pages.yml                 Configuration de l'interface d'édition
 ```
 
-### Le système graphique en trois règles
+### Le système graphique en quatre règles
 
-1. **Deux registres typographiques seulement**, dans un rapport d'au moins un à six : les mots
-   essentiels en Cormorant Garamond italique (`.display`), les informations pratiques en petites
-   capitales très espacées (`.micro`). Le contraste *est* la hiérarchie — pas d'encadré, pas d'aplat.
-2. **Un climat par offre.** La couleur d'accent se pose sur `data-climat="…"` — le `<body>`, ou un
-   volet de la section entreprise — et se propage par la variable `--accent`. Sept climats existent :
-   `garance`, `ambre`, `prune`, `vert`, `bronze`, `nuit`, `ardoise`.
-3. **Un geste graphique par offre**, jamais expliqué : en filigrane immense et pâle derrière le
-   titre, et en sceau net sous la citation. Les glyphes vivent dans `src/components/Glyphe.astro`.
-   Six gestes pour les offres — le rayonnement, le vis-à-vis, le méandre, la flèche du temps, le
-   collectif, les cernes — auxquels s'ajoutent la suspension (pages légales), la bifurcation
-   (contact) et la marque, qui signe *Qui suis-je*. Ils sont tracés dans une boîte de 200 × 200, à
-   40 px par défaut, et ne descendent jamais sous 22 px.
-4. **Les deux offres entreprise se lisent côte à côte**, sous un chapeau commun, au lieu de suivre
-   les autres dans la liste des portes. La section est pilotée par le CMS : les offres citées dans
-   *Accueil → La section « En entreprise »* sortent d'elles-mêmes de la liste des portes.
+Référence : la page de vente Systeme.io d'Alice (sections « Mauve × framboise » et « Framboise
+profonde »), en plus épuré.
 
-Le fil vertical relie les blocs et se trace au scroll. Sans JavaScript, ou si le visiteur a demandé
-moins d'animations, il est simplement là.
+1. **Deux palettes, pas plus.** *Mauve × framboise* (`:root`) est le fond de toutes les pages ;
+   *Framboise profonde* (`[data-palette='framboise']`) est réservée à l'appel final (`Appel.astro`)
+   et au pied de page. Les sept « climats » des offres (`data-climat`) sont conservés dans le
+   contenu et le CMS mais partagent désormais la même palette.
+2. **Deux polices.** Fraunces pour les titres (`.display`, graisse 700, axe `SOFT` à 100, taille
+   optique active, jamais de capitales forcées) ; Space Grotesk pour tout le reste (`.prose`,
+   `.micro`, boutons). La citation (`.citation`) est le seul usage de l'italique.
+3. **Aligné à gauche, dans un conteneur de 960 px** (`.conteneur`). Les blocs côte à côte sont
+   des grilles à deux colonnes (`.grille`, `.pratique`, `.portes`) qui s'empilent sous 768 px. La
+   carte blanche (`.carte`, rayon 28 px) est réservée aux blocs pratiques, aux portes de l'accueil
+   et aux formulaires. Le bouton (`.bouton`) est une pilule pleine.
+4. **Un filigrane par page** : l'initiale du titre, en très grand, ton sur ton, dans le hero
+   (`Filigrane.astro`). Les glyphes (`Glyphe.astro`) signent les portes de l'accueil ; la marque
+   signe l'en-tête et le pied de page.
+
+Les boutons d'appel mènent à la page de capture réglée dans *Réglages du site*. La page Contact,
+avec son formulaire et la prise de rendez-vous, reste dans le menu.
 
 ---
 
@@ -153,6 +156,16 @@ de reprendre le travail, sinon on écrase les modifications d'Alice.
 
 Un `push` sur `main` déclenche `.github/workflows/deploiement.yml`, qui construit le site et
 l'envoie par FTPS chez l'hébergeur.
+
+**Si l'envoi FTP échoue** (l'hébergeur a déjà coupé la connexion en plein transfert — « Timeout
+(control socket) »), le workflow retente une fois tout seul. Si la seconde tentative échoue aussi,
+il **ouvre une issue** dans le dépôt, intitulée *Mise en ligne échouée*, avec le lien vers le
+journal : la dernière modification n'est alors pas en ligne, et il suffit de relancer depuis
+l'onglet *Actions* → *Mise en ligne* → *Run workflow*. Pour être prévenu par mail, activer les
+notifications du dépôt (*Watch* → *Custom* → *Issues*).
+
+**Ancienne adresse** : `/fenchy-sauce/` (coquille, diffusée) redirige en 301 vers `/frenchy-sauce/`
+depuis `public/.htaccess`.
 
 Secrets et variables à renseigner dans **GitHub → Settings → Secrets and variables → Actions** :
 

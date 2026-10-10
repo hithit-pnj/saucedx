@@ -1,5 +1,7 @@
 ---
-/** Les informations pratiques : registre bas pour les intitulés, prose pour le reste. */
+import Prose from './Prose.astro';
+
+/** Les informations pratiques : une carte blanche par bloc, en grille de deux colonnes. */
 interface Props {
   blocs: { titre: string; texte: string }[];
 }
@@ -10,9 +12,11 @@ const { blocs } = Astro.props;
   blocs.length > 0 && (
     <dl class="pratique">
       {blocs.map((bloc) => (
-        <div>
+        <div class="carte carte--compacte">
           <dt>{bloc.titre}</dt>
-          <dd>{bloc.texte}</dd>
+          <dd>
+            <Prose texte={bloc.texte} />
+          </dd>
         </div>
       ))}
     </dl>

@@ -1,4 +1,4 @@
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 
 export interface Lien {
   href: string;
@@ -11,14 +11,16 @@ export async function offresPubliees() {
   return offres.sort((a, b) => a.data.ordre - b.data.ordre);
 }
 
-/** Le menu principal : accueil, les offres, qui suis-je, contact. Rien d'autre. */
+/** Le menu principal : accueil, les offres, qui suis-je, contact. Rien d'autre.
+ *  Les libellés fixes viennent des réglages, pour qu'Alice les tienne elle-même. */
 export async function menuPrincipal(): Promise<Lien[]> {
   const offres = await offresPubliees();
+  const { libelles } = (await getEntry('reglages', 'site'))!.data;
   return [
-    { href: '/', libelle: 'Accueil' },
+    { href: '/', libelle: libelles.accueil },
     ...offres.map((o) => ({ href: `/${o.id}/`, libelle: o.data.menu })),
-    { href: '/qui-suis-je/', libelle: 'Qui suis-je' },
-    { href: '/contact/', libelle: 'Contact' },
+    { href: '/qui-suis-je/', libelle: libelles.quiSuisJe },
+    { href: '/contact/', libelle: libelles.contact },
   ];
 }
 

@@ -1,32 +1,20 @@
 ---
-/** Rend un texte brut en paragraphes, en respectant les lignes vides. */
+/**
+ * Rend un texte brut en paragraphes.
+ * Dans le CMS, une ligne vide sépare deux paragraphes ; en YAML « replié »,
+ * elle arrive ici sous la forme d'un simple saut de ligne. Tout saut de ligne
+ * est donc un changement de paragraphe.
+ */
 interface Props {
   texte: string | string[];
   class?: string;
-  justifie?: boolean;
 }
 
-const { texte, class: classe, justifie = false } = Astro.props;
+const { texte, class: classe } = Astro.props;
 
-const paragraphes = (Array.isArray(texte) ? texte : texte.split(/\n\s*\n/))
+const paragraphes = (Array.isArray(texte) ? texte : texte.split(/\n+/))
   .map((p) => p.trim())
   .filter(Boolean);
 ---
 
-{
-  paragraphes.map((p) => (
-    <p class:list={['prose', justifie && 'prose--justifie', classe]} set:text={p} />
-  ))
-}
-
-<style>
-  .prose--justifie {
-    text-align: justify;
-    text-align-last: start;
-  }
-  @media (max-width: 34rem) {
-    .prose--justifie {
-      text-align: start;
-    }
-  }
-</style>
+{paragraphes.map((p) => <p class:list={['prose', classe]} set:text={p} />)}

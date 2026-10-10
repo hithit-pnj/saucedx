@@ -1,11 +1,11 @@
 ---
 import Glyphe from './Glyphe.astro';
+import Prose from './Prose.astro';
 import { offresPubliees } from '../lib/navigation';
 
 /**
- * Les offres entreprise, côte à côte sous un chapeau commun : elles partagent
- * le même cadre et se lisent mieux ensemble qu'à la file. Chaque volet garde
- * le climat de son offre — la couleur suffit à les distinguer.
+ * Deux offres côte à côte sous un chapeau commun — « Two ways in » sur l'accueil.
+ * Chaque volet est une carte blanche qui mène à la page de l'offre.
  */
 interface Props {
   surtitre: string;
@@ -23,24 +23,67 @@ const volets = colonnes
 
 {
   volets.length > 0 && (
-    <section class="entreprise-bloc">
-      <div class="pile pile--centre pile--xs entreprise__chapeau">
+    <section class="entreprise-bloc pile pile--m">
+      <div class="pile pile--xs">
         <p class="micro">{surtitre}</p>
-        <p class="display entreprise__titre">{titre}</p>
+        <h2 class="display display--section">{titre}</h2>
       </div>
 
-      <div class="entreprise">
+      <div class="grille">
         {volets.map(({ entree, texte }) => (
-          <a class="volet" href={`/${entree.id}/`} data-climat={entree.data.climat}>
+          <a class="carte volet" href={`/${entree.id}/`}>
             <Glyphe nom={entree.data.glyphe} class="volet__glyphe" epaisseur={7} />
-            <span class="volet__corps">
-              <span class="volet__intitule">{entree.data.porte.intitule}</span>
+            <div class="volet__corps">
+              <span class="display display--carte">{entree.data.porte.intitule}</span>
               <span class="volet__precision">{entree.data.porte.precision}</span>
-              <span class="volet__texte">{texte}</span>
-            </span>
+              <Prose texte={texte} class="volet__texte" />
+            </div>
           </a>
         ))}
       </div>
     </section>
   )
 }
+
+<style>
+  .entreprise-bloc {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  .volet {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+    transition: transform 0.3s;
+  }
+
+  .volet:hover,
+  .volet:focus-visible {
+    transform: translateY(-2px);
+  }
+
+  .volet__glyphe {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-top: 0.25rem;
+    color: var(--accent);
+  }
+
+  .volet__corps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .volet__precision {
+    font-size: 0.9375rem;
+    color: var(--encre);
+  }
+
+  .volet :global(.volet__texte) {
+    margin-top: 0.4rem;
+  }
+</style>

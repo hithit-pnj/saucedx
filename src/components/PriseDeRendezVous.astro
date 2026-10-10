@@ -1,6 +1,5 @@
 ---
 import { getEntry } from 'astro:content';
-import Fil from './Fil.astro';
 import Prose from './Prose.astro';
 
 /**
@@ -14,6 +13,7 @@ import Prose from './Prose.astro';
 
 const { textes, champs } = (await getEntry('rendezVous', 'reglages'))!.data;
 const reglages = (await getEntry('reglages', 'site'))!.data;
+const { libelles } = reglages;
 
 /** Au-delà, la liste des jours devient un mur : le reste attend un clic. */
 const JOURS_VISIBLES = 4;
@@ -28,20 +28,19 @@ const JOURS_VISIBLES = 4;
   data-succes={textes.succes}
   data-erreur={textes.erreur}
 >
-  <div class="colonne pile pile--centre rdv__ouverture">
-    <Fil variante="court" />
-    <p class="micro micro--accent">{textes.surtitre}</p>
-    <h2 class="display display--section rdv__titre">{textes.titre}</h2>
+  <div class="conteneur pile pile--xs rdv__ouverture">
+    <p class="micro">{textes.surtitre}</p>
+    <h2 class="display display--section">{textes.titre}</h2>
+    <Prose texte={textes.intro} class="prose--chapeau rdv__intro" />
   </div>
 
-  <div class="colonne pile pile--s rdv__corps">
-    <Prose texte={textes.intro} class="rdv__intro" />
-
+  <div class="conteneur">
+    <div class="carte pile pile--s rdv__corps">
     <p class="rdv__etat" role="status" aria-live="polite">{textes.attente}</p>
 
     <div class="rdv__jours" hidden></div>
 
-    <button class="rdv__davantage" type="button" hidden>D'autres jours</button>
+    <button class="rdv__davantage" type="button" hidden>{libelles.autresJours}</button>
 
     <form
       class="formulaire rdv__formulaire"
@@ -51,7 +50,7 @@ const JOURS_VISIBLES = 4;
       hidden
     >
       <p class="rdv__choisi">
-        <span class="micro micro--serre">{textes.choisi}</span>
+        <span class="micro">{textes.choisi}</span>
         <span class="rdv__moment"></span>
         <button class="rdv__changer" type="button">{textes.changer}</button>
       </p>
@@ -86,7 +85,7 @@ const JOURS_VISIBLES = 4;
       <label class="consentement">
         <input type="checkbox" name="consentement" value="oui" required />
         <span>
-          {textes.consentement} <a href="/confidentialite/">En savoir plus</a>.
+          {textes.consentement} <a href="/confidentialite/">{libelles.enSavoirPlus}</a>.
         </span>
       </label>
 
@@ -99,17 +98,18 @@ const JOURS_VISIBLES = 4;
       <input type="hidden" name="creneau" value="" />
 
       <div class="formulaire__pied">
-        <button class="appel" type="submit" data-en-cours={textes.boutonEnCours}>{textes.bouton}</button>
+        <button class="bouton" type="submit" data-en-cours={textes.boutonEnCours}>{textes.bouton}</button>
         <p class="reponse" role="status" aria-live="polite"></p>
       </div>
     </form>
 
-    <p class="micro micro--serre rdv__fuseau">{textes.fuseau}</p>
+    <p class="note rdv__fuseau">{textes.fuseau}</p>
+    </div>
   </div>
 
   <noscript>
-    <div class="colonne rdv__noscript">
-      <p class="micro micro--serre">
+    <div class="conteneur rdv__noscript">
+      <p class="note">
         Le choix d'un créneau demande JavaScript. Écrivez-moi plutôt quelques lignes ci-dessus, ou
         directement à {reglages.email} : je vous répondrai avec des dates.
       </p>
@@ -121,31 +121,26 @@ const JOURS_VISIBLES = 4;
   .rdv {
     position: relative;
     z-index: 1;
-    margin-top: var(--souffle-l);
+    padding-block: var(--souffle-l) 0;
   }
 
   .rdv__ouverture {
-    gap: 1rem;
+    margin-bottom: var(--souffle-m);
   }
 
-  .rdv__titre {
-    font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  .rdv :global(.rdv__intro) {
+    margin-top: 0.5rem;
   }
 
   .rdv__corps {
-    margin-top: var(--souffle-s);
-  }
-
-  .rdv__intro {
-    color: var(--encre-2);
-    font-size: 0.9375em;
+    width: 100%;
+    max-width: 44rem;
   }
 
   .rdv__etat {
-    font-family: var(--display);
-    font-style: italic;
-    font-size: 1.125rem;
-    color: var(--encre-3);
+    font-weight: 500;
+    font-size: 1.0625rem;
+    color: var(--accent);
   }
 
   .rdv__etat:empty {
@@ -153,7 +148,7 @@ const JOURS_VISIBLES = 4;
   }
 
   .rdv__etat[data-ton='erreur'] {
-    color: oklch(0.48 0.15 28);
+    color: #c2185b;
   }
 
   .rdv__jours {
@@ -167,35 +162,34 @@ const JOURS_VISIBLES = 4;
     display: none;
   }
 
-  /* Les jours, et les heures dedans — pas de cartouche, seulement un filet. */
   .rdv :global(.jour) {
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
-    padding-top: 0.9rem;
-    border-top: 1px solid var(--filet-pale);
   }
 
   .rdv :global(.jour__nom) {
-    color: var(--encre-3);
+    color: var(--encre);
   }
 
   .rdv :global(.jour__creneaux) {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.6rem;
   }
 
+  /* Les heures : des pilules claires qui prennent l'accent au survol. */
   .rdv :global(.creneau) {
-    padding: 0.45rem 0.85rem;
-    border: 1px solid var(--filet);
-    border-radius: 0;
-    background: transparent;
-    font-family: var(--serif);
-    font-size: 0.875rem;
-    font-variant-numeric: lining-nums tabular-nums;
-    letter-spacing: 0.04em;
-    color: var(--encre-2);
+    min-height: 44px;
+    padding: 0.5rem 1.1rem;
+    border: 1px solid var(--champ-bord);
+    border-radius: 999px;
+    background: var(--champ-fond);
+    font-family: var(--texte);
+    font-weight: 500;
+    font-size: 0.9375rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--encre);
     cursor: pointer;
     transition: border-color 0.25s, color 0.25s, background-color 0.25s;
   }
@@ -203,29 +197,30 @@ const JOURS_VISIBLES = 4;
   .rdv :global(.creneau:hover),
   .rdv :global(.creneau:focus-visible) {
     border-color: var(--accent);
-    color: var(--accent);
-    background: var(--accent-fantome);
+    color: #ffffff;
+    background: var(--accent);
   }
 
-  .rdv__davantage {
+  .rdv__davantage,
+  .rdv__changer {
     align-self: flex-start;
     padding: 0;
     border: none;
     background: transparent;
-    font-family: var(--serif);
-    font-size: 0.6875rem;
-    letter-spacing: 0.24em;
-    text-indent: 0.24em;
-    text-transform: uppercase;
-    color: var(--encre-3);
-    border-bottom: 1px solid var(--filet);
+    font-family: var(--texte);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
     cursor: pointer;
-    transition: color 0.25s, border-color 0.25s;
+    transition: text-decoration-thickness 0.2s;
   }
 
-  .rdv__davantage:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
+  .rdv__davantage:hover,
+  .rdv__changer:hover {
+    text-decoration-thickness: 2px;
   }
 
   .rdv__formulaire[hidden] {
@@ -237,50 +232,24 @@ const JOURS_VISIBLES = 4;
     flex-wrap: wrap;
     align-items: baseline;
     gap: 0.5rem 0.9rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--filet-pale);
   }
 
   .rdv__moment {
     font-family: var(--display);
-    font-style: italic;
-    font-size: 1.375rem;
+    font-weight: 700;
+    font-optical-sizing: auto;
+    font-variation-settings: 'SOFT' 100;
+    font-size: 1.5rem;
     line-height: 1.2;
-    color: var(--accent);
-  }
-
-  .rdv__changer {
-    padding: 0;
-    border: none;
-    border-bottom: 1px solid var(--filet);
-    background: transparent;
-    font-family: var(--serif);
-    font-size: 0.75rem;
-    color: var(--encre-3);
-    cursor: pointer;
-    transition: color 0.25s, border-color 0.25s;
-  }
-
-  .rdv__changer:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
+    color: var(--titre);
   }
 
   .rdv__fuseau {
-    color: var(--encre-4);
+    font-size: 0.875rem;
   }
 
   .rdv__noscript {
     margin-top: var(--souffle-s);
-  }
-
-  .rdv__noscript .micro {
-    font-size: 0.5625rem;
-    text-transform: none;
-    letter-spacing: 0.08em;
-    text-indent: 0;
-    line-height: 1.7;
-    color: var(--encre-3);
   }
 </style>
 
@@ -322,7 +291,7 @@ const JOURS_VISIBLES = 4;
         cadre.hidden = rang >= visibles;
 
         const nom = document.createElement('p');
-        nom.className = 'jour__nom micro micro--serre';
+        nom.className = 'jour__nom micro';
         nom.id = `jour-${jour.date}`;
         nom.textContent = jour.libelle;
 

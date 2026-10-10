@@ -11,7 +11,6 @@ const { email } = (await getEntry('reglages', 'site'))!.data;
   surtitre="Envoi interrompu"
   lignes={['Le message', "n'est pas parti."]}
   citation={"Rien n'est perdu :\nécrivez-moi directement."}
-  glyphe="bifurcation"
   noindex
 >
   <p>
@@ -19,5 +18,5 @@ const { email } = (await getEntry('reglages', 'site'))!.data;
     <a href={`mailto:${email}`}>{email}</a> — ou de retenter en
     revenant au formulaire.
   </p>
-  <a class="appel" href="/contact/">Revenir au formulaire</a>
+  <a class="bouton" href="/contact/">Revenir au formulaire</a>
 </Placard>

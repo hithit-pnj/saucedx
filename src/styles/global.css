@@ -1,84 +1,87 @@
 /* ============================================================
-   LE FIL PENSANT — système graphique de La Sauce d'Exister
-   La typographie est le paysage. Un seul geste graphique.
-   Rien n'est décoratif ; tout est nécessaire.
+   LA SAUCE D'EXISTER — FRENCHY SAUCE
+   La peau des pages de vente d'Alice, en plus épuré : deux palettes,
+   une police de titres douce, une police de texte nette, et de l'air.
    ============================================================ */
 
-/* --- 1. Climats ------------------------------------------------ */
+/* --- 1. Les deux palettes -------------------------------------- */
 
+/* Mauve × framboise : le fond de toutes les pages. */
 :root {
-  /* Papier */
-  --papier: oklch(0.965 0.012 85);
-  --papier-creux: oklch(0.945 0.014 85);
-  --papier-profond: oklch(0.915 0.016 85);
+  --fond: #e8cfe7;
+  --titre: #7a1245;
+  --encre: #3a1430;
+  --accent: #a81c6e;
+  --accent-pale: rgb(168 28 110 / 0.14);
+  --filigrane: #dfc0de;
 
-  /* Encres */
-  --encre: oklch(0.28 0.02 60);
-  --encre-2: oklch(0.38 0.02 60);
-  --encre-3: oklch(0.52 0.02 60);
-  --encre-4: oklch(0.66 0.015 60);
+  --carte: #ffffff;
+  --carte-titre: #7a1245;
+  --carte-encre: #3a1430;
+  --carte-accent: #a81c6e;
 
-  /* Filets */
-  --filet: oklch(0.28 0.02 60 / 0.16);
-  --filet-pale: oklch(0.28 0.02 60 / 0.08);
+  --bouton-fond: #a81c6e;
+  --bouton-encre: #ffffff;
+  --carte-bouton-fond: #a81c6e;
+  --carte-bouton-encre: #ffffff;
 
-  /* Accent par défaut — garance */
-  --accent: oklch(0.45 0.13 35);
-  --accent-pale: oklch(0.45 0.13 35 / 0.14);
-  --accent-fantome: oklch(0.45 0.13 35 / 0.055);
+  /* Les champs de formulaire, posés dans une carte blanche. */
+  --champ-fond: #f7edf6;
+  --champ-bord: #dfc0de;
 
-  /* Gouttières immuables */
-  --marge: clamp(1.5rem, 6vw, 5rem);
-  --colonne: 34rem;
-  --colonne-large: 44rem;
+  /* Mesures */
+  --conteneur: 60rem;
+  --mesure: 42rem;
+  --marge: clamp(1.25rem, 5vw, 3rem);
+  --gouttiere: 1.25rem;
+  --rayon: 28px;
+  --rayon-compact: 24px;
 
   /* Respirations */
   --souffle-xs: 0.75rem;
   --souffle-s: 1.5rem;
-  --souffle-m: clamp(2.5rem, 6vw, 4rem);
-  --souffle-l: clamp(4rem, 11vw, 8rem);
-  --souffle-xl: clamp(6rem, 16vw, 12rem);
+  --souffle-m: clamp(2.5rem, 5vw, 3.5rem);
+  --souffle-l: clamp(4rem, 9vw, 7rem);
+  --souffle-xl: clamp(5rem, 12vw, 9rem);
 
   /* Familles */
-  --serif: 'EB Garamond', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
-  --display: 'Cormorant Garamond', var(--serif);
+  --display: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+  --texte: 'Space Grotesk Variable', 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
 }
 
-/* Les climats — un par offre, posé sur <body data-climat="…"> */
-[data-climat='garance'] {
-  --accent: oklch(0.45 0.13 35);
-  --accent-pale: oklch(0.45 0.13 35 / 0.14);
-  --accent-fantome: oklch(0.45 0.13 35 / 0.055);
-}
-[data-climat='ambre'] {
-  --accent: oklch(0.45 0.11 70);
-  --accent-pale: oklch(0.45 0.11 70 / 0.14);
-  --accent-fantome: oklch(0.45 0.11 70 / 0.055);
-}
-[data-climat='prune'] {
-  --accent: oklch(0.42 0.09 330);
-  --accent-pale: oklch(0.42 0.09 330 / 0.14);
-  --accent-fantome: oklch(0.42 0.09 330 / 0.055);
-}
-[data-climat='vert'] {
-  --accent: oklch(0.44 0.08 165);
-  --accent-pale: oklch(0.44 0.08 165 / 0.14);
-  --accent-fantome: oklch(0.44 0.08 165 / 0.055);
-}
-[data-climat='bronze'] {
-  --accent: oklch(0.45 0.07 110);
-  --accent-pale: oklch(0.45 0.07 110 / 0.14);
-  --accent-fantome: oklch(0.45 0.07 110 / 0.055);
-}
-[data-climat='nuit'] {
-  --accent: oklch(0.42 0.09 265);
-  --accent-pale: oklch(0.42 0.09 265 / 0.14);
-  --accent-fantome: oklch(0.42 0.09 265 / 0.055);
-}
+/* Les sept climats des offres sont conservés dans le contenu et le CMS,
+   mais ils partagent désormais tous la même palette. */
+[data-climat='garance'],
+[data-climat='ambre'],
+[data-climat='prune'],
+[data-climat='vert'],
+[data-climat='bronze'],
+[data-climat='nuit'],
 [data-climat='ardoise'] {
-  --accent: oklch(0.42 0.06 240);
-  --accent-pale: oklch(0.42 0.06 240 / 0.14);
-  --accent-fantome: oklch(0.42 0.06 240 / 0.055);
+  --accent: #a81c6e;
+  --accent-pale: rgb(168 28 110 / 0.14);
+}
+
+/* Framboise profonde : l'appel final et le pied de page. Rien d'autre. */
+[data-palette='framboise'] {
+  --fond: #8c1438;
+  --titre: #fff0f7;
+  --encre: #f8d3e4;
+  --accent: #fbb3d6;
+  --accent-pale: rgb(251 179 214 / 0.18);
+  --filigrane: #9a1f45;
+
+  --carte-titre: #8c1438;
+  --carte-encre: #4a0f2b;
+  --carte-accent: #a81c6e;
+
+  --bouton-fond: #ffffff;
+  --bouton-encre: #8c1438;
+  --carte-bouton-fond: #d81b7a;
+  --carte-bouton-encre: #ffffff;
+
+  background: var(--fond);
+  color: var(--encre);
 }
 
 /* --- 2. Assises ------------------------------------------------ */
@@ -109,12 +112,13 @@ html {
 
 body {
   margin: 0;
-  background: var(--papier);
+  background: var(--fond);
   color: var(--encre);
-  font-family: var(--serif);
-  font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.1875rem);
-  line-height: 1.68;
-  font-feature-settings: 'kern' 1, 'liga' 1, 'onum' 1;
+  font-family: var(--texte);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-feature-settings: 'kern' 1, 'liga' 1;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -150,203 +154,168 @@ a {
   text-decoration: none;
 }
 
+button {
+  font: inherit;
+  color: inherit;
+}
+
 ::selection {
   background: var(--accent-pale);
   color: var(--encre);
 }
 
 :focus-visible {
-  outline: 1px solid var(--accent);
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
 
-/* --- 3. Les deux registres typographiques ---------------------- */
-/* Rapport d'échelle d'au moins un à six : le contraste EST la hiérarchie. */
+/* --- 3. Les registres typographiques --------------------------- */
 
-/* Registre haut : les mots essentiels */
+/* Les titres : Fraunces, romain, graisse 700, terminaisons arrondies (SOFT 100),
+   taille optique active. Aucun text-transform : la casse vient du CMS. */
 .display {
   font-family: var(--display);
-  font-style: italic;
-  font-weight: 500;
-  line-height: 0.98;
+  font-style: normal;
+  font-weight: 700;
+  font-optical-sizing: auto;
+  font-variation-settings: 'SOFT' 100;
+  line-height: 1.06;
   letter-spacing: -0.005em;
-  color: var(--encre);
+  color: var(--titre);
   text-wrap: balance;
 }
 
-.display--enseigne {
-  font-size: clamp(3.75rem, 13vw, 7.5rem);
-}
+.display--enseigne,
 .display--titre {
-  font-size: clamp(3rem, 9.5vw, 5.75rem);
+  font-size: clamp(2.5rem, 4.8vw, 4rem);
 }
 .display--section {
-  font-size: clamp(2rem, 5.5vw, 3.25rem);
+  font-size: clamp(2.125rem, 4.2vw, 3.125rem);
+}
+.display--carte {
+  font-size: clamp(1.625rem, 2.8vw, 2rem);
+  line-height: 1.1;
 }
 
-/* Registre bas : les notes de bas de page d'une discipline imaginaire */
+/* Les sur-titres */
 .micro {
-  font-family: var(--serif);
+  font-family: var(--texte);
   font-style: normal;
-  font-weight: 400;
-  font-size: 0.6875rem;
-  line-height: 1.6;
-  letter-spacing: 0.38em;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  text-indent: 0.38em; /* compense la chasse finale de l'interlettrage */
-  color: var(--encre-3);
-}
-
-.micro--accent {
   color: var(--accent);
 }
-.micro--serre {
-  letter-spacing: 0.26em;
-  text-indent: 0.26em;
-}
-.micro--large {
-  letter-spacing: 0.46em;
-  text-indent: 0.46em;
-}
 
-/* Registre médian : la prose */
+/* La prose */
 .prose {
-  font-size: 1em;
-  line-height: 1.72;
+  max-width: var(--mesure);
+  font-family: var(--texte);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.6;
   color: var(--encre);
-  hyphens: auto;
   text-wrap: pretty;
 }
 
 .prose + .prose {
-  margin-top: 1.1em;
+  margin-top: 1em;
+}
+
+.prose--chapeau {
+  font-size: clamp(1.1875rem, 1.1rem + 0.4vw, 1.3125rem);
+  line-height: 1.55;
 }
 
 .prose a {
   color: var(--accent);
-  border-bottom: 1px solid var(--accent-pale);
-  transition: border-color 0.25s;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color 0.25s;
 }
 .prose a:hover {
-  border-bottom-color: var(--accent);
+  text-decoration-thickness: 2px;
 }
 
 .prose em {
-  font-family: var(--display);
   font-style: italic;
-  font-size: 1.08em;
 }
 
 .prose strong {
-  font-weight: 500;
+  font-weight: 600;
 }
 
-/* La citation : le registre haut en petit */
+/* Les petites notes : mention, légende, date */
+.note {
+  max-width: var(--mesure);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--encre);
+  text-wrap: pretty;
+}
+
+/* La citation : Fraunces italique, couleur d'accent */
 .citation {
+  max-width: var(--mesure);
   font-family: var(--display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(1.375rem, 3.2vw, 1.875rem);
-  line-height: 1.42;
-  color: var(--encre);
+  font-optical-sizing: auto;
+  font-variation-settings: 'SOFT' 100;
+  font-size: clamp(1.5rem, 2.8vw, 1.9375rem);
+  line-height: 1.22;
+  color: var(--accent);
   text-wrap: balance;
 }
 
-/* --- 4. La colonne unique -------------------------------------- */
-
-.colonne {
-  width: min(100% - var(--marge) * 2, var(--colonne));
-  margin-inline: auto;
-}
-
-.colonne--large {
-  width: min(100% - var(--marge) * 2, var(--colonne-large));
-  margin-inline: auto;
-}
-
-.centre {
-  text-align: center;
-}
-
-/* --- 5. Le fil — une pensée qui se déroule --------------------- */
-
-/* Segment de fil vertical entre deux respirations */
-.fil {
-  width: 1px;
-  height: var(--h, 3.5rem);
-  margin-inline: auto;
-  background: var(--accent);
-  opacity: 0.55;
-  flex: none;
-}
-
-.fil--long {
-  --h: clamp(4rem, 10vw, 7rem);
-}
-.fil--court {
-  --h: 1.75rem;
-}
-.fil--encre {
-  background: var(--encre);
-  opacity: 0.22;
-}
-
-/* Le fil se déroule : chaque segment se trace quand la lecture l'atteint.
-   Sans JavaScript, les fils sont simplement là — l'animation n'est jamais nécessaire. */
-[data-fils='animes'] .fil {
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-[data-fils='animes'] .fil.tire {
-  transform: scaleY(1);
-}
-
-/* --- 6. Le geste graphique ------------------------------------- */
-
-/* Le sceau : net, petit, une signature.
-   40 px est la taille de référence des gestes : en dessous, les tracés
-   les plus denses (les cernes, la flèche rompue) se referment. */
-.sceau {
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-inline: auto;
+/* Un lien textuel, souligné */
+.lien {
+  display: inline-block;
+  font-weight: 600;
   color: var(--accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-thickness 0.2s;
+}
+.lien:hover {
+  text-decoration-thickness: 2px;
 }
 
-.sceau--grand {
-  width: 3.5rem;
-  height: 3.5rem;
+/* --- 4. Le conteneur et les sections --------------------------- */
+
+/* Tout est aligné à gauche dans un conteneur d'environ 960 px. */
+.conteneur {
+  width: min(100% - var(--marge) * 2, var(--conteneur));
+  margin-inline: auto;
 }
 
-/* Le filigrane : immense, très pâle, il habite le fond */
-.filigrane {
-  width: min(52rem, 150vw);
-  height: min(52rem, 150vw);
-  color: var(--accent);
-  opacity: 0.07;
-  pointer-events: none;
-}
-
-/* --- 7. Rythme vertical ---------------------------------------- */
-
-.souffle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.mesure {
+.section {
+  position: relative;
   padding-block: var(--souffle-l);
 }
-.mesure--ample {
-  padding-block: var(--souffle-xl);
+.section--serree {
+  padding-block: var(--souffle-m);
+}
+
+/* Le hero : une section pleine largeur, rognée, qui porte le filigrane. */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3rem, 9vw, 6rem) var(--souffle-m);
+}
+.hero > .conteneur {
+  position: relative;
+  z-index: 1;
 }
 
 .pile {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 .pile--xs {
   gap: var(--souffle-xs);
@@ -360,296 +329,241 @@ a {
 .pile--l {
   gap: var(--souffle-l);
 }
-.pile--centre {
-  align-items: center;
-  text-align: center;
+
+/* Dans une pile, les grilles et les cartes prennent toute la largeur disponible. */
+.pile > .grille,
+.pile > .pratique,
+.pile > .portes,
+.pile > .carte,
+.pile > .formulaire {
+  align-self: stretch;
 }
 
-/* --- 8. Les verbes à l'infinitif ------------------------------- */
+/* Les grilles : deux colonnes, une seule sous 768 px. */
+.grille {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gouttiere);
+}
+.grille--large {
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
 
-.verbes {
+@media (max-width: 767.98px) {
+  .grille {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* --- 5. Le filigrane ------------------------------------------- */
+
+/* Une grande lettre par page, dans le hero seulement : l'initiale du titre,
+   en Fraunces, ton sur ton, calée en haut à gauche et rognée par le bord. */
+.filigrane {
+  position: absolute;
+  top: -0.1em;
+  left: calc(50% - var(--conteneur) / 2 - 0.08em);
+  z-index: 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-optical-sizing: auto;
+  font-variation-settings: 'SOFT' 100;
+  font-size: clamp(16rem, 38vw, 30rem);
+  line-height: 0.8;
+  color: var(--filigrane);
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (max-width: 60rem) {
+  .filigrane {
+    left: -0.08em;
+  }
+}
+
+/* --- 6. La carte blanche --------------------------------------- */
+
+.carte {
+  --encre: var(--carte-encre);
+  --titre: var(--carte-titre);
+  --accent: var(--carte-accent);
+  --bouton-fond: var(--carte-bouton-fond);
+  --bouton-encre: var(--carte-bouton-encre);
+
+  background: var(--carte);
+  color: var(--encre);
+  border-radius: var(--rayon);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.carte--compacte {
+  border-radius: var(--rayon-compact);
+  padding: 1.5rem;
+}
+
+.carte .prose,
+.carte .note {
+  max-width: none;
+}
+
+/* --- 7. Le bouton ---------------------------------------------- */
+
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 54px;
+  padding: 14px 32px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--bouton-fond);
+  color: var(--bouton-encre);
+  font-family: var(--texte);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1.3;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.25s, transform 0.25s;
+}
+
+.bouton:hover,
+.bouton:focus-visible {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.bouton[disabled] {
+  opacity: 0.5;
+  cursor: progress;
+  transform: none;
+}
+
+/* --- 8. Les listes --------------------------------------------- */
+
+/* Puce en anneau, alignée sur la première ligne. */
+.liste {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.7rem;
+  gap: 0.6rem;
+  max-width: var(--mesure);
 }
 
-.verbes li {
-  display: flex;
-  align-items: baseline;
-  gap: 0.85rem;
-}
-
-.verbes .rang {
-  font-size: 0.625rem;
-  letter-spacing: 0.3em;
-  color: var(--accent);
-  font-variant-numeric: lining-nums;
-}
-
-.verbes .verbe {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
-  line-height: 1.2;
+.liste li {
+  position: relative;
+  padding-left: 1.875rem;
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.45;
   color: var(--encre);
+}
+
+.liste li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: calc(0.725em - 7px);
+  width: 14px;
+  height: 14px;
+  border: 3px solid var(--accent);
+  border-radius: 50%;
 }
 
 /* --- 9. Les blocs pratiques ------------------------------------ */
 
 .pratique {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gouttiere);
+}
+
+.pratique > div {
   display: flex;
   flex-direction: column;
-  gap: var(--souffle-s);
+  gap: 0.75rem;
 }
 
 .pratique dt {
-  font-size: 0.625rem;
-  letter-spacing: 0.34em;
-  text-indent: 0.34em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 0.45rem;
+  font-family: var(--display);
+  font-weight: 700;
+  font-optical-sizing: auto;
+  font-variation-settings: 'SOFT' 100;
+  font-size: clamp(1.625rem, 2.8vw, 2rem);
+  line-height: 1.1;
+  color: var(--titre);
+  text-wrap: balance;
 }
 
 .pratique dd {
   margin: 0;
-  font-size: 0.9375em;
-  line-height: 1.66;
-  color: var(--encre-2);
-  hyphens: auto;
-  text-wrap: pretty;
+}
+
+@media (max-width: 767.98px) {
+  .pratique {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* --- 10. Les portes (liens vers les offres) -------------------- */
 
 .portes {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-top: 1px solid var(--filet);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--gouttiere);
 }
 
 .porte {
-  position: relative;
   display: grid;
-  grid-template-columns: 2.5rem 1fr auto;
-  /* Tous les gestes ont la même boîte et s'alignent sur la première ligne du
-     titre : sans cela la liste « saute » d'une porte à l'autre. */
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 1.25rem;
   align-items: start;
-  gap: clamp(1.25rem, 3vw, 1.75rem);
-  padding-block: clamp(1.6rem, 4vw, 2.4rem);
-  border-bottom: 1px solid var(--filet);
-  transition: border-color 0.3s;
-}
-
-.porte::before {
-  content: '';
-  position: absolute;
-  inset: 0 calc(var(--marge) * -0.5);
-  background: var(--accent-fantome);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  z-index: -1;
-}
-
-.porte:hover::before,
-.porte:focus-visible::before {
-  opacity: 1;
+  height: 100%;
+  transition: transform 0.3s;
 }
 
 .porte:hover,
 .porte:focus-visible {
-  border-bottom-color: var(--accent-pale);
+  transform: translateY(-2px);
 }
 
 .porte .glyphe-porte {
   width: 2.5rem;
   height: 2.5rem;
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   color: var(--accent);
-  opacity: 0.75;
-  transition: opacity 0.35s, transform 0.35s;
-}
-.porte:hover .glyphe-porte {
-  transform: scale(1.06);
-}
-.porte:hover .glyphe-porte {
-  opacity: 1;
 }
 
 .porte .intitule {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: clamp(1.5rem, 4vw, 2.125rem);
-  line-height: 1.12;
-  color: var(--encre);
+  display: block;
 }
 
 .porte .precision {
   display: block;
-  margin-top: 0.4rem;
-  font-size: 0.6875rem;
-  letter-spacing: 0.24em;
-  text-indent: 0.24em;
-  text-transform: uppercase;
-  color: var(--encre-3);
-}
-
-.porte .fleche {
-  align-self: center;
-  font-size: 0.9rem;
-  color: var(--accent);
-  opacity: 0;
-  transform: translateX(-0.4rem);
-  transition: opacity 0.35s, transform 0.35s;
-}
-.porte:hover .fleche,
-.porte:focus-visible .fleche {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-@media (max-width: 34rem) {
-  .porte {
-    grid-template-columns: 2.5rem 1fr;
-  }
-  .porte .fleche {
-    display: none;
-  }
-}
-
-/* --- 10 bis. Les deux offres entreprise, côte à côte ----------- */
-/* Même cadre, un chapeau commun : le vert et l'ambre suffisent à les
-   distinguer — ni cartouche, ni encadré. */
-
-.entreprise-bloc {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--souffle-s);
-}
-
-.entreprise__chapeau {
-  gap: 0.85rem;
-}
-
-.entreprise__titre {
-  font-size: clamp(1.5rem, 3.4vw, 1.875rem);
-}
-
-.entreprise {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3.25rem;
-  padding-top: var(--souffle-s);
-  border-top: 1px solid var(--filet-pale);
-}
-
-@media (max-width: 45rem) {
-  .entreprise {
-    grid-template-columns: 1fr;
-    gap: 2.125rem;
-  }
-}
-
-.volet {
-  position: relative;
-  display: grid;
-  grid-template-columns: 2.5rem 1fr;
-  gap: 1.375rem;
-  align-items: start;
-}
-
-.volet::before {
-  content: '';
-  position: absolute;
-  inset: -1rem;
-  background: var(--accent-fantome);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  z-index: -1;
-}
-
-.volet:hover::before,
-.volet:focus-visible::before {
-  opacity: 1;
-}
-
-.volet__glyphe {
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-top: 0.5rem;
-  color: var(--accent);
-  opacity: 0.75;
-  transition: opacity 0.35s, transform 0.35s;
-}
-
-.volet:hover .volet__glyphe {
-  opacity: 1;
-  transform: scale(1.06);
-}
-
-.volet__corps {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-}
-
-.volet__intitule {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: clamp(1.375rem, 3vw, 1.625rem);
-  line-height: 1.14;
+  margin-top: 0.6rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
   color: var(--encre);
 }
 
-.volet__precision {
-  font-size: 0.625rem;
-  letter-spacing: 0.26em;
-  text-indent: 0.26em;
-  text-transform: uppercase;
+.porte .fleche {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 600;
   color: var(--accent);
+  transition: transform 0.3s;
+}
+.porte:hover .fleche {
+  transform: translateX(0.3rem);
 }
 
-.volet__texte {
-  font-size: 0.875em;
-  line-height: 1.62;
-  color: var(--encre-2);
-  text-wrap: pretty;
+@media (max-width: 767.98px) {
+  .portes {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
-/* --- 11. L'appel — le seul geste attendu du visiteur ----------- */
-
-.appel {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding: 0.9rem 1.75rem;
-  border: 1px solid var(--accent);
-  font-size: 0.6875rem;
-  letter-spacing: 0.3em;
-  text-indent: 0.3em;
-  text-transform: uppercase;
-  color: var(--accent);
-  background: transparent;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.appel:hover,
-.appel:focus-visible {
-  background: var(--accent);
-  color: var(--papier);
-}
-
-.appel[disabled] {
-  opacity: 0.45;
-  cursor: progress;
-}
-
-/* --- 12. Le formulaire ----------------------------------------- */
+/* --- 11. Les formulaires --------------------------------------- */
 
 .champ {
   display: flex;
@@ -658,33 +572,36 @@ a {
 }
 
 .champ label {
-  font-size: 0.625rem;
-  letter-spacing: 0.32em;
-  text-indent: 0.32em;
-  text-transform: uppercase;
-  color: var(--encre-3);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--encre);
 }
 
 .champ input,
 .champ textarea {
   width: 100%;
-  padding: 0.65rem 0;
-  border: none;
-  border-bottom: 1px solid var(--filet);
-  border-radius: 0;
-  background: transparent;
-  font-family: var(--serif);
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--champ-bord);
+  border-radius: 14px;
+  background: var(--champ-fond);
+  font-family: var(--texte);
   font-size: 1.0625rem;
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--encre);
-  transition: border-color 0.3s;
+  transition: border-color 0.25s, background-color 0.25s;
   appearance: none;
 }
 
 .champ input:focus,
 .champ textarea:focus {
   outline: none;
-  border-bottom-color: var(--accent);
+  border-color: var(--accent);
+  background: #ffffff;
+}
+
+.champ input[aria-invalid='true'],
+.champ textarea[aria-invalid='true'] {
+  border-color: #c2185b;
 }
 
 .champ textarea {
@@ -697,15 +614,21 @@ a {
   grid-template-columns: auto 1fr;
   gap: 0.85rem;
   align-items: start;
-  font-size: 0.875rem;
-  line-height: 1.6;
-  color: var(--encre-2);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--encre);
+}
+
+.consentement a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .consentement input[type='checkbox'] {
-  width: 0.95rem;
-  height: 0.95rem;
-  margin: 0.32rem 0 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0.2rem 0 0;
   accent-color: var(--accent);
 }
 
@@ -718,70 +641,67 @@ a {
 }
 
 .reponse {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: 1.25rem;
+  font-weight: 500;
+  font-size: 1.0625rem;
   line-height: 1.5;
   color: var(--accent);
 }
 
 .reponse[data-ton='erreur'] {
-  color: oklch(0.48 0.15 28);
+  color: #c2185b;
 }
 
-/* --- 13. Navigation -------------------------------------------- */
+/* --- 12. Navigation -------------------------------------------- */
 
 .enseigne-nav {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  font-size: 0.625rem;
-  letter-spacing: 0.34em;
-  text-indent: 0.34em;
+  gap: 0.75rem;
+  font-family: var(--texte);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: var(--encre);
+  color: var(--titre);
 }
 
 .enseigne-nav .marque {
-  width: 0.95rem;
-  height: 0.95rem;
+  width: 1.25rem;
+  height: 1.25rem;
   color: var(--accent);
   flex: none;
+}
+
+.enseigne-nav .separateur {
+  margin-inline: 0.2em;
 }
 
 .nav-liens {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 1.6rem;
+  gap: 0.35rem 1.5rem;
 }
 
 .nav-liens a {
-  position: relative;
-  font-size: 0.625rem;
-  letter-spacing: 0.22em;
-  text-indent: 0.22em;
-  text-transform: uppercase;
-  color: var(--encre-3);
+  display: inline-block;
   padding-block: 0.35rem;
-  transition: color 0.25s;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  color: var(--encre);
+  text-decoration: underline transparent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35em;
+  transition: color 0.25s, text-decoration-color 0.25s;
 }
 
 .nav-liens a:hover,
 .nav-liens a[aria-current='page'] {
-  color: var(--encre);
+  color: var(--accent);
+  text-decoration-color: var(--accent);
 }
 
-.nav-liens a[aria-current='page']::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0.22em;
-  bottom: 0;
-  height: 1px;
-  background: var(--accent);
-}
-
-/* --- 14. Utilitaires ------------------------------------------- */
+/* --- 13. Utilitaires ------------------------------------------- */
 
 .pour-lecteurs-decran {
   position: absolute;
@@ -801,24 +721,24 @@ a {
   left: 50%;
   transform: translate(-50%, -200%);
   z-index: 100;
-  padding: 0.6rem 1.2rem;
-  background: var(--papier);
-  border: 1px solid var(--accent);
-  font-size: 0.6875rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.9375rem;
   transition: transform 0.2s;
 }
 .evitement:focus {
   transform: translate(-50%, 0);
 }
 
-/* Apparition sobre au scroll — la typographie porte déjà tout */
+/* Apparition sobre au scroll */
 @media (prefers-reduced-motion: no-preference) {
   .paraitre {
     opacity: 0;
     transform: translateY(0.75rem);
-    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .paraitre.paru {
     opacity: 1;

@@ -15,6 +15,7 @@ interface Props {
 
 const { champs, reponses } = Astro.props;
 const reglages = (await getEntry('reglages', 'site'))!.data;
+const { libelles } = reglages;
 ---
 
 <form
@@ -44,7 +45,7 @@ const reglages = (await getEntry('reglages', 'site'))!.data;
   <label class="consentement">
     <input type="checkbox" name="consentement" value="oui" required />
     <span>
-      {champs.consentement} <a href="/confidentialite/">En savoir plus</a>.
+      {champs.consentement} <a href="/confidentialite/">{libelles.enSavoirPlus}</a>.
     </span>
   </label>
 
@@ -57,12 +58,12 @@ const reglages = (await getEntry('reglages', 'site'))!.data;
   <input type="hidden" name="sujet" value="" />
 
   <div class="formulaire__pied">
-    <button class="appel" type="submit" data-en-cours={champs.envoiEnCours}>{champs.envoyer}</button>
+    <button class="bouton" type="submit" data-en-cours={champs.envoiEnCours}>{champs.envoyer}</button>
     <p class="reponse" role="status" aria-live="polite"></p>
   </div>
 
   <noscript>
-    <p class="micro micro--serre formulaire__noscript">
+    <p class="note formulaire__noscript">
       Sans JavaScript, l'envoi fonctionne aussi : vous serez redirigé vers une page de confirmation. Ou
       écrivez directement à {reglages.email}.
     </p>
@@ -90,17 +91,7 @@ const reglages = (await getEntry('reglages', 'site'))!.data;
   }
 
   .formulaire__noscript {
-    font-size: 0.5625rem;
-    color: var(--encre-3);
-    text-transform: none;
-    letter-spacing: 0.08em;
-    text-indent: 0;
-    line-height: 1.7;
-  }
-
-  .champ :global(input[aria-invalid='true']),
-  .champ :global(textarea[aria-invalid='true']) {
-    border-bottom-color: oklch(0.55 0.16 28);
+    font-size: 0.875rem;
   }
 </style>
 

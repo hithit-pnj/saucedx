@@ -1,19 +1,9 @@
 ---
 /**
- * Le geste graphique unique de chaque offre.
- * Il apparaît deux fois : en filigrane (immense, très pâle) et en sceau (petit, net).
- * Il ne s'explique jamais.
+ * Le geste graphique de chaque offre : il signe les portes de l'accueil.
+ * La marque (le Φ) signe l'en-tête et le pied de page.
  */
-type Nom =
-  | 'rayonnement'
-  | 'visavis'
-  | 'meandre'
-  | 'fleche'
-  | 'collectif'
-  | 'cernes'
-  | 'suspension'
-  | 'bifurcation'
-  | 'marque';
+type Nom = 'rayonnement' | 'visavis' | 'meandre' | 'fleche' | 'collectif' | 'cernes' | 'marque';
 
 interface Props {
   nom: Nom;
@@ -134,29 +124,6 @@ const voix = [
         <circle cx="100" cy="100" r="60" />
         <circle cx="100" cy="100" r="80" />
         <circle cx="100" cy="100" r="6" fill="currentColor" stroke="none" />
-      </>
-    )
-  }
-
-  {/* Pages annexes : la suspension (mentions légales) */}
-  {
-    nom === 'suspension' && (
-      <>
-        <line x1="100" y1="14" x2="100" y2="78" />
-        <circle cx="100" cy="100" r="13" />
-        <line x1="100" y1="122" x2="100" y2="186" />
-      </>
-    )
-  }
-
-  {/* Pages annexes : la bifurcation (contact) */}
-  {
-    nom === 'bifurcation' && (
-      <>
-        <path d="M100,190 L100,110" />
-        <path d="M100,110 L58,20" />
-        <path d="M100,110 L142,20" />
-        <circle cx="100" cy="110" r={epaisseur * 0.7} fill="currentColor" stroke="none" />
       </>
     )
   }

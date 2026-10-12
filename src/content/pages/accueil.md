@@ -1,18 +1,22 @@
 ---
 seo:
-  titre: Meet your French researcher self | Frenchy Sauce
-  description: Sparring partner for English-speaking researchers in Philosophy &
-    the Humanities, working on French thought and navigating French academia
+  titre: French for researchers working on French thought | Frenchy Sauce
+  description: "A sparring partner in French for researchers in philosophy and the
+    humanities: read French thinkers in the original, then speak and write as
+    yourself."
 donnees:
   hero:
     lignes:
-      - The French your
-      - researcher
-      - self needs.
-    surtitre: Firsthand & in-depth understanding of the French thinkers you work on.
-      Within a few months, your intellectual rigour meets eloquence on the page,
-      around the seminar table and over an apéro.
-    lieu: " Precise, personal and witty"
+      - A sparring partner in French
+      - for researchers in philosophy
+      - and the humanities.
+    surtitre: >-
+      The French your researcher self needs.
+
+      Read the French thinkers you work on first-hand, catch what translations
+      flatten, and hold your own on the page, around the seminar table and over
+      an apéro.
+    lieu: One-to-one and online. Precise, personal and witty.
   manifeste:
     probleme: >-
       You work on French thinkers, but French keeps getting in the way. You read
@@ -31,15 +35,17 @@ donnees:
       In short: PhD life.
     geste: >-
       I bring together the rigour of a philosophy teacher and the ease of a
-      native speaker and lover of living, spoken French. 
+      native speaker and lover of living, spoken French.
 
 
-      We read the texts themselves, build the grammar from there, and within a
-      few months you can open the originals and hold your own in French-speaking
-      academia, as your French self. 
+      We read the texts themselves, line by line, and build the grammar from
+      there. You make your moves, I respond and push back, and session after
+      session you open the originals and hold your own in French-speaking
+      academia, as your French self.
 
 
-      Not a language school, not a translation service, not coaching. 
+      Not a language school, not a translation service, not coaching: a sparring
+      partner. The thinking stays yours.
 
 
       A key to French thought, with rigour, wit, and without the headache.
@@ -48,23 +54,22 @@ donnees:
     surtitre: Who's talking
     titre: Alice Camille
     texte: >-
-      Certified Philosophy teacher in high school based in Annecy, trained at
-      Sorbonne University and Paris 1 Panthéon-Sorbonne, where I wrote my
-      master's theses on Kant's concept of illusion in relation to human
-      finitude, then on Freud's contribution to the psychology of religion
-      (Religionspsychologie). 
+      State-certified philosophy teacher at a French lycée, based in Annecy. I
+      wrote my master's dissertations at Paris 1 Panthéon-Sorbonne, on Kant's
+      concept of illusion in relation to human finitude, then on Freud's
+      contribution to the psychology of religion (Religionspsychologie), and
+      prepared the CAPES at Sorbonne Université.
 
 
       I grew up in Montmartre, in Paris, and spent twelve years in hospitality
-      before teaching, so I know French lives around a dinner table as much as
-      in a seminar room.
+      alongside my studies, so I know French lives around a dinner table as much
+      as in a seminar room.
     photoAlt: Portrait of Alice Camille
     lien: More about me
   appel:
-    titre: my first five Frenchies
+    titre: My first five Frenchies
     texte: Where does French get in your way? Tell me, and you'll receive your free
       starter pack, built around it. Then we'll spend 45 minutes on it together.
-      Five spots for my first Frenchies, and nothing is binding until we've
-      talked.
+      Five founding spots, and nothing is binding until we've talked.
     label: Apply for a spot!
 ---

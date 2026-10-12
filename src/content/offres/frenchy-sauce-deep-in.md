@@ -1,19 +1,19 @@
 ---
-menu: Get access to French thought
+menu: The programme
 ordre: 2
 publie: true
 climat: garance
 glyphe: rayonnement
 porte:
-  intitule: Get access to French thought
-  precision: gain time, go deeper
+  intitule: "The programme: Deep in or All in"
+  precision: Three or six months, same price
 hero:
   lignes:
-    - Meet your French
-    - researcher self
-  surtitre: Get unstuck. Get access to French thought.
+    - One-to-one French,
+    - on your own texts.
+  surtitre: Get access to French thought
   verbes:
-    - Access to the originals
+    - Access the originals
     - Meet the deadline
     - Rehearse the talk
     - Feel empowered
@@ -22,74 +22,148 @@ hero:
     less busyness
     less loneliness
     more French
-  mention: Book your call
+  mention: It all starts with a free starter pack.
 sections:
-  - titre: Need a sparring partner for your research in Philosophy & the Humanities?
-    sousTitre: Unlock French thought and navigate French academia within a few months.
+  - titre: Two paces, same price
+    sousTitre: "Deep in or All in: we decide together in our first session"
     glyphe: rayonnement
-    texte: >-
-      Here to support and challenge your intellectual and professional
-      flourishing, so you don't have to do it alone. Together, we work towards
-      two closely linked goals. The first is a precise command of written and
-      academic French: we read the texts themselves, closely, and build the
-      grammar from there rather than from drills. The second is ease and
-      eloquence when you speak, because eloquence isn't about knowing
-      everything, or sounding perfectly French; it's about sounding like
-      yourself, in French. 
-
-      Expect rigour, and expect wit.
-  - titre: Programme combining language and philosophy sessions, targeted exercises
-      on your own research texts, and practice scenarios to prepare you for
-      speaking.
-    sousTitre: 3 months or 6 months
-    glyphe: rayonnement
+    texte: Whether you're deep in the sauce, or simply hungry for more.
     blocs:
-      - titre: MODULE 1 - Unlock philosophical reading
+      - titre: Deep in
+        texte: "Three months, to gain time and go deeper when a deadline is looming: a
+          chapter, a talk, a submission."
+      - titre: All in
+        texte: "Six months, to slow down and go further: read your authors at length,
+          discuss them in French, and become your French self."
+      - titre: Not sure which one?
+        texte: "We'll decide together in our first session. Same price either way: you
+          choose your pace, not your budget."
+  - titre: What we'll do together
+    sousTitre: Everything starts from your research
+    glyphe: rayonnement
+    texte: "Your texts, your deadlines, your goal. Whether you're starting from
+      scratch or already reading well but missing the nuances, we start from
+      where you are and shape your programme together in our first session. No
+      app, no guilt-inducing homework, no one chasing you: we set the pace
+      together, and change it whenever your research needs it."
+    blocs:
+      - titre: Read the texts closely
+        texte: "We start from a text you're working on. You read it once, without
+          stopping and without a dictionary, then we take it apart together
+          until you understand it first-hand. It's rarely the jargon that makes
+          you lose the thread: it's the small words that carry the argument,
+          like or, pourtant or dès que."
+      - titre: Catch the connotations
+        texte: "The untranslatables, the double meanings, the nuances a translation
+          flattens, the reason an author chose this word and not another: that's
+          where a philosopher's ear and a native speaker's ear work together."
+      - titre: Write with precision
+        texte: Your abstracts, papers, talks and emails in French, with personal
+          feedback until they say exactly what you mean. We work on grammar too,
+          always drawn from the texts you read and write.
+      - titre: Speak with ease
+        texte: "Seminars, conferences, a drink with colleagues: we rehearse them in
+          role-play, from the formal vous to the moment someone asks « on se
+          tutoie ? ». While you speak, I take notes and let you talk. I only
+          step in if the meaning gets lost."
+      - titre: Become your French self
+        texte: "The last step is a double role-play: a drink with colleagues, where
+          French goes fast, and a question to ask at a conference or to your
+          co-supervisor, where every word counts. By then, you'll sound like
+          yourself."
+  - titre: What you get
+    sousTitre: "You're not buying hours: you're investing in your research"
+    glyphe: rayonnement
+    texte: One-to-one, online, and always flesh and blood.
+    blocs:
+      - titre: What's included
         texte: >-
-          One-to-one sessions to analyse untranslated texts in your field
-          (philosophy, psychoanalysis, sociology), breaking down complex
-          grammatical structures and specialised vocabulary.
+          One-to-one sessions on the texts you're actually working on, so every
+          hour moves your research forward.
 
-          Targeted exercises to identify key concepts and the argumentative
-          subtleties specific to French thought.
+          Targeted exercises on key concepts and argumentative subtleties, to
+          catch what translations miss.
 
-          Strategies for reading French academic texts quickly and effectively.
-      - titre: MODULE 2 - Master spoken French, academic and social
+          Reading strategies for French academic texts, so a single page no
+          longer takes you hours.
+
+          Practice scenarios, from seminars and conferences to informal
+          conversations, to speak with confidence when it counts.
+
+          Personal feedback on your abstracts, papers and presentations, to
+          write in French with precision.
+
+          A reading sheet after each session: the passage we worked on,
+          annotated, to review at your own pace.
+
+          A personal glossary built from your own texts, gathering your field's
+          vocabulary as we go.
+
+          A rehearsal before your next talk or interview, so you walk in ready.
+
+          Messages between sessions for quick questions, so you're never stuck
+          on your own.
+
+          And if you come to France, an IRL coffee, a walk, and of course:
+          talks! With pleasure.
+      - titre: On the house
         texte: >-
-          Practice scenarios (conferences, seminars, informal conversations) to
-          build fluency and confidence when you speak.
+          The small words that carry the argument: my guide to French
+          connectors.
 
-          Work on pronunciation, intonation and the idioms of French-speaking
-          academia.
+          Your conference kit: the phrases to ask a question, disagree politely
+          and keep the conversation going after a talk.
 
-          Sessions devoted to the art of conversation, humour included, so you
-          can find your place socially and professionally.
-      - titre: MODULE 3 - Structure your thinking and your writing in French
+          One emergency session before a big deadline: a talk, a defence, a
+          submission.
+      - titre: What changes
         texte: >-
-          Support in writing summaries, abstracts and presentations in French.
+          One paragraph takes forever, and the nuance still escapes you. → You
+          read a paragraph and catch what the translation flattened.
 
-          Consolidating French grammar and syntax in an academic context, based
-          on your own texts.
+          At the seminar, your brain freezes, and you can't catch everything you
+          hear. → At the seminar, you follow the discussion and ask your sharp
+          question, in French.
 
-          Personalised feedback on your writing to sharpen its precision and
-          rigour.
-      - titre: BEFORE
-        texte: You feel frustrated and isolated. You spend hours deciphering texts, you
-          dread speaking in public, and you doubt you'll ever find your place in
-          French-speaking academia.
-      - titre: AFTER
-        texte: You read the originals with ease, you take part in conferences with
-          confidence and humour, and you feel fully legitimate and connected to
-          the French-speaking philosophical community. You save precious time
-          for your thesis, and you flourish, intellectually and socially.
+          At the apéro, the jokes slip past you. → At the apéro, you get the
+          joke, and sometimes you make it.
+
+          In French, you're a quieter, flatter version of yourself. → In French
+          too, you're precise, quick, funny.
+
+          French is always next semester. → French is part of your research.
+      - titre: How it starts
+        texte: >-
+          1. Apply, and tell me what's giving you a hard time in French.
+
+          2. You receive your free starter pack, built around it.
+
+          3. We spend 45 minutes on it together: you'll see how I work, and
+          we'll both know if a founding spot is right for you.
+
+          4. On day one, we write down your goal together and choose your pace.
+      - titre: My guarantee
+        texte: >-
+          At the start, we set a clear goal together.
+
+          If you come to our sessions, do the work we agree on between them, and
+          still haven't reached that goal by the end of your three or six
+          months, I'll refund you in full.
+      - titre: After the programme
+        texte: >-
+          Once you're in, you're in for good: you'll have learned to do it
+          yourself, and we stay in touch.
+
+          For your most ambitious projects, a tailored format on quote, reserved
+          for those who've been through the programme.
 cta:
-  titre: Wanna be one of my first five Frenchies?
+  titre: Be one of my first five Frenchies!
   texte: A few words about you and your needs in French, and we'll figure out the
     rest together <3
-  label: Let's meet!
+  label: Apply for a spot!
 seo:
-  titre: Meet your French researcher self | Frenchy Sauce.
-  description: "French sparring partner for English-speaking researchers in
-    philosophy and the humanities: read French thinkers in the original, write
-    and speak like yourself."
+  titre: One-to-one French for philosophy researchers | Frenchy Sauce
+  description: "Deep in or All in, three or six months at the same price: read
+    your authors in the original, write with precision, speak with ease. Five
+    founding spots."
 ---

@@ -1,6 +1,6 @@
 ---
 seo:
-  titre: About Alice Camille — Frenchy Sauce
+  titre: About Alice Camille, philosophy teacher | Frenchy Sauce
   description: "Alice Camille: philosophy teacher based in Annecy, native French
     speaker, and sparring partner in French for English-speaking researchers.
     The story behind it."
@@ -12,7 +12,7 @@ donnees:
     surtitre: Alice Camille - native French-speaking philosophy teacher
     citation: A sparring partner whose job is to think French thought with you.
   photo: /media/FRENCHYSOOOOOCE.jpeg
-  photoAlt: Portrait of Alice Camille
+  photoAlt: Alice Camille, smiling, at home among her plants
   texte:
     - I studied philosophy because the questions I carried never found anyone to
       meet them. I became a teacher because I wanted to see what those questions
@@ -35,15 +35,30 @@ donnees:
       dinner table as much as in a seminar room. So I offer the interlocutor I
       would have wanted to find: someone who reads the texts with you, pushes,
       insists, and is never in a hurry to move on."
+    - "I know what it is to work on thoughts that were thought in another
+      language. During my master's, my sauce was German: Kant and Freud, through
+      translations, with a bilingual edition when there was one and the Pons
+      dictionary open, on my own. I could never shake the feeling that a German
+      reader saw something I didn't. With French thought, the original is in my
+      language: I can be the someone I didn't have."
   reperes:
     - titre: Education
-      texte: |-
-        Philosophy Masters at Paris 1 Panthéon-Sorbonne.
-        CAPES of philosophy, preparation at Sorbonne-Université (Paris IV)
+      texte: >-
+        Master's in philosophy, Paris 1 Panthéon-Sorbonne, with the highest
+        distinction.
+
+        Three years in a master's seminar on Lacan's Seminar VII.
+
+        CAPES in philosophy, the French state teaching qualification, prepared
+        at Sorbonne Université (Paris IV).
     - titre: Teaching
-      texte: |-
-        Philosophy teacher in a French lycée (upper secondary school).
-        French tutor for non-native speakers.
+      texte: >-
+        Philosophy teacher in a French lycée (upper secondary school), where the
+        explication de texte, reading a passage line by line, is one of the two
+        exercises I prepare my students for.
+
+        Before Frenchy Sauce, I taught French online to adults, on Preply: five
+        reviews, five stars each.
     - titre: Today
       texte: "Sparring partner in French for English-speaking researchers, with
         Frenchy Sauce. Part of La Sauce d'Exister, a project built on one idea:
@@ -52,5 +67,5 @@ donnees:
   appel:
     titre: Be one of my first five Frenchies!
     texte: Where is French giving you a hard time?
-    label: Let's meet!
+    label: Apply for a spot!
 ---

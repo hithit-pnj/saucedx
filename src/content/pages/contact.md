@@ -1,7 +1,9 @@
 ---
 seo:
-  titre: Contact | Frenchy Sauce
-  description: Contact Alice Camille | Frenchy Sauce
+  titre: Contact and book a call | Frenchy Sauce
+  description: Tell me where French gets in your way, receive your free starter
+    pack, and pick a time for our 45 minutes. I reply personally, usually within
+    24 hours.
 donnees:
   hero:
     lignes:

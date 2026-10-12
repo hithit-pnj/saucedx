@@ -1,7 +1,7 @@
 {
   "nom": "La Sauce d'Exister",
   "nomSecond": "Frenchy Sauce",
-  "signature": "Your French self | Frenchy Sauce.",
+  "signature": "Sparring partner for researchers working on French thought",
   "personne": "Alice Camille",
   "email": "contact@saucedexister.fr",
   "instagram": "@saucedexister_frenchysauce",
@@ -13,14 +13,14 @@
     "accueil": "Home",
     "quiSuisJe": "About me",
     "contact": "Contact",
-    "mentionsLegales": "Legal notice",
-    "confidentialite": "Privacy policy",
-    "enSavoirPlus": "Learn more",
-    "autresJours": "More days",
     "menu": "Menu",
     "fermer": "Close",
     "navigation": "Main navigation",
     "allerAuContenu": "Skip to content",
+    "mentionsLegales": "Legal notice",
+    "confidentialite": "Privacy policy",
+    "enSavoirPlus": "Learn more",
+    "autresJours": "More days",
     "miseAJour": "Last updated:"
   }
 }

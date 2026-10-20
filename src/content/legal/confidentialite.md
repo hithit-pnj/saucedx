@@ -13,7 +13,7 @@ d'identification seront complétées à l'immatriculation.
 
 ## Responsable du traitement
 
-Alice Berthoz — La Sauce d'Exister, contact@saucedexister.fr
+Alice Berthoz — La Sauce d'Exister, alicecamillefrenchy@saucedexister.fr
 
 ## Ce que le site collecte
 
@@ -31,7 +31,7 @@ formulaires de la page contact.
 ## À quoi elles servent
 
 Uniquement à vous répondre, ou à organiser l'appel que vous avez demandé. Elles sont transmises par
-courrier électronique à l'adresse contact@saucedexister.fr et ne sont utilisées ni à des fins
+courrier électronique à l'adresse alicecamillefrenchy@saucedexister.fr et ne sont utilisées ni à des fins
 commerciales, ni transmises à un tiers.
 
 **Base légale** : votre consentement, recueilli par la case à cocher du formulaire.
@@ -53,6 +53,6 @@ de l'Union européenne.
 ## Vos droits
 
 Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et d'opposition sur vos
-données. Pour l'exercer, il suffit d'écrire à contact@saucedexister.fr.
+données. Pour l'exercer, il suffit d'écrire à alicecamillefrenchy@saucedexister.fr.
 
 Vous pouvez également introduire une réclamation auprès de la CNIL — [cnil.fr](https://www.cnil.fr).

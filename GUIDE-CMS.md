@@ -232,10 +232,8 @@ que personne ne le voie.
 ### 5.4 La boîte mail du domaine
 
 **Depuis octobre 2026, la messagerie de `saucedexister.fr` est chez Google Workspace**, plus chez
-Hostinger. La boîte principale est `alicecamillefrenchy@saucedexister.fr` ; `contact@` est un
-alias de cette boîte, créé dans la console d'administration Google (Utilisateurs → Alice →
-Informations utilisateur → Adresses e-mail secondaires). Les deux adresses arrivent au même
-endroit.
+Hostinger. L'adresse du site est `alicecamillefrenchy@saucedexister.fr` ; l'ancienne
+`contact@` n'existe plus.
 
 Une seule boîte suffit : elle reçoit les messages du formulaire *et* les expédie, l'adresse du
 visiteur étant placée en `Reply-To`. Un simple « Répondre » écrit donc bien à la personne, pas à
@@ -392,8 +390,8 @@ ce « quelque part » n'est pas le dossier que le domaine publie — voir « Pro
 3. `https://saucedexister.fr/robots.txt` se termine par
    `Sitemap: https://saucedexister.fr/sitemap-index.xml`. Si vous y lisez `exemple.fr`, c'est
    que la variable `SITE_URL` de l'étape 5.7 manque.
-4. Envoyez un vrai message par le formulaire. Vérifiez qu'il arrive dans `contact@`, puis
-   **répondez-y** : la réponse doit partir vers votre adresse de test, pas vers `contact@`.
+4. Envoyez un vrai message par le formulaire. Vérifiez qu'il arrive dans la boîte d'Alice, puis
+   **répondez-y** : la réponse doit partir vers votre adresse de test, pas vers la boîte d'Alice.
 
 ### 5.10 Les limites de l'offre Single, à connaître d'avance
 

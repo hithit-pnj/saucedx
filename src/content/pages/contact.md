@@ -30,7 +30,7 @@ donnees:
   reponses:
     succes: Thank you, your message is on its way. Looking forward to meeting you!
     erreur: Your message couldn't be sent. Please write to me directly at
-      contact@saucedexister.fr.
+      alicecamillefrenchy@saucedexister.fr.
   autrement:
     titre: Other ways to reach me
     texte: By email, or send me a message on Instagram @saucedexister_frenchysauce,

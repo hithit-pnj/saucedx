@@ -14,7 +14,7 @@ dès qu'elles seront disponibles.
 Alice Berthoz — La Sauce d'Exister
 Interlocutrice pour dialogues philosophants
 Annecy, Haute-Savoie
-contact@saucedexister.fr
+alicecamillefrenchy@saucedexister.fr
 
 - **Statut juridique** : *à compléter*
 - **SIRET** : *à compléter*

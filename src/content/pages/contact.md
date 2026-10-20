@@ -1,6 +1,7 @@
 ---
 seo:
-  titre: Contact and book a call | Frenchy Sauce
+  titre: "## CURRENTLY BROKE SORRY PLEASE CONTACT ON INSTA FRENCH_SAUCE ##Contact
+    and book a call | Frenchy Sauce"
   description: Tell me where French gets in your way, receive your free starter
     pack, and pick a time for our 45 minutes. I reply personally, usually within
     24 hours.

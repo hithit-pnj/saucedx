@@ -24,8 +24,8 @@ require_once __DIR__ . '/agenda.php';
 require_once __DIR__ . '/courrier.php';
 
 // ── Réglages — LA PREMIÈRE LIGNE EST À ADAPTER ──────────────────────────────
-$DESTINATAIRE   = 'contact@saucedexister.fr';
-$EXPEDITEUR     = 'contact@saucedexister.fr';
+$DESTINATAIRE   = 'alicecamillefrenchy@saucedexister.fr';
+$EXPEDITEUR     = 'alicecamillefrenchy@saucedexister.fr'; // = le compte de smtp.php
 $NOM_EXPEDITEUR = "La Sauce d'Exister";
 $PERSONNE       = 'Alice Berthoz';
 $DELAI_MINIMUM  = 3;    // secondes entre l'ouverture du formulaire et l'envoi

@@ -17,11 +17,12 @@ declare(strict_types=1);
 require_once __DIR__ . '/courrier.php';
 
 // ── Réglages — LES DEUX PREMIÈRES LIGNES SONT À ADAPTER ─────────────────────
-$DESTINATAIRE   = 'contact@saucedexister.fr';
-// L'expéditeur doit être une adresse réelle du domaine : SPF et DKIM ne signent
-// que celles-là. Une seule boîte suffit — le Reply-To pointe vers le visiteur,
-// donc répondre au mail répond bien à la personne, pas à soi-même.
-$EXPEDITEUR     = 'contact@saucedexister.fr';
+$DESTINATAIRE   = 'alicecamillefrenchy@saucedexister.fr';
+// L'expéditeur doit être l'adresse du compte qui s'authentifie dans smtp.php :
+// Google comme Hostinger refusent un From différent du compte connecté. Une seule
+// boîte suffit — le Reply-To pointe vers le visiteur, donc répondre au mail répond
+// bien à la personne, pas à soi-même.
+$EXPEDITEUR     = 'alicecamillefrenchy@saucedexister.fr';
 $NOM_EXPEDITEUR = "Formulaire du site";
 $PAGE_MERCI     = '/contact/merci/';
 $PAGE_ERREUR    = '/contact/erreur/';

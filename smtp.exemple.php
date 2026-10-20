@@ -16,15 +16,21 @@
  * faire dans le dépôt Git, qui garde tout son historique même après suppression.
  * Et le déploiement ne peut ni l'écraser ni l'effacer, puisqu'il ne le connaît pas.
  *
- * Le mot de passe est celui de la boîte contact@, celui-là même qui sert à ouvrir
- * le webmail. Aucun mot de passe d'application n'est à créer.
+ * La messagerie du domaine est chez Google Workspace. Google n'accepte pas le mot
+ * de passe du compte pour le SMTP : il faut un « mot de passe d'application », à
+ * créer une fois dans le compte Google concerné (myaccount.google.com → Sécurité →
+ * Validation en deux étapes, qui doit être activée → Mots de passe des applications).
+ * Google affiche seize lettres par groupes de quatre : les espaces ne comptent pas.
+ *
+ * L'adresse ci-dessous doit être la même que $EXPEDITEUR dans public/api/contact.php
+ * et public/api/rendez-vous.php : Google rejette un From différent du compte connecté.
  */
 
 return [
-    'hote'         => 'smtp.hostinger.com',
+    'hote'         => 'smtp.gmail.com',
     // 465 chiffré de bout en bout, ou 587 si le 465 pose problème.
     'port'         => 465,
     // L'adresse complète, pas seulement la partie avant l'arobase.
-    'utilisateur'  => 'contact@saucedexister.fr',
-    'mot_de_passe' => 'à remplacer par le mot de passe de la boîte',
+    'utilisateur'  => 'alicecamillefrenchy@saucedexister.fr',
+    'mot_de_passe' => 'à remplacer par le mot de passe d’application (16 lettres)',
 ];

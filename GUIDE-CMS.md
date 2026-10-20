@@ -229,20 +229,28 @@ ceux qu'il ne connaît pas. Or Hostinger dépose une page de courtoisie, souvent
 `index.php` — et un `index.php` passe avant notre `index.html`. Le site serait en ligne sans
 que personne ne le voie.
 
-### 5.4 Créer l'adresse `contact@saucedexister.fr`
+### 5.4 La boîte mail du domaine
 
-**Emails**, puis créez la boîte `contact@saucedexister.fr`. Une seule suffit : elle reçoit les
-messages du formulaire *et* les expédie, l'adresse du visiteur étant placée en `Reply-To`.
-Un simple « Répondre » écrit donc bien à la personne, pas à soi-même.
+**Depuis octobre 2026, la messagerie de `saucedexister.fr` est chez Google Workspace**, plus chez
+Hostinger. La boîte principale est `alicecamillefrenchy@saucedexister.fr` ; `contact@` est un
+alias de cette boîte, créé dans la console d'administration Google (Utilisateurs → Alice →
+Informations utilisateur → Adresses e-mail secondaires). Les deux adresses arrivent au même
+endroit.
 
-C'est exactement cette adresse qui est déjà inscrite dans `public/api/contact.php` et dans
-`src/content/reglages.json`. En changer voudrait dire modifier ces deux fichiers.
+Une seule boîte suffit : elle reçoit les messages du formulaire *et* les expédie, l'adresse du
+visiteur étant placée en `Reply-To`. Un simple « Répondre » écrit donc bien à la personne, pas à
+soi-même.
 
-Puis, dans **Domaines → Zone DNS**, vérifiez que la création de la boîte a bien posé :
+L'adresse de réception et d'expédition est inscrite en tête de `public/api/contact.php` et de
+`public/api/rendez-vous.php` ; l'adresse affichée sur le site vient de `src/content/reglages.json`.
 
-- les enregistrements **MX** vers Hostinger ;
-- un **TXT** de type `v=spf1 include:_spf.mail.hostinger.com ~all` ;
-- un **DKIM**.
+Dans **Domaines → Zone DNS**, la zone doit porter :
+
+- un **MX** `@` → `smtp.google.com`, priorité 1 (et aucun MX Hostinger) ;
+- un **TXT** `@` `v=spf1 include:_spf.google.com ~all` ;
+- le **DKIM** Google (`google._domainkey`, généré dans la console admin → Applications →
+  Gmail → Authentifier les e-mails) ;
+- un **TXT** `_dmarc` `v=DMARC1; p=none; rua=mailto:alicecamillefrenchy@saucedexister.fr`.
 
 Ce n'est pas optionnel. Sans SPF ni DKIM, les messages du formulaire partent en indésirable
 chez le destinataire, silencieusement — c'est le pire scénario possible pour un site dont la
@@ -269,15 +277,19 @@ c'est-à-dire **à côté** de `public_html`, et surtout pas dedans — et crée
 <?php
 
 return [
-    'hote'         => 'smtp.hostinger.com',
+    'hote'         => 'smtp.gmail.com',
     'port'         => 465,
-    'utilisateur'  => 'contact@saucedexister.fr',
-    'mot_de_passe' => 'le mot de passe de la boîte contact@',
+    'utilisateur'  => 'alicecamillefrenchy@saucedexister.fr',
+    'mot_de_passe' => 'le mot de passe d’application, 16 lettres',
 ];
 ```
 
-Le mot de passe est celui qui ouvre le webmail ; il n'y a pas de mot de passe d'application à
-créer. Le modèle commenté se trouve dans le dépôt, sous `smtp.exemple.php`.
+Le mot de passe n'est **pas** celui du compte Google : Google exige un **mot de passe
+d'application**, à créer dans le compte `alicecamillefrenchy@` — myaccount.google.com →
+Sécurité → activer la *Validation en deux étapes* si ce n'est pas fait → *Mots de passe des
+applications* → nommer « Site saucedexister.fr » → Créer. Google affiche seize lettres par
+groupes de quatre ; recopiez-les avec ou sans espaces, peu importe. Le modèle commenté se
+trouve dans le dépôt, sous `smtp.exemple.php`.
 
 L'emplacement n'est pas négociable. Hors de la racine web, ce fichier est invisible depuis
 Internet même si le serveur cessait d'interpréter le PHP. Il échappe aussi au dépôt Git, dont

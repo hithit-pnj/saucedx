@@ -65,7 +65,7 @@ donnees:
         to exist is to be in the sauce, essentially, and it's worth thinking it
         through with someone."
   appel:
-    titre: Be one of my first five Frenchies!
+    titre: Get your French starter pack!
     texte: Where is French giving you a hard time?
-    label: Apply for a spot!
+    label: Get your free starter pack!
 ---

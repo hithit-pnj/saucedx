@@ -134,12 +134,12 @@ sections:
           French is always next semester. → French is part of your research.
       - titre: How it starts
         texte: >-
-          1. Apply, and tell me what's giving you a hard time in French.
+          1. Tell me what's giving you a hard time in French.
 
           2. You receive your free starter pack, built around it.
 
-          3. We spend 45 minutes on it together: you'll see how I work, and
-          we'll both know if a founding spot is right for you.
+          3. We spend 45 minutes on it together, no strings attached: you'll see
+          how I work, and we'll both know if working together is right for you.
 
           4. On day one, we write down your goal together and choose your pace.
       - titre: My guarantee
@@ -157,13 +157,12 @@ sections:
           For your most ambitious projects, a tailored format on quote, reserved
           for those who've been through the programme.
 cta:
-  titre: Be one of my first five Frenchies!
+  titre: Get your French starter pack!
   texte: A few words about you and your needs in French, and we'll figure out the
     rest together <3
-  label: Apply for a spot!
+  label: Get your free starter pack!
 seo:
   titre: One-to-one French for philosophy researchers | Frenchy Sauce
   description: "Deep in or All in, three or six months at the same price: read
-    your authors in the original, write with precision, speak with ease. Five
-    founding spots."
+    your authors in the original, write with precision, speak with ease."
 ---

@@ -118,8 +118,8 @@ sections:
           At the start, we set a clear goal together. 
 
           If you come to our sessions, do the work we agree on between them, and
-          still haven't reached that goal by the end of your three or six
-          months, I'll refund you in full.
+          still haven't reached that goal by the end of the time we've agreed
+          on, I'll refund you in full.
 cta:
   titre: Your French starter pack
   texte: Let's make you flourish in your researcher life!

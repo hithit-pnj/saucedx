@@ -7,8 +7,8 @@ seo:
 donnees:
   hero:
     lignes:
-      - Be one of my
-      - first five Frenchies
+      - Get your French
+      - starter pack
     surtitre: Let's talk!
     citation: Tell me something that is blocking you, and we'll see how we can turn
       that into a strength!
@@ -17,7 +17,7 @@ donnees:
     a French passage chosen for you, with notes to help you read it closely, and
     the keys to introduce yourself and your research in French. Then pick a time
     for our 45 minutes together: the calendar is just below the form. I reply
-    personally, usually within 24 hours, and nothing is binding at this stage."
+    personally, usually within 24 hours, and nothing is binding."
   champs:
     nom: Your name
     email: Your email address

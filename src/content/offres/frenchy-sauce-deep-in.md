@@ -5,8 +5,8 @@ publie: true
 climat: garance
 glyphe: rayonnement
 porte:
-  intitule: "The programme: Deep in or All in"
-  precision: Three or six months, same price
+  intitule: The programme
+  precision: Shaped around you, length included
 hero:
   lignes:
     - One-to-one French,
@@ -24,20 +24,6 @@ hero:
     more French
   mention: It all starts with a free starter pack.
 sections:
-  - titre: Two paces, same price
-    sousTitre: "Deep in or All in: we decide together in our first session"
-    glyphe: rayonnement
-    texte: Whether you're deep in the sauce, or simply hungry for more.
-    blocs:
-      - titre: Deep in
-        texte: "Three months, to gain time and go deeper when a deadline is looming: a
-          chapter, a talk, a submission."
-      - titre: All in
-        texte: "Six months, to slow down and go further: read your authors at length,
-          discuss them in French, and become your French self."
-      - titre: Not sure which one?
-        texte: "We'll decide together in our first session. Same price either way: you
-          choose your pace, not your budget."
   - titre: What we'll do together
     sousTitre: Everything starts from your research
     glyphe: rayonnement
@@ -45,7 +31,8 @@ sections:
       scratch or already reading well but missing the nuances, we start from
       where you are and shape your programme together in our first session. No
       app, no guilt-inducing homework, no one chasing you: we set the pace
-      together, and change it whenever your research needs it."
+      together, and change it whenever your research needs it. How long we work
+      together depends on you and your research too: we decide it together."
     blocs:
       - titre: Read the texts closely
         texte: "We start from a text you're working on. You read it once, without
@@ -147,8 +134,8 @@ sections:
           At the start, we set a clear goal together.
 
           If you come to our sessions, do the work we agree on between them, and
-          still haven't reached that goal by the end of your three or six
-          months, I'll refund you in full.
+          still haven't reached that goal by the end of the time we've agreed
+          on, I'll refund you in full.
       - titre: After the programme
         texte: >-
           Once you're in, you're in for good: you'll have learned to do it
@@ -163,6 +150,6 @@ cta:
   label: Get your free starter pack!
 seo:
   titre: One-to-one French for philosophy researchers | Frenchy Sauce
-  description: "Deep in or All in, three or six months at the same price: read
-    your authors in the original, write with precision, speak with ease."
+  description: "A one-to-one programme shaped around your research: read your
+    authors in the original, write with precision, speak with ease."
 ---

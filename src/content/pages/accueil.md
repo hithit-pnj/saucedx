@@ -67,9 +67,9 @@ donnees:
     photoAlt: Portrait of Alice Camille
     lien: More about me
   appel:
-    titre: My first five Frenchies
+    titre: Shall we turn your French into an asset?
     texte: Where does French get in your way? Tell me, and you'll receive your free
       starter pack, built around it. Then we'll spend 45 minutes on it together.
-      Five founding spots, and nothing is binding until we've talked.
-    label: Apply for a spot!
+      Nothing is binding until we've talked.
+    label: Get your free starter pack!
 ---

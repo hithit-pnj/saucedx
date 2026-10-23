@@ -33,6 +33,6 @@ donnees:
       alicecamillefrenchy@saucedexister.fr.
   autrement:
     titre: Other ways to reach me
-    texte: By email, or send me a message on Instagram @saucedexister_frenchysauce,
-      where I also post about French thought, translation, and PhD life.
+    texte: By email, or send me a message on Instagram @frenchy_sauce, where I also
+      post about French thought, translation, and PhD life.
 ---

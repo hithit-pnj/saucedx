@@ -102,10 +102,6 @@ sections:
           AND, above all, I'm NOT currently doing a PhD myself: I'm not in the
           same sauce as you, which is exactly why I can help you with yours. An
           outside eye. 
-      - titre: My first five Frenchies
-        texte: "Frenchy Sauce is new, and I'm starting with five founding spots: the
-          full programme, the same care and the same guarantee, at a founding
-          price. In return, I'll ask for your honest feedback along the way."
       - titre: Get started
         texte: >-
           Tell me which thinker, text or paragraph is giving you a hard time,
@@ -115,7 +111,7 @@ sections:
 
 
           Then, since French is learned by practising it, let's talk: 45 minutes
-          together, to see how I work and whether a founding spot is right for
+          together, to see how I work and whether working together is right for
           you.
       - titre: My guarantee
         texte: >-
@@ -125,9 +121,9 @@ sections:
           still haven't reached that goal by the end of your three or six
           months, I'll refund you in full.
 cta:
-  titre: My first five Frenchies
+  titre: Your French starter pack
   texte: Let's make you flourish in your researcher life!
-  label: Apply for a spot!
+  label: Get your free starter pack!
 seo:
   titre: What is Frenchy Sauce? Sparring in French for researchers
   description: "Not a language school, not a translation service, not coaching:

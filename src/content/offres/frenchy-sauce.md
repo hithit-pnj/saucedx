@@ -24,7 +24,7 @@ hero:
     Loneliness and overwork don't have to define this journey of yours.
   mention: One-to-one, online, and always flesh and blood.
 sections:
-  - sousTitre: The French your researcher self needs.
+  - sousTitre: Learn French IN and FOR your research.
     glyphe: fleche
     texte: >-
       A sparring partner knows the discipline and responds to your moves,

@@ -7,15 +7,11 @@ seo:
 donnees:
   hero:
     lignes:
-      - A sparring partner in French
-      - for researchers in philosophy
-      - and the humanities.
-    surtitre: >-
-      The French your researcher self needs.
-
-      Read the French thinkers you work on first-hand, catch what translations
-      flatten, and hold your own on the page, around the seminar table and over
-      an apéro.
+      - Learn French IN and FOR
+      - your research.
+    surtitre: Give yourself a few months to read, speak, think and engage in French
+      — through the work you care about, and in ways that take your research
+      further.
     lieu: One-to-one and online. Precise, personal and witty.
   manifeste:
     probleme: >-

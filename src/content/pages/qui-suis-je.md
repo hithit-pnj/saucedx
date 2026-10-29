@@ -11,7 +11,7 @@ donnees:
       - am I?
     surtitre: Alice Camille - native French-speaking philosophy teacher
     citation: A sparring partner whose job is to think French thought with you.
-  photo: /media/FRENCHYSOOOOOCE.jpeg
+  photo: /media/LINKEDIN TOF.jpeg
   photoAlt: Alice Camille, smiling, at home among her plants
   texte:
     - I studied philosophy because the questions I carried never found anyone to
